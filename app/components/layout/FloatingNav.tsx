@@ -1,6 +1,5 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const navItems = [
@@ -61,68 +60,42 @@ export default function FloatingNav() {
   }, [lastScrollY]);
 
   return (
-    <motion.div 
-      className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50"
-      animate={{ 
-        y: isVisible ? 0 : -100,
-        opacity: isVisible ? 1 : 0
+    <div 
+      className="fixed top-6 left-1/2 z-50"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: `translateX(-50%) translateY(${isVisible ? 0 : -100}px)`,
+        transition: "all 0.3s ease"
       }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
     >
-      <AnimatePresence>
-
-      </AnimatePresence>
-
       <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-black/90 backdrop-blur-xl border border-white/20 rounded-full shadow-2xl">
         {navItems.map((item, index) => (
           <li key={item.id} className="relative">
-            <motion.a
-              className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white transition-all duration-300"
+            <a
+              className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
               onClick={() => setSelectedIndex(index)}
-              onHoverStart={() => {
+              onMouseEnter={() => {
                 setHoveredLabel(item.label);
                 setHoveredIndex(index);
               }}
-              onHoverEnd={() => {
+              onMouseLeave={() => {
                 setHoveredLabel(null);
                 setHoveredIndex(null);
               }}
-              whileTap={{ scale: 0.95 }}
             >
               {item.icon}
               {selectedIndex === index && (
-                <motion.div
-                  className="absolute bottom-[3px] size-[3.5px] rounded-full bg-emerald-300"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
+                <div className="absolute bottom-[3px] size-[3.5px] rounded-full bg-emerald-300" />
               )}
-            </motion.a>
-            <AnimatePresence>
-              {hoveredIndex === index && hoveredLabel && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white px-6 py-2 rounded-full text-sm font-medium shadow-2xl overflow-hidden whitespace-nowrap border border-white/20"
-                >
-                  <motion.span
-                    initial={{ rotateX: -90, opacity: 0 }}
-                    animate={{ rotateX: 0, opacity: 1 }}
-                    exit={{ rotateX: 90, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: "backOut" }}
-                    className="block"
-                  >
-                    {hoveredLabel}
-                  </motion.span>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            </a>
+            {hoveredIndex === index && hoveredLabel && (
+              <div className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white px-6 py-2 rounded-full text-sm font-medium shadow-2xl overflow-hidden whitespace-nowrap border border-white/20">
+                {hoveredLabel}
+              </div>
+            )}
           </li>
         ))}
       </ul>
-    </motion.div>
+    </div>
   );
 }

@@ -34,18 +34,18 @@ export default function Hero() {
       <motion.h1 
         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
         className="text-[clamp(2rem,6vw,3.5rem)] font-bold leading-[1.1] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
       >
         Hi, I'm <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
-        Building the future.
+        <span className="whitespace-nowrap">Building the future.</span>
       </motion.h1>
 
       {/* Subtitle */}
       <motion.h2 
         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
         className="max-w-2xl leading-relaxed text-gray-300 text-lg max-sm:text-base"
       >
         <span className="text-green-500 font-medium">Passionate</span> about crafting exceptional digital experiences with modern technologies. 
@@ -56,7 +56,7 @@ export default function Hero() {
       <motion.div 
         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.7 }}
         className="flex items-start text-center max-xs:flex-col gap-6"
       >
         <div className="hero-nav-board">
@@ -66,12 +66,9 @@ export default function Hero() {
             { key: 'Resume', href: '/resume.pdf', icon: 'resume' },
             { key: 'Email', href: 'mailto:your@email.com', icon: 'email' }
           ].map((item, index) => (
-            <motion.div 
+            <div 
               key={item.key}
               className="hero-nav-position"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 + index * 0.1, type: "spring", stiffness: 300 }}
             >
               <motion.a
                 aria-label={item.key}
@@ -122,16 +119,11 @@ export default function Hero() {
                   </motion.div>
                 )}
               </motion.a>
-            </motion.div>
+            </div>
           ))}
         </div>
         
-        <motion.div 
-          className="hero-cta-container"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.9, type: "spring", stiffness: 300 }}
-        >
+        <div className="hero-cta-container">
           <motion.a
             href="#projects"
             className="hero-cta"
@@ -147,7 +139,7 @@ export default function Hero() {
               →
             </motion.div>
           </motion.a>
-        </motion.div>
+        </div>
       </motion.div>
     </section>
   );
