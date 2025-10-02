@@ -10,60 +10,53 @@ export default function Hero() {
     <section className="relative flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center px-6 max-w-4xl mx-auto overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-400/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-600/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
       </div>
 
       {/* Status Badge */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="flex w-fit items-center rounded-full gap-3 py-2 pl-4 pr-5 border border-green-500/30 bg-slate-950/40 backdrop-blur-xl shadow-lg shadow-green-500/10"
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.8, delay: 0.1 }}
+        className="flex w-fit items-center rounded-full gap-3 py-2 pl-4 pr-5 border border-green-600/30 bg-slate-950/40 backdrop-blur-xl shadow-lg shadow-green-600/10"
       >
         <div className="relative size-3">
-          <div className="absolute size-full animate-ping rounded-full bg-green-400 opacity-75"></div>
-          <div className="size-full rounded-full bg-green-400 shadow-lg shadow-green-400/50"></div>
+          <div className="absolute size-full animate-ping rounded-full bg-green-500 opacity-75"></div>
+          <div className="size-full rounded-full bg-green-500 shadow-lg shadow-green-500/50"></div>
         </div>
-        <h3 className="text-sm text-green-100 font-medium">
+        <h3 className="text-sm text-green-200 font-medium">
           Available for projects
         </h3>
       </motion.div>
 
       {/* Main Title */}
       <motion.h1 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className="text-[clamp(2rem,6vw,3.5rem)] font-bold leading-[1.1] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
       >
-        Hi, I'm <span className="bg-gradient-to-r from-green-400 to-green-300 bg-clip-text text-transparent">Alejo</span>. <br /> 
-        <motion.span 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="inline-block"
-        >
-          Building the future.
-        </motion.span>
+        Hi, I'm <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
+        Building the future.
       </motion.h1>
 
       {/* Subtitle */}
       <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="mb-8 max-w-2xl leading-relaxed text-gray-300 text-lg max-sm:text-base"
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="max-w-2xl leading-relaxed text-gray-300 text-lg max-sm:text-base"
       >
-        <span className="text-green-400 font-medium">Passionate</span> about crafting exceptional digital experiences with modern technologies. 
-        Building <span className="text-green-300 font-medium">innovative</span> solutions through clean code and continuous learning.
+        <span className="text-green-500 font-medium">Passionate</span> about crafting exceptional digital experiences with modern technologies. 
+        Building <span className="text-green-400 font-medium">innovative</span> solutions through clean code and continuous learning.
       </motion.h2>
 
       {/* Enhanced Keyboard Navigation */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
+        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.8, delay: 0.4 }}
         className="flex items-start text-center max-xs:flex-col gap-6"
       >
         <div className="hero-nav-board">

@@ -57,8 +57,8 @@ body {
 
 .hero-cta {
   @apply flex items-center justify-center gap-2 py-3.5 px-7 rounded-full text-white font-semibold text-sm no-underline relative overflow-hidden;
-  background: linear-gradient(135deg, #4ade80, #86efac);
-  border: 1px solid #4ade80;
+  background: linear-gradient(135deg, #16a34a, #22c55e);
+  border: 1px solid #16a34a;
   transition: all 0.15s ease;
 }
 
@@ -76,8 +76,8 @@ body {
 }
 
 .hero-cta:hover {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
-  border-color: #22c55e;
+  background: linear-gradient(135deg, #15803d, #16a34a);
+  border-color: #15803d;
   transform: translateY(-2px);
 }
 
