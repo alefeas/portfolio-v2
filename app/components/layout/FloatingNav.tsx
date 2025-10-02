@@ -72,6 +72,7 @@ export default function FloatingNav() {
         {navItems.map((item, index) => (
           <li key={item.id} className="relative">
             <a
+              href={`#${item.id}`}
               className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
               onClick={() => setSelectedIndex(index)}
               onMouseEnter={() => {

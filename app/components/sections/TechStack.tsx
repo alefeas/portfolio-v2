@@ -45,7 +45,7 @@ const technologies = [
 
 export default function TechStack() {
   return (
-    <section className="py-20 px-6 max-w-6xl mx-auto">
+    <section id="tech-stack" className="py-20 px-6 max-w-6xl mx-auto">
       {/* Section Badge */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
