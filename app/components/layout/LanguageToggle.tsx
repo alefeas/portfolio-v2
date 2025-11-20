@@ -17,12 +17,7 @@ export default function LanguageToggle() {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="fixed top-6 right-6 z-40 flex items-center gap-2 p-1 rounded-full bg-black/90 backdrop-blur-xl border border-white/20 shadow-2xl"
-    >
+    <div className="fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-black/90 backdrop-blur-xl border border-white/20 shadow-2xl h-[50px]">
       <motion.button
         onClick={() => setLanguage('en')}
         className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
@@ -30,8 +25,6 @@ export default function LanguageToggle() {
             ? 'bg-green-500/80 text-white'
             : 'text-white/60 hover:text-white'
         }`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
       >
         EN
       </motion.button>
@@ -43,11 +36,9 @@ export default function LanguageToggle() {
             ? 'bg-green-500/80 text-white'
             : 'text-white/60 hover:text-white'
         }`}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
       >
         ES
       </motion.button>
-    </motion.div>
+    </div>
   );
 }

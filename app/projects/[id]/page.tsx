@@ -112,7 +112,7 @@ export default function ProjectDetail() {
         onClick={() => {
           window.location.href = '/#projects';
         }}
-        className="fixed top-6 left-6 z-50 flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 backdrop-blur-xl border border-white/20 hover:border-green-500/50 text-white/80 hover:text-white transition-all duration-300"
+        className="fixed top-6 left-6 z-50 flex items-center justify-center gap-2 px-4 py-2 h-[50px] rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white/60 hover:text-white transition-colors duration-300"
         title="Back to Projects"
       >
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

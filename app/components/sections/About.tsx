@@ -59,7 +59,7 @@ export default function About() {
             {/* Current Focus */}
             <div className="p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30">
               <h4 className="text-base font-semibold text-white mb-2 flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                 {t('currentlyLearning')}
               </h4>
               <p className="text-slate-300 text-xs leading-relaxed">
@@ -80,7 +80,7 @@ export default function About() {
                   t('uiUx')
                 ].map((skill, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></div>
                     <span className="text-slate-300 text-xs">{skill}</span>
                   </div>
                 ))}

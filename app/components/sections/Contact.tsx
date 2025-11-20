@@ -61,8 +61,8 @@ export default function Contact() {
                     </svg>
                   ),
                   label: t('emailLabel'),
-                  value: "tu@email.com",
-                  href: "mailto:tu@email.com"
+                  value: "alefeas99@gmail.com",
+                  href: "mailto:alefeas99@gmail.com"
                 },
                 {
                   icon: (
@@ -71,8 +71,8 @@ export default function Contact() {
                     </svg>
                   ),
                   label: t('linkedinLabel'),
-                  value: "/in/tu-perfil",
-                  href: "https://linkedin.com/in/tu-perfil"
+                  value: "/in/afeas",
+                  href: "https://www.linkedin.com/in/afeas/"
                 },
                 {
                   icon: (
@@ -81,8 +81,8 @@ export default function Contact() {
                     </svg>
                   ),
                   label: t('githubLabel'),
-                  value: "/tu-usuario",
-                  href: "https://github.com/tu-usuario"
+                  value: "/alefeas",
+                  href: "https://github.com/alefeas"
                 }
               ].map((contact, index) => (
                 <motion.a
@@ -118,7 +118,7 @@ export default function Contact() {
             transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
           >
             <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
               {t('quickResponse')}
             </h4>
             <p className="text-slate-300 text-sm leading-relaxed mb-4">

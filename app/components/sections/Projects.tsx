@@ -141,7 +141,7 @@ export default function Projects() {
               <span className="w-fit text-sm text-green-400 flex items-center">
                 <span className="relative">
                   {t('readMore')}
-                  <span className="absolute bottom-0 left-0 w-0 h-px transition-all duration-300 group-hover:w-full opacity-0 group-hover:opacity-100" style={{borderBottom: '1px dotted white', height: '1px', background: 'none'}}></span>
+                  <span className="absolute bottom-[-4px] left-0 w-0 h-px transition-all duration-300 group-hover:w-full" style={{borderBottom: '1px dotted white', height: '1px', background: 'none'}}></span>
                 </span>
                 <svg className="ml-1 inline-block transition-all duration-300 group-hover:ml-2" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
@@ -217,7 +217,7 @@ export default function Projects() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {selectedProject.features.map((feature: string, index: number) => (
                       <div key={index} className="flex items-center gap-3 text-slate-300">
-                        <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></div>
                         <span className="text-sm">{feature}</span>
                       </div>
                     ))}

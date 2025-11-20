@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
 
@@ -37,7 +37,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-[clamp(2rem,6vw,3.5rem)] font-bold leading-[1.1] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+        className="text-[clamp(1.75rem,5vw,3rem)] font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
       >
         {t('hiIm')} <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
         <span className="whitespace-nowrap">{t('buildingFuture')}</span>
@@ -48,7 +48,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="max-w-2xl leading-relaxed text-gray-300 text-lg max-sm:text-base"
+        className="max-w-2xl leading-relaxed text-gray-300 text-base max-sm:text-sm"
       >
         <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
       </motion.h2>
@@ -62,10 +62,10 @@ export default function Hero() {
       >
         <div className="hero-nav-board">
           {[
-            { key: 'Github', href: 'https://github.com/yourusername', icon: 'github' },
-            { key: 'LinkedIn', href: 'https://linkedin.com/in/yourusername/', icon: 'linkedin' },
-            { key: 'Resume', href: '/resume.pdf', icon: 'resume' },
-            { key: 'Email', href: 'mailto:your@email.com', icon: 'email' }
+            { key: 'Github', href: 'https://github.com/alefeas', icon: 'github' },
+            { key: 'LinkedIn', href: 'https://www.linkedin.com/in/afeas/', icon: 'linkedin' },
+            { key: 'Resume', href: '/resume', icon: 'resume' },
+            { key: 'Email', href: 'mailto:alefeas99@gmail.com', icon: 'email' }
           ].map((item, index) => (
             <div 
               key={item.key}
@@ -101,24 +101,26 @@ export default function Hero() {
                     <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>
                   </svg>
                 )}
-                {hoveredKey === item.key && (
-                  <motion.div
-                    className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-white/20 whitespace-nowrap"
-                    initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  >
-                    <motion.span
-                      initial={{ rotateX: -90, opacity: 0 }}
-                      animate={{ rotateX: 0, opacity: 1 }}
-                      transition={{ duration: 0.3, ease: "backOut" }}
-                      className="block"
+                <AnimatePresence>
+                  {hoveredKey === item.key && (
+                    <motion.div
+                      className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-white/20 whitespace-nowrap"
+                      initial={{ opacity: 0, y: 10, scale: 0.8 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.8 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 25 }}
                     >
-                      {item.key}
-                    </motion.span>
-                  </motion.div>
-                )}
+                      <motion.span
+                        initial={{ rotateX: -90, opacity: 0 }}
+                        animate={{ rotateX: 0, opacity: 1 }}
+                        transition={{ duration: 0.3, ease: "backOut" }}
+                        className="block"
+                      >
+                        {item.key}
+                      </motion.span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.a>
             </div>
           ))}
