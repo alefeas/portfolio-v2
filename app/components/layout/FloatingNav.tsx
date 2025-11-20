@@ -34,47 +34,34 @@ export default function FloatingNav() {
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
-    const controlNavbar = () => {
-      if (typeof window !== 'undefined') {
-        if (window.scrollY > lastScrollY && window.scrollY > 100) {
-          // Scrolling down & past 100px
-          setIsVisible(false);
-        } else {
-          // Scrolling up
-          setIsVisible(true);
+    const handleScroll = () => {
+      const sections = navItems.map(item => document.getElementById(item.id));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && section.offsetTop <= scrollPosition) {
+          setSelectedIndex(i);
+          break;
         }
-        setLastScrollY(window.scrollY);
       }
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
   return (
-    <div 
-      className="fixed top-6 left-1/2 z-50"
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transform: `translateX(-50%) translateY(${isVisible ? 0 : -100}px)`,
-        transition: "all 0.3s ease"
-      }}
-    >
+    <div className="fixed top-6 left-1/2 z-50 transform -translate-x-1/2">
       <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-black/90 backdrop-blur-xl border border-white/20 rounded-full shadow-2xl">
         {navItems.map((item, index) => (
           <li key={item.id} className="relative">
             <a
               href={`#${item.id}`}
               className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
-              onClick={() => setSelectedIndex(index)}
               onMouseEnter={() => {
                 setHoveredLabel(item.label);
                 setHoveredIndex(index);

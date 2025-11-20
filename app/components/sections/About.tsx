@@ -30,7 +30,7 @@ export default function About() {
         <div className="relative w-full max-w-sm flex-shrink-0">
           <div className="aspect-[3/4] rounded-2xl overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face"
+              src="/profile.jpg"
               alt="Profile"
               className="w-full h-full object-cover"
             />

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import FloatingNav from "./components/layout/FloatingNav";
+import NavbarWrapper from "./components/layout/NavbarWrapper";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,7 +29,7 @@ export default function RootLayout({
       <body
         className={`${switzer.variable} ${inter.variable} font-sans antialiased bg-gray-900`}
       >
-        <FloatingNav />
+        <NavbarWrapper />
         {children}
       </body>
     </html>
