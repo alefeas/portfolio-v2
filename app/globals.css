@@ -5,8 +5,54 @@
   --background: #0a0a0a;
   --foreground: #e2e8f0;
 }
+
 html {
   scroll-behavior: smooth;
+}
+::-webkit-scrollbar-button {
+    display: none !important;
+}
+/* Custom Scrollbar Styles - Using Tailwind Colors */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), rgba(30, 41, 59, 0.3));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #22c55e, #16a34a);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #4ade80, #22c55e);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to bottom, #16a34a, #15803d);
+}
+
+/* Remove scrollbar arrows - both up and down */
+::-webkit-scrollbar-button:vertical:start:increment,
+::-webkit-scrollbar-button:vertical:end:decrement {
+  display: none;
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-color: #22c55e rgba(15, 23, 42, 0.5);
+  scrollbar-width: thin;
 }
 
 body {

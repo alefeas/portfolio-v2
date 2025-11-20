@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/app/hooks/useTranslation';
 
 const technologies = [
   {
@@ -44,6 +45,8 @@ const technologies = [
 ];
 
 export default function TechStack() {
+  const { t } = useTranslation();
+
   return (
     <section id="tech-stack" className="py-20 px-6 max-w-6xl mx-auto">
       {/* Section Badge */}
@@ -59,7 +62,7 @@ export default function TechStack() {
             <path d="M224 128a96 96 0 1 1-96-96 96 96 0 0 1 96 96Z" opacity=".2"/>
             <path d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24Zm0 192a88 88 0 1 1 88-88 88.1 88.1 0 0 1-88 88Zm40-68a12 12 0 0 1 0 24h-40a12 12 0 0 1-12-12v-40a12 12 0 0 1 24 0v28h28Z"/>
           </svg>
-          <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">Tech Stack</h1>
+          <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">{t('techStack')}</h1>
         </div>
       </motion.div>
 
@@ -71,11 +74,11 @@ export default function TechStack() {
         viewport={{ once: true }}
         className="mb-16"
       >
-        <h2 className="text-3xl font-medium text-white mb-3">Technologies I Work With</h2>
+        <h2 className="text-3xl font-medium text-white mb-3">{t('technologiesIWorkWith')}</h2>
         <p className="text-slate-400 text-base max-w-2xl">
-          A comprehensive toolkit of modern technologies I use to build 
-          <span className="text-green-400 font-medium"> scalable</span> and 
-          <span className="text-green-400 font-medium"> efficient</span> applications.
+          {t('techStackDescFull')}
+          <span className="text-green-400 font-medium"> {t('scalable')}</span> {t('and')} 
+          <span className="text-green-400 font-medium"> {t('efficient')}</span> {t('applicationsText')}
         </p>
       </motion.div>
 
@@ -92,7 +95,7 @@ export default function TechStack() {
           >
             {/* Category Title */}
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-white mb-2">{category.category}</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">{t(category.category.toLowerCase() as any)}</h3>
               <div className="w-8 h-px bg-green-500/60 mx-auto"></div>
             </div>
             

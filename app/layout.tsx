@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "./components/layout/NavbarWrapper";
+import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,8 +31,11 @@ export default function RootLayout({
       <body
         className={`${switzer.variable} ${inter.variable} font-sans antialiased bg-gray-900`}
       >
-        <NavbarWrapper />
-        {children}
+        <LanguageProvider>
+          <NavbarWrapper />
+          <LanguageToggleWrapper />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

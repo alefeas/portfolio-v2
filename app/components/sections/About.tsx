@@ -1,8 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useTranslation } from '@/app/hooks/useTranslation';
 
 export default function About() {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="py-20 px-6 max-w-6xl mx-auto">
       {/* Section Badge */}
@@ -11,16 +14,16 @@ export default function About() {
           <svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
             <path d="M188 88a27.75 27.75 0 0 0-12 2.71V60a28 28 0 0 0-41.36-24.6A28 28 0 0 0 80 44v6.71A27.75 27.75 0 0 0 68 48a28 28 0 0 0-28 28v76a88 88 0 0 0 176 0v-36a28 28 0 0 0-28-28m12 64a72 72 0 0 1-144 0V76a12 12 0 0 1 24 0v44a8 8 0 0 0 16 0V44a12 12 0 0 1 24 0v68a8 8 0 0 0 16 0V60a12 12 0 0 1 24 0v68.67A48.08 48.08 0 0 0 120 176a8 8 0 0 0 16 0a32 32 0 0 1 32-32a8 8 0 0 0 8-8v-20a12 12 0 0 1 24 0Z"/>
           </svg>
-          <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">About Me</h1>
+          <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">{t('aboutMe')}</h1>
         </div>
       </div>
 
       {/* Section Header */}
       <div className="mb-16">
-        <h2 className="text-3xl font-medium text-white mb-3">Get to Know Me</h2>
+        <h2 className="text-3xl font-medium text-white mb-3">{t('getToKnowMe')}</h2>
         <p className="text-slate-400 text-base max-w-2xl">
-          Passionate developer with a love for creating 
-          <span className="text-green-400 font-medium"> meaningful</span> digital experiences.
+          {t('getToKnowDesc')}
+          <span className="text-green-400 font-medium"> {t('meaningful')}</span> {t('digitalExperiences')}.
         </p>
       </div>
 
@@ -42,16 +45,13 @@ export default function About() {
           <div className="space-y-8">
             {/* Bio */}
             <div>
-              <h3 className="text-lg font-semibold text-white mb-3">Who I Am</h3>
+              <h3 className="text-lg font-semibold text-white mb-3">{t('whoIAm')}</h3>
               <div className="space-y-3 text-slate-300 leading-relaxed text-sm">
                 <p>
-                  I'm a passionate <span className="text-green-400 font-medium">Full Stack Developer</span> with 
-                  a strong foundation in modern web technologies. I love turning complex problems into 
-                  simple, beautiful, and intuitive solutions.
+                  {t('whoIAmDesc')} <span className="text-green-400 font-medium">{t('fullStackDeveloper')}</span> {t('whoIAmDesc2')}
                 </p>
                 <p>
-                  Currently seeking my first professional opportunity as a developer. I'm dedicated to 
-                  continuous learning and building projects that showcase my growing skills in web development.
+                  {t('seekingOpportunity')}
                 </p>
               </div>
             </div>
@@ -60,25 +60,24 @@ export default function About() {
             <div className="p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30">
               <h4 className="text-base font-semibold text-white mb-2 flex items-center gap-2">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                Currently Learning
+                {t('currentlyLearning')}
               </h4>
               <p className="text-slate-300 text-xs leading-relaxed">
-                Expanding my knowledge in <span className="text-green-400 font-medium">cloud technologies</span>, 
-                <span className="text-green-400 font-medium"> microservices architecture</span>, and 
-                <span className="text-green-400 font-medium"> advanced database optimization</span> to stay 
-                current with industry trends.
+                {t('expandingKnowledge')} <span className="text-green-400 font-medium">{t('cloudTech')}</span>, 
+                <span className="text-green-400 font-medium"> {t('microservices')}</span>, {t('and')} 
+                <span className="text-green-400 font-medium"> {t('databaseOpt')}</span> {t('stayingCurrent')}.
               </p>
             </div>
 
             {/* Skills highlight */}
             <div>
-              <h4 className="text-base font-semibold text-white mb-2">What I Do Best</h4>
+              <h4 className="text-base font-semibold text-white mb-2">{t('whatIBest')}</h4>
               <div className="space-y-3">
                 {[
-                  "Full-stack web development with modern frameworks",
-                  "Database design and optimization",
-                  "API development and integration",
-                  "UI/UX implementation with attention to detail"
+                  t('fullStackWeb'),
+                  t('databaseDesign'),
+                  t('apiDev'),
+                  t('uiUx')
                 ].map((skill, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>

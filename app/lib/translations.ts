@@ -1,0 +1,247 @@
+export const translations = {
+  en: {
+    // Navigation
+    hero: 'Hero',
+    projects: 'Projects',
+    techStack: 'Tech Stack',
+    about: 'About',
+    contact: 'Contact',
+    
+    // Hero Section
+    available: 'Available for projects',
+    hiIm: 'Hi, I\'m',
+    buildingFuture: 'Building the future.',
+    passionate: 'Passionate',
+    about_desc: 'about crafting exceptional digital experiences with modern technologies.',
+    building: 'Building',
+    innovative: 'innovative',
+    solutions: 'solutions through clean code and continuous learning',
+    exploreMore: 'Explore More',
+    
+    // About Section
+    aboutMe: 'About Me',
+    getToKnowMe: 'Get to Know Me',
+    getToKnowDesc: 'Passionate developer with a love for creating',
+    meaningful: 'meaningful',
+    digitalExperiences: 'digital experiences.',
+    whoIAm: 'Who I Am',
+    fullStackDeveloper: 'Full Stack Developer',
+    whoIAmDesc: 'I\'m a passionate',
+    whoIAmDesc2: 'with a strong foundation in modern web technologies. I love turning complex problems into simple, beautiful, and intuitive solutions.',
+    seekingOpportunity: 'Currently seeking my first professional opportunity as a developer. I\'m dedicated to continuous learning and building projects that showcase my growing skills in web development.',
+    currentlyLearning: 'Currently Learning',
+    expandingKnowledge: 'Expanding my knowledge in',
+    cloudTech: 'cloud technologies',
+    microservices: 'microservices architecture',
+    databaseOpt: 'advanced database optimization',
+    stayingCurrent: 'to stay current with industry trends.',
+    whatIBest: 'What I Do Best',
+    fullStackWeb: 'Full-stack web development with modern frameworks',
+    databaseDesign: 'Database design and optimization',
+    apiDev: 'API development and integration',
+    uiUx: 'UI/UX implementation with attention to detail',
+    
+    // Projects Section
+    selectedWork: 'Selected Work',
+    selectedWorkDesc: 'A collection of projects that showcase my skills and passion for creating',
+    digitalSolutions: 'digital solutions',
+    readMore: 'Read more',
+    viewFullProject: 'View Full Project',
+    code: 'Code',
+    demo: 'Demo',
+    liveDemo: 'Live Demo',
+    keyFeatures: 'Key Features',
+    challengesSolutions: 'Challenges & Solutions',
+    whatILearned: 'What I Learned',
+    builtWith: 'Built with',
+    
+    // Project Status
+    live: 'Live',
+    inDevelopment: 'In Development',
+    fullStack: 'Full Stack',
+    
+    // Tech Stack Section
+    techStackTitle: 'Tech Stack',
+    myTechStack: 'My Tech Stack',
+    techStackDesc: 'Technologies and tools I work with',
+    
+    // Contact Section
+    getInTouch: 'Get In Touch',
+    contactDesc: 'Feel free to reach out for collaborations or just a friendly hello',
+    sendMessage: 'Send Message',
+    
+    // Project Details
+    paytoTitle: 'PayTo',
+    paytoDesc: 'Comprehensive financial management platform for Argentine businesses with AFIP integration.',
+    paytoDetailDesc: 'PayTo is a full-stack financial management solution designed specifically for Argentine businesses. It provides a robust REST API backend built with Laravel 12 and a modern React-based frontend with Next.js 15. The platform handles complex multi-company operations including invoice management, payment tracking, collections, and seamless AFIP integration for electronic invoice validation. With complete data isolation between companies, role-based access control, and real-time notifications, PayTo enables businesses to manage their financial operations efficiently and compliantly.',
+    paytoFeatures: ['Multi-Company Invoice Management', 'AFIP Electronic Invoice Integration', 'Payment & Collection Tracking', 'Real-time Financial Dashboard', 'Accounts Receivable & Payable', 'VAT Balance Calculations', 'B2B Network Connections', 'Audit Logging & Compliance', 'Multi-Currency Support', 'Role-Based Access Control'],
+    paytoChallenges: 'The primary challenges involved implementing secure AFIP integration with certificate-based authentication, ensuring complete data isolation in a multi-company environment, and building a real-time financial dashboard that handles complex calculations while maintaining optimal performance. Additionally, managing payment status synchronization across multiple systems required careful state management and error handling.',
+    paytoLearnings: 'This project deepened my understanding of financial systems architecture, AFIP compliance requirements for Argentine businesses, multi-tenant application design patterns, and the importance of audit logging in financial applications. I also gained expertise in building scalable REST APIs with Laravel and creating responsive financial dashboards with React.',
+    
+    argentumTitle: 'Argentum Online Web',
+    argentumDesc: 'Bringing the legendary Argentum Online game to the web with modern technologies.',
+    argentumDetailDesc: 'Argentum Online Web is a collaborative project to recreate the famous Argentum Online game as a fully functional web application. This ambitious undertaking involves porting the classic game mechanics to a modern web stack using Next.js with TypeScript for the frontend and Node.js for the backend. The project focuses on maintaining the essence of the original game while leveraging web technologies to make it accessible to a broader audience. Features include real-time multiplayer gameplay, character progression, inventory management, combat systems, and a persistent game world.',
+    argentumFeatures: ['Real-time Multiplayer Gameplay', 'Character Creation & Progression', 'Inventory Management System', 'Combat & Skill Systems', 'Persistent Game World', 'NPC Interactions', 'Quest System', 'Trading & Economy', 'Guild Management', 'Real-time Chat & Communication'],
+    argentumChallenges: 'Recreating a complex game with real-time multiplayer mechanics in a web environment presents significant technical challenges. Managing real-time synchronization between multiple players, handling server state consistency, optimizing network communication, and ensuring smooth gameplay performance across different devices and network conditions are critical. Additionally, balancing game mechanics and maintaining the original game\'s feel while adapting to web constraints requires careful design decisions.',
+    argentumLearnings: 'This collaborative project has provided invaluable experience in real-time multiplayer game development, WebSocket communication for live synchronization, game state management at scale, and optimizing performance for web-based games. Working with a team has also enhanced my understanding of collaborative development practices and the importance of clear communication in complex projects.',
+    
+    // Tech Stack Section
+    technologiesIWorkWith: 'Technologies I Work With',
+    techStackDescFull: 'A comprehensive toolkit of modern technologies I use to build',
+    scalable: 'scalable',
+    and: 'and',
+    efficient: 'efficient',
+    applicationsText: 'applications.',
+    frontend: 'Frontend',
+    backend: 'Backend',
+    databases: 'Databases',
+    tools: 'Tools',
+    
+    // Contact Section
+    letsWorkTogether: "Let's Work Together",
+    contactDescFull: "Ready to bring your ideas to life? I'm always excited to discuss new opportunities and",
+    collaborateText: 'collaborate',
+    onInterestingProjects: 'on interesting projects.',
+    getInTouchTitle: 'Get In Touch',
+    emailLabel: 'Email',
+    linkedinLabel: 'LinkedIn',
+    githubLabel: 'GitHub',
+    quickResponse: 'Quick Response',
+    responseTime: 'I typically respond within',
+    hours24: '24 hours',
+    contactFormDesc: ' Feel free to reach out about opportunities, collaborations, or just to say hi!',
+    contactFormDesc2: "Whether you have a project in mind, want to discuss opportunities, or just want to connect, I'd love to hear from you. Let's create something amazing together!",
+    yourName: 'Your name',
+    nameLabel: 'Name',
+    yourEmail: 'your@email.com',
+    whatsAbout: "What's this about?",
+    subjectLabel: 'Subject',
+    tellAboutProject: 'Tell me about your project or just say hello...',
+    messageLabel: 'Message',
+    charactersRemaining: 'characters remaining',
+  },
+  es: {
+    // Navigation
+    hero: 'Inicio',
+    projects: 'Proyectos',
+    techStack: 'Stack Tecnológico',
+    about: 'Acerca de',
+    contact: 'Contacto',
+    
+    // Hero Section
+    available: 'Disponible para proyectos',
+    hiIm: 'Hola, soy',
+    buildingFuture: 'Construyendo el futuro.',
+    passionate: 'Apasionado',
+    about_desc: 'por crear experiencias digitales excepcionales con tecnologías modernas.',
+    building: 'Construyendo',
+    innovative: 'innovadoras',
+    solutions: 'soluciones a través de código limpio y aprendizaje continuo',
+    exploreMore: 'Explorar Más',
+    
+    // About Section
+    aboutMe: 'Acerca de Mí',
+    getToKnowMe: 'Conóceme Mejor',
+    getToKnowDesc: 'Desarrollador apasionado con amor por crear',
+    meaningful: 'significativas',
+    digitalExperiences: 'experiencias digitales.',
+    whoIAm: 'Quién Soy',
+    fullStackDeveloper: 'Desarrollador Full Stack',
+    whoIAmDesc: 'Soy un',
+    whoIAmDesc2: 'apasionado con una sólida base en tecnologías web modernas. Me encanta convertir problemas complejos en soluciones simples, hermosas e intuitivas.',
+    seekingOpportunity: 'Actualmente busco mi primera oportunidad profesional como desarrollador. Estoy dedicado al aprendizaje continuo y a construir proyectos que demuestren mis habilidades crecientes en desarrollo web.',
+    currentlyLearning: 'Aprendiendo Actualmente',
+    expandingKnowledge: 'Expandiendo mis conocimientos en',
+    cloudTech: 'tecnologías en la nube',
+    microservices: 'arquitectura de microservicios',
+    databaseOpt: 'optimización avanzada de bases de datos',
+    stayingCurrent: 'para mantenerme actualizado con las tendencias de la industria.',
+    whatIBest: 'Lo Que Hago Mejor',
+    fullStackWeb: 'Desarrollo web full-stack con frameworks modernos',
+    databaseDesign: 'Diseño y optimización de bases de datos',
+    apiDev: 'Desarrollo e integración de APIs',
+    uiUx: 'Implementación de UI/UX con atención al detalle',
+    
+    // Projects Section
+    selectedWork: 'Trabajos Seleccionados',
+    selectedWorkDesc: 'Una colección de proyectos que muestran mis habilidades y pasión por crear',
+    digitalSolutions: 'soluciones digitales',
+    readMore: 'Leer más',
+    viewFullProject: 'Ver Proyecto Completo',
+    code: 'Código',
+    demo: 'Demo',
+    liveDemo: 'Demo en Vivo',
+    keyFeatures: 'Características Principales',
+    challengesSolutions: 'Desafíos y Soluciones',
+    whatILearned: 'Lo Que Aprendí',
+    builtWith: 'Construido con',
+    
+    // Project Status
+    live: 'En Vivo',
+    inDevelopment: 'En Desarrollo',
+    fullStack: 'Full Stack',
+    
+    // Tech Stack Section
+    techStackTitle: 'Stack Tecnológico',
+    myTechStack: 'Mi Stack Tecnológico',
+    techStackDesc: 'Tecnologías y herramientas con las que trabajo',
+    
+    // Contact Section
+    getInTouch: 'Ponte en Contacto',
+    contactDesc: 'Siéntete libre de comunicarte para colaboraciones o simplemente un saludo amistoso',
+    sendMessage: 'Enviar Mensaje',
+    
+    // Project Details
+    paytoTitle: 'PayTo',
+    paytoDesc: 'Plataforma integral de gestión financiera para empresas argentinas con integración AFIP.',
+    paytoDetailDesc: 'PayTo es una solución de gestión financiera full-stack diseñada específicamente para empresas argentinas. Proporciona un robusto backend REST API construido con Laravel 12 y un moderno frontend basado en React con Next.js 15. La plataforma maneja operaciones complejas multi-empresa incluyendo gestión de facturas, seguimiento de pagos, cobranzas e integración perfecta con AFIP para validación de facturas electrónicas. Con aislamiento completo de datos entre empresas, control de acceso basado en roles y notificaciones en tiempo real, PayTo permite a las empresas gestionar sus operaciones financieras de manera eficiente y cumplida.',
+    paytoFeatures: ['Gestión de Facturas Multi-Empresa', 'Integración Electrónica de Facturas AFIP', 'Seguimiento de Pagos y Cobranzas', 'Panel Financiero en Tiempo Real', 'Cuentas por Cobrar y Pagar', 'Cálculos de Saldo de IVA', 'Conexiones B2B en Red', 'Auditoría y Cumplimiento', 'Soporte Multi-Moneda', 'Control de Acceso Basado en Roles'],
+    paytoChallenges: 'Los desafíos principales implicaron implementar integración segura con AFIP con autenticación basada en certificados, garantizar aislamiento completo de datos en un entorno multi-empresa y construir un panel financiero en tiempo real que maneje cálculos complejos manteniendo rendimiento óptimo. Además, gestionar la sincronización de estado de pagos entre múltiples sistemas requirió cuidadosa gestión de estado y manejo de errores.',
+    paytoLearnings: 'Este proyecto profundizó mi comprensión de la arquitectura de sistemas financieros, requisitos de cumplimiento AFIP para empresas argentinas, patrones de diseño de aplicaciones multi-tenant e importancia del registro de auditoría en aplicaciones financieras. También gané experiencia en construir APIs REST escalables con Laravel y crear paneles financieros responsivos con React.',
+    
+    argentumTitle: 'Argentum Online Web',
+    argentumDesc: 'Llevando el legendario juego Argentum Online a la web con tecnologías modernas.',
+    argentumDetailDesc: 'Argentum Online Web es un proyecto colaborativo para recrear el famoso juego Argentum Online como una aplicación web completamente funcional. Este ambicioso emprendimiento implica portar la mecánica clásica del juego a un stack web moderno usando Next.js con TypeScript para el frontend y Node.js para el backend. El proyecto se enfoca en mantener la esencia del juego original mientras aprovecha tecnologías web para hacerlo accesible a una audiencia más amplia. Las características incluyen juego multijugador en tiempo real, progresión de personajes, gestión de inventario, sistemas de combate y un mundo de juego persistente.',
+    argentumFeatures: ['Juego Multijugador en Tiempo Real', 'Creación y Progresión de Personajes', 'Sistema de Gestión de Inventario', 'Sistemas de Combate y Habilidades', 'Mundo de Juego Persistente', 'Interacciones con NPCs', 'Sistema de Misiones', 'Economía y Comercio', 'Gestión de Gremios', 'Chat y Comunicación en Tiempo Real'],
+    argentumChallenges: 'Recrear un juego complejo con mecánicas multijugador en tiempo real en un entorno web presenta desafíos técnicos significativos. Gestionar sincronización en tiempo real entre múltiples jugadores, manejar consistencia de estado del servidor, optimizar comunicación de red y garantizar rendimiento suave del juego en diferentes dispositivos y condiciones de red son críticos. Además, equilibrar mecánicas del juego y mantener la esencia del juego original mientras se adapta a restricciones web requiere decisiones de diseño cuidadosas.',
+    argentumLearnings: 'Este proyecto colaborativo ha proporcionado experiencia invaluable en desarrollo de juegos multijugador en tiempo real, comunicación WebSocket para sincronización en vivo, gestión de estado de juego a escala y optimización de rendimiento para juegos basados en web. Trabajar con un equipo también ha mejorado mi comprensión de prácticas de desarrollo colaborativo e importancia de comunicación clara en proyectos complejos.',
+    
+    // Tech Stack Section
+    technologiesIWorkWith: 'Tecnologías con las que Trabajo',
+    techStackDescFull: 'Un conjunto integral de tecnologías modernas que uso para construir',
+    scalable: 'escalables',
+    and: 'y',
+    efficient: 'eficientes',
+    applicationsText: 'aplicaciones.',
+    frontend: 'Frontend',
+    backend: 'Backend',
+    databases: 'Bases de Datos',
+    tools: 'Herramientas',
+    
+    // Contact Section
+    letsWorkTogether: 'Trabajemos Juntos',
+    contactDescFull: '¿Listo para dar vida a tus ideas? Siempre estoy emocionado de discutir nuevas oportunidades y',
+    collaborateText: 'colaborar',
+    onInterestingProjects: 'en proyectos interesantes.',
+    getInTouchTitle: 'Ponte en Contacto',
+    emailLabel: 'Correo Electrónico',
+    linkedinLabel: 'LinkedIn',
+    githubLabel: 'GitHub',
+    quickResponse: 'Respuesta Rápida',
+    responseTime: 'Normalmente respondo dentro de las',
+    hours24: '24 horas',
+    contactFormDesc: ' ¡Siéntete libre de comunicarte sobre oportunidades, colaboraciones, o simplemente para saludar!',
+    contactFormDesc2: 'Ya sea que tengas un proyecto en mente, quieras discutir oportunidades, o simplemente quieras conectar, me encantaría saber de ti. ¡Creemos algo increíble juntos!',
+    yourName: 'Tu nombre',
+    nameLabel: 'Nombre',
+    yourEmail: 'tu@email.com',
+    whatsAbout: '¿De qué se trata?',
+    subjectLabel: 'Asunto',
+    tellAboutProject: 'Cuéntame sobre tu proyecto o simplemente saluda...',
+    messageLabel: 'Mensaje',
+    charactersRemaining: 'caracteres restantes',
+  }
+};
+
+export type Language = 'en' | 'es';
+export type TranslationKey = keyof typeof translations.en;

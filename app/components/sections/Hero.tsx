@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { useTranslation } from '@/app/hooks/useTranslation';
 
 export default function Hero() {
   const [hoveredKey, setHoveredKey] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   return (
     <section id="hero" className="relative flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center px-6 max-w-6xl mx-auto overflow-hidden">
@@ -26,7 +28,7 @@ export default function Hero() {
           <div className="size-full rounded-full bg-green-500 shadow-lg shadow-green-500/50"></div>
         </div>
         <h3 className="text-sm text-green-200 font-medium">
-          Available for projects
+          {t('available')}
         </h3>
       </motion.div>
 
@@ -37,8 +39,8 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="text-[clamp(2rem,6vw,3.5rem)] font-bold leading-[1.1] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
       >
-        Hi, I'm <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
-        <span className="whitespace-nowrap">Building the future.</span>
+        {t('hiIm')} <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
+        <span className="whitespace-nowrap">{t('buildingFuture')}</span>
       </motion.h1>
 
       {/* Subtitle */}
@@ -48,8 +50,7 @@ export default function Hero() {
         transition={{ duration: 0.8, delay: 0.5 }}
         className="max-w-2xl leading-relaxed text-gray-300 text-lg max-sm:text-base"
       >
-        <span className="text-green-500 font-medium">Passionate</span> about crafting exceptional digital experiences with modern technologies. 
-        Building <span className="text-green-400 font-medium">innovative</span> solutions through clean code and continuous learning.
+        <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
       </motion.h2>
 
       {/* Enhanced Keyboard Navigation */}
@@ -130,7 +131,7 @@ export default function Hero() {
             whileHover={{ y: -2 }}
             whileTap={{ y: 0 }}
           >
-            <span className="hero-cta-text">Explore More</span>
+            <span className="hero-cta-text">{t('exploreMore')}</span>
             <motion.div 
               className="hero-cta-arrow"
               animate={{ x: [0, 2, 0] }}
