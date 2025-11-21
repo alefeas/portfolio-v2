@@ -51,13 +51,7 @@ export default function TechStack() {
   return (
     <section id="tech-stack" className="py-20 px-6 max-w-6xl mx-auto">
       {/* Section Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="mb-8"
-      >
+      <div className="mb-8">
         <div className="flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300">
           <svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
             <path d="M224 128a96 96 0 1 1-96-96 96 96 0 0 1 96 96Z" opacity=".2"/>
@@ -65,33 +59,23 @@ export default function TechStack() {
           </svg>
           <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">{t('techStack')}</h1>
         </div>
-      </motion.div>
+      </div>
 
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="mb-16"
-      >
+      <div className="mb-16">
         <h2 className="text-3xl font-medium text-white mb-3">{t('technologiesIWorkWith')}</h2>
         <p className="text-slate-400 text-base max-w-2xl">
           {t('techStackDescFull')}
           <span className="text-green-400 font-medium"> {t('scalable')}</span> {t('and')} 
           <span className="text-green-400 font-medium"> {t('efficient')}</span> {t('applicationsText')}
         </p>
-      </motion.div>
+      </div>
 
       {/* Tech Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
         {technologies.map((category, categoryIndex) => (
-          <motion.div
+          <div
             key={category.category}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-            viewport={{ once: true }}
             className="space-y-6"
           >
             {/* Category Title */}
@@ -158,7 +142,7 @@ export default function TechStack() {
                 </motion.div>
               ))}
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

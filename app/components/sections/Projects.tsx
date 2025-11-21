@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
 
@@ -19,7 +20,7 @@ const getProjects = (t: (key: TranslationKey) => string | string[]) => [
     statusKey: 'live' as TranslationKey,
     github: "https://github.com/alefeas/payto-backend",
     demo: "https://payto.vercel.app",
-    image: "/images/payto.jpg"
+    heroImage: "/projects/payto/hero.png"
   },
   {
     id: 2,
@@ -34,7 +35,7 @@ const getProjects = (t: (key: TranslationKey) => string | string[]) => [
     statusKey: 'inDevelopment' as TranslationKey,
     github: "https://github.com/argentumonline/web",
     demo: "https://argentumonline-web.vercel.app",
-    image: "/images/argentum.jpg"
+    heroImage: ""
   }
 ].map(project => ({
   ...project,
@@ -69,56 +70,48 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 px-6 max-w-6xl mx-auto">
       {/* Section Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="mb-8"
-      >
+      <div className="mb-8">
         <div className="flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300">
           <svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
             <path d="M216 56h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16M96 48a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm120 24v72H40V72Z"/>
           </svg>
           <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">{t('projects')}</h1>
         </div>
-      </motion.div>
+      </div>
 
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="mb-16"
-      >
+      <div className="mb-16">
         <h2 className="text-3xl font-medium text-white mb-3">{t('selectedWork')}</h2>
         <p className="text-slate-400 text-base max-w-2xl">
           {t('selectedWorkDesc')}
           <span className="text-green-400 font-medium"> {t('innovative')}</span> {t('digitalSolutions')}.
         </p>
-      </motion.div>
+      </div>
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
-          <motion.div
+          <div
             key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
-            viewport={{ once: true }}
             className="group cursor-pointer space-y-6"
             onClick={() => setSelectedProject(project)}
           >
             {/* Project Image */}
-            <div className="h-fit w-fit bg-cover bg-center rounded-lg overflow-hidden">
-              <div className="aspect-[1.75] rounded-lg relative overflow-hidden">
-                <img 
-                  src={`https://picsum.photos/400/230?random=${project.id}`}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-all duration-300 group-hover:scale-105"
-                />
+            <div className="w-full bg-cover bg-center rounded-lg overflow-hidden">
+              <div className="w-full aspect-[1.75] rounded-lg relative overflow-hidden bg-slate-900/40 border border-slate-800/60">
+                {project.heroImage ? (
+                  <img 
+                    src={project.heroImage}
+                    alt={project.title}
+                    className="w-full h-full object-contain transition-all duration-300 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-900/40 flex items-center justify-center text-slate-500">
+                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </div>
@@ -149,7 +142,7 @@ export default function Projects() {
                 </svg>
               </span>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -181,13 +174,22 @@ export default function Projects() {
               </button>
 
               {/* Hero Image */}
-              <div className="relative h-96 overflow-hidden">
-                <img 
-                  src={`https://picsum.photos/800/320?random=${selectedProject.id}`}
-                  alt={selectedProject.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              <div className="relative h-96 overflow-hidden border-b border-slate-800/60">
+                {selectedProject.heroImage ? (
+                  <img 
+                    src={selectedProject.heroImage}
+                    alt={selectedProject.title}
+                    className="w-full h-full object-cover object-top"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-900/40 flex items-center justify-center">
+                    <svg className="w-24 h-24 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50" />
+
                 
                 {/* Project Info Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
@@ -254,17 +256,15 @@ export default function Projects() {
 
                 {/* Action Buttons */}
                 <div className="flex gap-3">
-                  <motion.a
+                  <Link
                     href={`/projects/${selectedProject.id}`}
                     className="flex items-center gap-2 px-5 py-2.5 bg-green-700/80 hover:bg-green-600/90 text-white rounded-lg transition-all duration-300 flex-1 justify-center text-sm font-medium"
-                    whileHover={{ y: -1 }}
-                    whileTap={{ scale: 0.98 }}
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {t('viewFullProject')}
-                  </motion.a>
+                  </Link>
                   <motion.a
                     href={selectedProject.github}
                     target="_blank"

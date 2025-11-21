@@ -21,10 +21,12 @@ const getProjects = (t: (key: TranslationKey) => string | string[]) => [
     statusKey: 'live' as TranslationKey,
     github: "https://github.com/alefeas/payto-backend",
     demo: "https://payto.vercel.app",
+    heroImage: '/projects/payto/hero.png',
     images: [
-      `https://picsum.photos/1200/600?random=101`,
-      `https://picsum.photos/1200/600?random=102`,
-      `https://picsum.photos/1200/600?random=103`
+      '/projects/payto/screenshot-1.png',
+      '/projects/payto/screenshot-2.png',
+      '/projects/payto/screenshot-3.png',
+      '/projects/payto/screenshot-4.png'
     ]
   },
   {
@@ -40,12 +42,8 @@ const getProjects = (t: (key: TranslationKey) => string | string[]) => [
     statusKey: 'inDevelopment' as TranslationKey,
     github: "https://github.com/argentumonline/web",
     demo: "https://argentumonline-web.vercel.app",
-    images: [
-      `https://picsum.photos/1200/600?random=201`,
-      `https://picsum.photos/1200/600?random=202`,
-      `https://picsum.photos/1200/600?random=203`,
-      `https://picsum.photos/1200/600?random=204`
-    ]
+    heroImage: '',
+    images: []
   }
 ].map(project => ({
   ...project,
@@ -109,10 +107,8 @@ export default function ProjectDetail() {
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Back Button - Top Left */}
-      <button
-        onClick={() => {
-          window.location.href = '/#projects';
-        }}
+      <Link
+        href="/#projects"
         className="fixed top-6 left-6 z-50 flex items-center justify-center gap-2 px-4 py-2 h-[50px] rounded-full bg-black/90 backdrop-blur-xl border border-white/20 text-white/60 hover:text-white transition-colors duration-300"
         title="Back to Projects"
       >
@@ -120,7 +116,7 @@ export default function ProjectDetail() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
         </svg>
         <span className="text-sm font-medium">Back</span>
-      </button>
+      </Link>
 
       {/* Hero Section */}
       <motion.div
@@ -129,12 +125,21 @@ export default function ProjectDetail() {
         transition={{ duration: 0.6 }}
         className="relative min-h-screen flex items-end overflow-hidden"
       >
-        <img 
-          src={`https://picsum.photos/1200/800?random=${project.id}`}
-          alt={project.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+        {project.heroImage ? (
+          <img 
+            src={project.heroImage}
+            alt={project.title}
+            className="absolute inset-0 w-full h-full object-cover object-top"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-slate-900/40">
+            <svg className="w-32 h-32 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-black/50" />
+
         
         <div className="relative w-full p-8 max-w-6xl mx-auto pb-20">
           <motion.div
@@ -172,15 +177,10 @@ export default function ProjectDetail() {
           className="max-w-6xl mx-auto px-6 py-16"
         >
           <div className="relative group">
-            <div className="relative h-96 rounded-2xl overflow-hidden bg-slate-900/40 border border-slate-800/60">
-              <motion.img
-                key={currentImageIndex}
+            <div className="relative w-full rounded-2xl overflow-hidden bg-slate-900/40 border border-slate-800/60" style={{ aspectRatio: '2/1' }}>
+              <img
                 src={project.images[currentImageIndex]}
                 alt={`${project.title} - Image ${currentImageIndex + 1}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />

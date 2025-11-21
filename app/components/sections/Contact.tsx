@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
 
 export default function Contact() {
@@ -9,45 +8,28 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 px-6 max-w-6xl mx-auto">
       {/* Section Badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="mb-8"
-      >
+      <div className="mb-8">
         <div className="flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300">
           <svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
             <path d="M224 48H32a8 8 0 0 0-8 8v136a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V56a8 8 0 0 0-8-8ZM203.43 64L128 133.15L52.57 64ZM216 192H40V74.19l82.59 75.71a8 8 0 0 0 10.82 0L216 74.19V192Z"/>
           </svg>
           <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">{t('contact')}</h1>
         </div>
-      </motion.div>
+      </div>
 
       {/* Section Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="mb-16"
-      >
+      <div className="mb-16">
         <h2 className="text-3xl font-medium text-white mb-3">{t('letsWorkTogether')}</h2>
         <p className="text-slate-400 text-base max-w-2xl">
           {t('contactDescFull')}
           <span className="text-green-400 font-medium"> {t('collaborateText')}</span> {t('onInterestingProjects')}
         </p>
-      </motion.div>
+      </div>
 
       {/* Contact Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Contact Info */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="space-y-8 flex flex-col h-full"
-        >
+        <div className="space-y-8 flex flex-col h-full">
           <div>
             <h3 className="text-xl font-semibold text-white mb-6">{t('getInTouchTitle')}</h3>
             
@@ -85,16 +67,12 @@ export default function Contact() {
                   href: "https://github.com/alefeas"
                 }
               ].map((contact, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={contact.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 bg-slate-900/30 hover:bg-slate-800/50 rounded-xl border border-slate-700/20 hover:border-green-500/30 transition-all duration-150 group"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.15, delay: index * 0.03, ease: "easeOut" }}
-                  whileTap={{ scale: 0.98, transition: { duration: 0.05 } }}
                 >
                   <div className="text-green-400 group-hover:text-green-300 transition-colors duration-300">
                     {contact.icon}
@@ -105,18 +83,13 @@ export default function Contact() {
                       {contact.value}
                     </div>
                   </div>
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>
 
           {/* Quick Message */}
-          <motion.div 
-            className="p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 flex-1 flex flex-col justify-center"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.2, delay: 0.1, ease: "easeOut" }}
-          >
+          <div className="p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 flex-1 flex flex-col justify-center">
             <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
               {t('quickResponse')}
@@ -128,17 +101,11 @@ export default function Contact() {
             <p className="text-slate-400 text-xs leading-relaxed">
               {t('contactFormDesc2')}
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          viewport={{ once: true }}
-          className="flex flex-col h-full"
-        >
+        <div className="flex flex-col h-full">
           <form className="space-y-6 flex-1 flex flex-col justify-between mt-14">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
@@ -186,18 +153,14 @@ export default function Contact() {
               <p className="text-xs text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
             </div>
             
-            <motion.button
+            <button
               type="submit"
               className="w-full px-6 py-3 bg-green-600/90 hover:bg-green-500 text-white rounded-xl font-medium transition-colors duration-150"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.2, delay: 0.05, ease: "easeOut" }}
-              whileTap={{ scale: 0.98, transition: { duration: 0.05 } }}
             >
               {t('sendMessage')}
-            </motion.button>
+            </button>
           </form>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
