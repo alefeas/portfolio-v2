@@ -1,9 +1,57 @@
 'use client';
 
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
 
 export default function Contact() {
   const { t, ts } = useTranslation();
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (name === 'message') {
+      const remaining = 500 - value.length;
+      const counter = e.target.parentElement?.querySelector('.char-counter');
+      if (counter) counter.textContent = `${ts('messageLabel')} (${remaining} ${ts('charactersRemaining')})`;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqajzrzo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  useEffect(() => {
+    if (submitStatus !== 'idle') {
+      const timer = setTimeout(() => setSubmitStatus('idle'), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [submitStatus]);
 
   return (
     <section id="contact" className="py-20 px-6 max-w-6xl mx-auto">
@@ -91,11 +139,11 @@ export default function Contact() {
           {/* Quick Message */}
           <div className="p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 flex-1 flex flex-col justify-center">
             <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
               {t('quickResponse')}
             </h4>
             <p className="text-slate-300 text-sm leading-relaxed mb-4">
-              {t('responseTime')} <span className="text-green-400 font-medium">{t('hours24')}</span>. 
+              {t('responseTime')} <span className="text-green-400 font-medium">{t('hours24')}</span>.
               {t('contactFormDesc')}
             </p>
             <p className="text-slate-400 text-xs leading-relaxed">
@@ -106,12 +154,16 @@ export default function Contact() {
 
         {/* Contact Form */}
         <div className="flex flex-col h-full">
-          <form className="space-y-6 flex-1 flex flex-col justify-between mt-14">
+          <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between mt-14">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <input
                   type="text"
+                  name="name"
                   maxLength={50}
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300"
                   placeholder={ts('yourName')}
                 />
@@ -120,7 +172,11 @@ export default function Contact() {
               <div>
                 <input
                   type="email"
+                  name="email"
                   maxLength={100}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300"
                   placeholder={ts('yourEmail')}
                 />
@@ -131,7 +187,11 @@ export default function Contact() {
             <div>
               <input
                 type="text"
+                name="subject"
                 maxLength={80}
+                value={formData.subject}
+                onChange={handleChange}
+                required
                 className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300"
                 placeholder={ts('whatsAbout')}
               />
@@ -140,26 +200,67 @@ export default function Contact() {
             
             <div>
               <textarea
+                name="message"
                 rows={6}
                 maxLength={500}
+                value={formData.message}
+                onChange={handleChange}
+                required
                 className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300 resize-none"
                 placeholder={ts('tellAboutProject')}
-                onChange={(e) => {
-                  const remaining = 500 - e.target.value.length;
-                  const counter = e.target.parentElement?.querySelector('.char-counter');
-                  if (counter) counter.textContent = `${ts('messageLabel')} (${remaining} ${ts('charactersRemaining')})`;
-                }}
               />
               <p className="text-xs text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
             </div>
-            
+
             <button
               type="submit"
-              className="w-full px-6 py-3 bg-green-600/90 hover:bg-green-500 text-white rounded-xl font-medium transition-colors duration-150"
+              disabled={isSubmitting}
+              className="w-full px-6 py-3 bg-green-600/90 hover:bg-green-500 disabled:opacity-50 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors duration-150"
             >
-              {t('sendMessage')}
+              {isSubmitting ? 'Sending...' : t('sendMessage')}
             </button>
           </form>
+
+          <AnimatePresence>
+            {submitStatus === 'success' && (
+              <motion.div
+                className="fixed top-24 right-6 p-4 bg-gradient-to-r from-emerald-950/60 to-green-950/60 border border-green-500/40 rounded-xl text-green-300 text-sm max-w-xs z-50"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 flex-shrink-0 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <p className="font-semibold text-green-300">{t('messageSentSuccess')}</p>
+                    <p className="text-xs text-green-400/80">{t('messageSentDesc')}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+            {submitStatus === 'error' && (
+              <motion.div
+                className="fixed top-24 right-6 p-4 bg-gradient-to-r from-red-950/60 to-rose-950/60 border border-red-500/40 rounded-xl text-red-300 text-sm max-w-xs z-50"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 flex-shrink-0 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                  </svg>
+                  <div>
+                    <p className="font-semibold text-red-300">{t('messageSentError')}</p>
+                    <p className="text-xs text-red-400/80">{t('messageSentErrorDesc')}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

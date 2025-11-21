@@ -119,6 +119,16 @@ export const translations = {
     tellAboutProject: 'Tell me about your project or just say hello...',
     messageLabel: 'Message',
     charactersRemaining: 'characters remaining',
+    messageSentSuccess: 'Message sent successfully!',
+    messageSentDesc: 'Thanks for reaching out, I\'ll get back to you soon.',
+    messageSentError: 'Error sending message',
+    messageSentErrorDesc: 'Please try again or contact me through another channel.',
+    
+    // Demo Credentials
+    demoCredentials: 'Demo Credentials',
+    demoNote: 'Some features like automated emails are disabled in the demo. Use these credentials to explore:',
+    demoEmail: 'test@payto.com',
+    demoPassword: 'Test123456',
   },
   es: {
     // Navigation
@@ -240,6 +250,16 @@ export const translations = {
     tellAboutProject: 'Cuéntame sobre tu proyecto o simplemente saluda...',
     messageLabel: 'Mensaje',
     charactersRemaining: 'caracteres restantes',
+    messageSentSuccess: '¡Mensaje enviado!',
+    messageSentDesc: 'Gracias por contactarme, te responderé pronto.',
+    messageSentError: 'Error al enviar',
+    messageSentErrorDesc: 'Intenta de nuevo o contacta por otro medio.',
+    
+    // Demo Credentials
+    demoCredentials: 'Credenciales de Demo',
+    demoNote: 'Algunas características como envíos de email automatizados están deshabilitadas en la demo. Usa estas credenciales para explorar:',
+    demoEmail: 'test@payto.com',
+    demoPassword: 'Test123456',
   }
 };
 

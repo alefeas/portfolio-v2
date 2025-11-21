@@ -87,12 +87,8 @@ export default function TechStack() {
             {/* Tech Grid */}
             <div className="grid grid-cols-2 gap-5">
               {category.techs.map((tech, techIndex) => (
-                <motion.div
+                <div
                   key={tech.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: (categoryIndex * 0.1) + (techIndex * 0.05) }}
-                  viewport={{ once: true }}
                   className="group relative"
                 >
                   {/* Subtle outer glow */}
@@ -139,7 +135,7 @@ export default function TechStack() {
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-green-500 to-green-400 group-hover:w-12 group-hover:shadow-[0_0_8px_rgba(34,197,94,0.6)] rounded-full"
                          style={{ transition: "all 0.2s ease-out" }} />
                   </motion.div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

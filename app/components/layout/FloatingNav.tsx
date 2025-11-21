@@ -35,15 +35,8 @@ export default function FloatingNav() {
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isClient) return;
-    
     const handleScroll = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
       const scrollPosition = window.scrollY + 100;
@@ -59,11 +52,7 @@ export default function FloatingNav() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isClient]);
-
-  if (!isClient) {
-    return null;
-  }
+  }, []);
 
   return (
     <div className="fixed top-6 left-1/2 z-40 transform -translate-x-1/2 flex items-center">
