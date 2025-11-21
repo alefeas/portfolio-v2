@@ -3,48 +3,49 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
+import { TranslationKey } from '@/app/lib/translations';
 
-const getProjects = (t: any) => [
+const getProjects = (t: (key: TranslationKey) => string | string[]) => [
   {
     id: 1,
-    titleKey: 'paytoTitle',
-    descriptionKey: 'paytoDesc',
-    detailedDescriptionKey: 'paytoDetailDesc',
-    featuresKey: 'paytoFeatures',
-    challengesKey: 'paytoChallenges',
-    learningsKey: 'paytoLearnings',
+    titleKey: 'paytoTitle' as TranslationKey,
+    descriptionKey: 'paytoDesc' as TranslationKey,
+    detailedDescriptionKey: 'paytoDetailDesc' as TranslationKey,
+    featuresKey: 'paytoFeatures' as TranslationKey,
+    challengesKey: 'paytoChallenges' as TranslationKey,
+    learningsKey: 'paytoLearnings' as TranslationKey,
     tech: ["Laravel 12", "PHP 8.2", "Next.js 15", "React 19", "TypeScript", "MySQL", "Tailwind CSS", "shadcn/ui", "Recharts", "Sanctum", "Pest PHP"],
-    categoryKey: 'fullStack',
-    statusKey: 'live',
+    categoryKey: 'fullStack' as TranslationKey,
+    statusKey: 'live' as TranslationKey,
     github: "https://github.com/alefeas/payto-backend",
     demo: "https://payto.vercel.app",
     image: "/images/payto.jpg"
   },
   {
     id: 2,
-    titleKey: 'argentumTitle',
-    descriptionKey: 'argentumDesc',
-    detailedDescriptionKey: 'argentumDetailDesc',
-    featuresKey: 'argentumFeatures',
-    challengesKey: 'argentumChallenges',
-    learningsKey: 'argentumLearnings',
+    titleKey: 'argentumTitle' as TranslationKey,
+    descriptionKey: 'argentumDesc' as TranslationKey,
+    detailedDescriptionKey: 'argentumDetailDesc' as TranslationKey,
+    featuresKey: 'argentumFeatures' as TranslationKey,
+    challengesKey: 'argentumChallenges' as TranslationKey,
+    learningsKey: 'argentumLearnings' as TranslationKey,
     tech: ["Next.js 15", "TypeScript", "Node.js", "WebSocket", "React 19", "Tailwind CSS", "Sequelize", "Redis", "Socket.io"],
-    categoryKey: 'fullStack',
-    statusKey: 'inDevelopment',
+    categoryKey: 'fullStack' as TranslationKey,
+    statusKey: 'inDevelopment' as TranslationKey,
     github: "https://github.com/argentumonline/web",
     demo: "https://argentumonline-web.vercel.app",
     image: "/images/argentum.jpg"
   }
 ].map(project => ({
   ...project,
-  title: t(project.titleKey),
-  description: t(project.descriptionKey),
-  detailedDescription: t(project.detailedDescriptionKey),
-  features: t(project.featuresKey),
-  challenges: t(project.challengesKey),
-  learnings: t(project.learningsKey),
-  category: t(project.categoryKey),
-  status: t(project.statusKey),
+  title: t(project.titleKey) as string,
+  description: t(project.descriptionKey) as string,
+  detailedDescription: t(project.detailedDescriptionKey) as string,
+  features: t(project.featuresKey) as string[],
+  challenges: t(project.challengesKey) as string,
+  learnings: t(project.learningsKey) as string,
+  category: t(project.categoryKey) as string,
+  status: t(project.statusKey) as string,
   isLive: project.statusKey === 'live'
 }));
 

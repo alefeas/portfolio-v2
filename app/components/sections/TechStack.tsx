@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
+import { TranslationKey } from '@/app/lib/translations';
 
 const technologies = [
   {
@@ -95,7 +96,7 @@ export default function TechStack() {
           >
             {/* Category Title */}
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-white mb-2">{t(category.category.toLowerCase() as any)}</h3>
+              <h3 className="text-lg font-semibold text-white mb-2">{t(category.category.toLowerCase() as TranslationKey)}</h3>
               <div className="w-8 h-px bg-green-500/60 mx-auto"></div>
             </div>
             
