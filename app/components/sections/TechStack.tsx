@@ -96,16 +96,13 @@ export default function TechStack() {
                        style={{ transition: "opacity 0.2s ease-out" }} />
                   
                   <motion.div
-                    className="relative flex flex-col items-center justify-center p-6 bg-gradient-to-br from-slate-900/40 via-slate-800/30 to-slate-900/40 hover:from-slate-800/70 hover:via-slate-700/50 hover:to-slate-800/70 rounded-2xl border border-slate-700/30 hover:border-green-500/60 cursor-pointer overflow-hidden backdrop-blur-sm shadow-lg hover:shadow-green-500/10 h-28"
+                    className="relative flex flex-col items-center justify-center p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 cursor-pointer overflow-hidden backdrop-blur-sm shadow-lg h-28 group-hover:border-green-500/60 group-hover:shadow-green-500/10"
                     whileHover={{ 
                       y: -3, 
                       scale: 1.02,
                       transition: { duration: 0.1, ease: "easeOut" }
                     }}
                     whileTap={{ scale: 0.98 }}
-                    style={{
-                      transition: "all 0.1s ease-out"
-                    }}
                   >
                     {/* Inner glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-green-400/3 opacity-0 group-hover:opacity-100 rounded-2xl" 

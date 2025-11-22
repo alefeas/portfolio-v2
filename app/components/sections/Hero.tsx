@@ -9,19 +9,29 @@ export default function Hero() {
   const { t } = useTranslation();
 
   return (
-    <section id="hero" className="relative flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center px-6 max-w-6xl mx-auto overflow-hidden">
-      {/* Animated Background */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-600/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+    <>
+      {/* Background with gradient - only in hero section */}
+      <div 
+        className="absolute top-0 left-0 w-full -z-10 pointer-events-none"
+        style={{
+          height: '20vh',
+          background: `
+            radial-gradient(circle at 15% 40%, rgba(34, 197, 94, 0.5) 0%, transparent 50%),
+            radial-gradient(circle at 85% 70%, rgba(34, 197, 94, 0.4) 0%, transparent 55%),
+            radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.3) 0%, transparent 40%),
+            #0a0a0a
+          `,
+          filter: 'blur(80px)',
+        }}
+      />
+      <section id="hero" className="relative flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center px-6 max-w-6xl mx-auto overflow-hidden">
 
       {/* Status Badge */}
       <motion.div 
-        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.1 }}
-        className="flex w-fit items-center rounded-full gap-3 py-2 pl-4 pr-5 border border-green-600/30 bg-slate-950/40 backdrop-blur-xl shadow-lg shadow-green-600/10"
+        transition={{ duration: 0.25, delay: 0, ease: "easeOut" }}
+        className="flex w-fit items-center rounded-full gap-3 py-2 pl-4 pr-5 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 backdrop-blur-xl shadow-lg shadow-green-600/10"
       >
         <div className="relative size-3">
           <div className="absolute size-full animate-ping rounded-full bg-green-500 opacity-75"></div>
@@ -34,9 +44,9 @@ export default function Hero() {
 
       {/* Main Title */}
       <motion.h1 
-        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
         className="text-[clamp(1.75rem,5vw,3rem)] font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
       >
         {t('hiIm')} <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
@@ -45,9 +55,9 @@ export default function Hero() {
 
       {/* Subtitle */}
       <motion.h2 
-        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.5 }}
+        transition={{ duration: 0.35, delay: 0.2, ease: "easeOut" }}
         className="max-w-2xl leading-relaxed text-gray-300 text-base max-sm:text-sm"
       >
         <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
@@ -55,16 +65,16 @@ export default function Hero() {
 
       {/* Enhanced Keyboard Navigation */}
       <motion.div 
-        initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.8, delay: 0.7 }}
+        transition={{ duration: 0.4, delay: 0.3, ease: "easeOut" }}
         className="flex items-start text-center max-xs:flex-col gap-6"
       >
         <div className="hero-nav-board">
           {[
             { key: 'Github', href: 'https://github.com/alefeas', icon: 'github' },
             { key: 'LinkedIn', href: 'https://www.linkedin.com/in/afeas/', icon: 'linkedin' },
-            { key: 'Resume', href: '/resume', icon: 'resume' },
+            { key: 'Resume', href: '/CV_Alejo_Feas_Matej.pdf', icon: 'resume', target: '_blank' },
             { key: 'Email', href: 'mailto:alefeas99@gmail.com', icon: 'email' }
           ].map((item, index) => (
             <div 
@@ -74,7 +84,7 @@ export default function Hero() {
               <motion.a
                 aria-label={item.key}
                 className="hero-nav-key"
-                target="_blank"
+                target={item.target || "_blank"}
                 href={item.href}
                 onHoverStart={() => setHoveredKey(item.key)}
                 onHoverEnd={() => setHoveredKey(null)}
@@ -104,7 +114,7 @@ export default function Hero() {
                 <AnimatePresence>
                   {hoveredKey === item.key && (
                     <motion.div
-                      className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-white/20 whitespace-nowrap"
+                      className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-slate-700/30 whitespace-nowrap"
                       initial={{ opacity: 0, y: 10, scale: 0.8 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.8 }}
@@ -145,5 +155,6 @@ export default function Hero() {
         </div>
       </motion.div>
     </section>
+    </>
   );
 }

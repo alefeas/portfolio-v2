@@ -27,9 +27,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${switzer.variable} ${inter.variable} font-sans antialiased bg-gray-900`}
+        className={`${switzer.variable} ${inter.variable} font-sans antialiased`}
+        style={{
+          backgroundColor: 'rgb(9 9 11 / var(--tw-bg-opacity, 1))',
+          position: 'relative',
+          zIndex: -1000
+        }}
       >
         <LanguageProvider>
           <NavbarWrapper />

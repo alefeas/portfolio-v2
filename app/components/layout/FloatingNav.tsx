@@ -56,7 +56,7 @@ export default function FloatingNav() {
 
   return (
     <div className="fixed top-6 left-1/2 z-40 transform -translate-x-1/2 flex items-center">
-      <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-black/90 backdrop-blur-xl border border-white/20 rounded-full shadow-2xl">
+      <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 rounded-full shadow-2xl">
         {navItems.map((item, index) => (
           <li key={item.id} className="relative">
             <a
@@ -79,7 +79,7 @@ export default function FloatingNav() {
             <AnimatePresence>
               {hoveredIndex === index && hoveredLabel && (
                 <motion.div
-                  className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-black/90 backdrop-blur-xl text-white px-6 py-2 rounded-full text-sm font-medium shadow-2xl overflow-hidden whitespace-nowrap border border-white/20"
+                  className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl text-white px-6 py-2 rounded-full text-sm font-medium shadow-2xl overflow-hidden whitespace-nowrap border border-slate-700/30"
                   initial={{ opacity: 0, y: 10, scale: 0.8 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.8 }}

@@ -6,7 +6,7 @@ export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-black/90 backdrop-blur-xl border border-white/20 shadow-2xl h-[50px]">
+    <div className="fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 shadow-2xl h-[50px]">
       <button
         onClick={() => setLanguage('en')}
         className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${

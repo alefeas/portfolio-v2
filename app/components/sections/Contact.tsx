@@ -120,7 +120,7 @@ export default function Contact() {
                   href={contact.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 bg-slate-900/30 hover:bg-slate-800/50 rounded-xl border border-slate-700/20 hover:border-green-500/30 transition-all duration-150 group"
+                  className="flex items-center gap-4 p-4 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-xl border border-slate-700/30 transition-all duration-150 group"
                 >
                   <div className="text-green-400 group-hover:text-green-300 transition-colors duration-300">
                     {contact.icon}
@@ -164,7 +164,7 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300"
                   placeholder={ts('yourName')}
                 />
                 <p className="text-xs text-slate-500 mt-2 ml-1">{ts('nameLabel')}</p>
@@ -177,7 +177,7 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300"
+                  className="w-full px-4 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300"
                   placeholder={ts('yourEmail')}
                 />
                 <p className="text-xs text-slate-500 mt-2 ml-1">{ts('emailLabel')}</p>
@@ -192,7 +192,7 @@ export default function Contact() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300"
+                className="w-full px-4 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300"
                 placeholder={ts('whatsAbout')}
               />
               <p className="text-xs text-slate-500 mt-2 ml-1">{ts('subjectLabel')}</p>
@@ -206,7 +206,7 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-slate-900/30 border border-slate-700/20 rounded-xl text-white placeholder-slate-400 focus:border-green-500/30 focus:bg-slate-800/50 focus:outline-none transition-all duration-300 resize-none"
+                className="w-full px-4 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300 resize-none"
                 placeholder={ts('tellAboutProject')}
               />
               <p className="text-xs text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
