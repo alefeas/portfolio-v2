@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useTranslation } from '@/app/hooks/useTranslation';
 
 export default function About() {
@@ -32,9 +32,11 @@ export default function About() {
         {/* Image */}
         <div className="relative w-full max-w-sm flex-shrink-0">
           <div className="aspect-[3/4] rounded-2xl overflow-hidden">
-            <img 
+            <Image 
               src="/profile.jpg"
               alt="Profile"
+              width={400}
+              height={533}
               className="w-full h-full object-cover"
             />
           </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
@@ -87,9 +87,11 @@ export default function Projects() {
             <div className="w-full bg-cover bg-center rounded-lg overflow-hidden">
               <div className="w-full aspect-[2] rounded-lg relative overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30">
                 {project.heroImage ? (
-                  <img 
+                  <Image 
                     src={project.heroImage}
                     alt={project.title}
+                    width={800}
+                    height={400}
                     className="w-full h-full object-cover object-top transition-all duration-300 group-hover:scale-105"
                   />
                 ) : (

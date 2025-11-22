@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
@@ -73,7 +74,7 @@ export default function TechStack() {
 
       {/* Tech Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-        {technologies.map((category, categoryIndex) => (
+        {technologies.map((category) => (
           <div
             key={category.category}
             className="space-y-6"
@@ -86,7 +87,7 @@ export default function TechStack() {
             
             {/* Tech Grid */}
             <div className="grid grid-cols-2 gap-5">
-              {category.techs.map((tech, techIndex) => (
+              {category.techs.map((tech) => (
                 <div
                   key={tech.name}
                   className="group relative"
@@ -114,9 +115,11 @@ export default function TechStack() {
                     
                     {/* Logo */}
                     <div className="w-12 h-12 mb-2 flex items-center justify-center relative z-10">
-                      <img 
+                      <Image 
                         src={tech.logo} 
                         alt={tech.name}
+                        width={48}
+                        height={48}
                         className="w-full h-full object-contain filter brightness-75 group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.4)] group-hover:saturate-110"
                         style={{ transition: "all 0.1s ease-out" }}
                       />

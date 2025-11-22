@@ -3,12 +3,33 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
 import ColorThief from 'colorthief';
 
-const getProjects = (t: (key: TranslationKey) => string | string[]) => [
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  detailedDescription: string;
+  features: string[];
+  challenges: string;
+  learnings: string;
+  category: string;
+  status: string;
+  isLive: boolean;
+  subtitle?: string;
+  tech: string[];
+  isPrivate?: boolean;
+  github?: string;
+  githubFrontend?: string;
+  demo?: string;
+  heroImage?: string;
+  images?: string[];
+};
+
+const getProjects = (t: (key: TranslationKey) => string | string[]): Project[] => [
   {
     id: 1,
     titleKey: 'paytoTitle' as TranslationKey,
@@ -82,22 +103,12 @@ export default function ProjectDetail() {
     setIsLoaded(true);
   }, [projectId]);
 
-  if (!project) {
-    return (
-      <div className="min-h-screen flex items-center justify-center px-6">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
-          <Link href="/#projects" className="text-green-400 hover:text-green-300">
-            Back to Projects
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const allImages = project.heroImage 
-    ? [project.heroImage, ...(project.images || [])]
-    : project.images || [];
+  const allImages = useMemo(() => {
+    if (!project) return [];
+    return project.heroImage 
+      ? [project.heroImage, ...(project.images || [])]
+      : project.images || [];
+  }, [project]);
   const hasImages = allImages.length > 0;
 
   useEffect(() => {
@@ -119,6 +130,21 @@ export default function ProjectDetail() {
     };
     extractColor();
   }, [currentImageIndex, allImages]);
+
+  if (!project) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-6">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-white mb-4">Project Not Found</h1>
+          <Link href="/#projects" className="text-green-400 hover:text-green-300">
+            Back to Projects
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const safeProject = project!;
   
   const nextImage = () => {
     if (hasImages) {
@@ -158,23 +184,23 @@ export default function ProjectDetail() {
         {/* Badges */}
         <div className="flex items-center gap-3 mb-8">
           <span className="px-3 py-1 text-sm bg-white/10 backdrop-blur-sm text-white rounded-full border border-white/20">
-            {project.category}
+            {safeProject.category}
           </span>
           <span className={`px-3 py-1 text-sm rounded-full border ${
-            project.isLive
+            safeProject.isLive
               ? 'bg-green-500/20 text-green-400 border-green-500/30' 
               : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
           }`}>
-            {project.status}
+            {safeProject.status}
           </span>
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl font-medium mb-6 max-w-3xl">{project.title}</h1>
+        <h1 className="text-4xl font-medium mb-6 max-w-3xl">{safeProject.title}</h1>
         
         {/* Brief Description */}
         <p className="text-base text-white/80 leading-relaxed mb-8">
-          {project.description}
+          {safeProject.description}
         </p>
 
         {/* Main Image / Carousel */}
@@ -192,7 +218,7 @@ export default function ProjectDetail() {
                   <motion.img
                     key={currentImageIndex}
                     src={allImages[currentImageIndex]}
-                    alt={`${project.title} - Image ${currentImageIndex + 1}`}
+                    alt={`${safeProject.title} - Image ${currentImageIndex + 1}`}
                     className="absolute inset-0 w-full h-full object-cover"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -251,7 +277,7 @@ export default function ProjectDetail() {
         <div className="mb-20">
           <h2 className="text-2xl font-medium mb-4">{t('overview') || 'Overview'}</h2>
           <p className="text-white/80 leading-relaxed">
-            {project.detailedDescription}
+            {safeProject.detailedDescription}
           </p>
         </div>
 
@@ -259,7 +285,7 @@ export default function ProjectDetail() {
         <div className="mb-20">
           <h2 className="text-2xl font-medium mb-8">{t('keyFeatures')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {project.features.map((feature: string, index: number) => (
+            {(safeProject.features as string[]).map((feature: string, index: number) => (
               <div
                 key={index}
                 className="flex items-center gap-3 p-4 rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 transition-all duration-300"
@@ -275,7 +301,7 @@ export default function ProjectDetail() {
         <div className="mb-20">
           <h2 className="text-2xl font-medium mb-4">{t('challengesSolutions')}</h2>
           <p className="text-white/80 leading-relaxed">
-            {project.challenges}
+            {safeProject.challenges}
           </p>
         </div>
 
@@ -283,56 +309,56 @@ export default function ProjectDetail() {
         <div className="mb-20">
           <h2 className="text-2xl font-medium mb-4">{t('whatILearned')}</h2>
           <p className="text-white/80 leading-relaxed">
-            {project.learnings}
+            {safeProject.learnings}
           </p>
         </div>
 
 
 
         {/* Repositories */}
-        {!project.isPrivate && (project.github || (project as any).githubFrontend) && (
+        {!safeProject.isPrivate && (safeProject.github || safeProject.githubFrontend) && (
           <div className="mb-20">
             <h2 className="text-2xl font-medium mb-8">Repositories</h2>
             <div className="space-y-3">
-              {project.github && (
+              {safeProject.github && (
                 <a
-                  href={project.github}
+                  href={safeProject.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-4 rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 transition-all duration-300 group"
                 >
                   <div>
                     <h3 className="text-white font-medium transition-colors">Backend Repository</h3>
-                    <p className="text-sm text-white/60">{project.github.split('/').slice(-1)[0]}</p>
+                    <p className="text-sm text-white/60">{safeProject.github.split('/').slice(-1)[0]}</p>
                   </div>
                   <svg className="w-6 h-6 text-white/60 group-hover:text-green-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                   </svg>
                 </a>
               )}
-              {(project as any).githubFrontend && (
+              {safeProject.githubFrontend && (
                 <a
-                  href={(project as any).githubFrontend}
+                  href={safeProject.githubFrontend}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-4 rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 transition-all duration-300 group"
                 >
                   <div>
                     <h3 className="text-white font-medium transition-colors">Frontend Repository</h3>
-                    <p className="text-sm text-white/60">{(project as any).githubFrontend.split('/').slice(-1)[0]}</p>
+                    <p className="text-sm text-white/60">{safeProject.githubFrontend.split('/').slice(-1)[0]}</p>
                   </div>
                   <svg className="w-6 h-6 text-white/60 group-hover:text-green-400 transition-colors" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                   </svg>
                 </a>
               )}
-              {!project.isPrivate && project.demo && (
+              {!safeProject.isPrivate && safeProject.demo && (
                 <button
                   onClick={() => {
                     if (projectId === 1) {
                       setShowDemoModal(true);
                     } else {
-                      window.open(project.demo, '_blank');
+                      window.open(safeProject.demo, '_blank');
                     }
                   }}
                   className="flex items-center justify-between p-4 rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 transition-all duration-300 group w-full text-left cursor-pointer"
@@ -354,7 +380,7 @@ export default function ProjectDetail() {
         <div className="mb-20">
           <h2 className="text-2xl font-medium mb-8">{t('builtWith')}</h2>
           <div className="flex flex-wrap gap-2">
-            {project.tech.map((tech) => (
+            {safeProject.tech.map((tech) => (
               <span
                 key={tech}
                 className="px-3 py-1.5 text-xs font-medium bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-slate-300 rounded-lg border border-slate-700/30 transition-all duration-300"
@@ -512,7 +538,7 @@ export default function ProjectDetail() {
               <button
                 onClick={() => {
                   setShowDemoModal(false);
-                  window.open(project.demo, '_blank');
+                  window.open(safeProject.demo as string, '_blank');
                 }}
                 className="w-full px-4 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors duration-300 font-medium text-sm cursor-pointer"
               >
