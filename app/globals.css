@@ -64,7 +64,7 @@ html {
 }
 
 .hero-nav-key {
-  @apply flex items-center justify-center w-14 h-14 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-full text-slate-400 no-underline relative overflow-hidden;
+  @apply flex items-center justify-center w-14 h-14 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-full text-slate-400 no-underline relative overflow-visible;
   transition: all 0.15s ease;
 }
 

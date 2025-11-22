@@ -17,8 +17,16 @@ const switzer = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio Personal",
-  description: "Portfolio personal desarrollado con Next.js, Tailwind CSS y Framer Motion",
+  title: "Alejo Feas Matej - Full Stack Developer",
+  description: "Portfolio personal de Alejo Feas Matej. Full Stack Developer especializado en Next.js, React, TypeScript y tecnologías modernas.",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "Alejo Feas Matej - Full Stack Developer",
+    description: "Portfolio personal de Alejo Feas Matej. Full Stack Developer especializado en Next.js, React, TypeScript y tecnologías modernas.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

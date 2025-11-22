@@ -1,54 +1,25 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
+import { projects as projectsData } from '@/app/data/portfolio';
+import { SectionHeader } from '@/app/components/ui';
 
-const getProjects = (t: (key: TranslationKey) => string | string[]) => [
-  {
-    id: 1,
-    titleKey: 'paytoTitle' as TranslationKey,
-    descriptionKey: 'paytoDesc' as TranslationKey,
-    detailedDescriptionKey: 'paytoDetailDesc' as TranslationKey,
-    featuresKey: 'paytoFeatures' as TranslationKey,
-    challengesKey: 'paytoChallenges' as TranslationKey,
-    learningsKey: 'paytoLearnings' as TranslationKey,
-    tech: ["Laravel 12", "PHP 8.2", "Next.js 15", "React 19", "TypeScript", "MySQL", "Tailwind CSS", "shadcn/ui", "Recharts", "Sanctum", "Pest PHP"],
-    categoryKey: 'fullStack' as TranslationKey,
-    statusKey: 'live' as TranslationKey,
-    github: "https://github.com/alefeas/payto-backend",
-    demo: "https://payto.vercel.app",
-    heroImage: "/projects/payto/hero.png"
-  },
-  {
-    id: 2,
-    titleKey: 'argentumTitle' as TranslationKey,
-    descriptionKey: 'argentumDesc' as TranslationKey,
-    detailedDescriptionKey: 'argentumDetailDesc' as TranslationKey,
-    featuresKey: 'argentumFeatures' as TranslationKey,
-    challengesKey: 'argentumChallenges' as TranslationKey,
-    learningsKey: 'argentumLearnings' as TranslationKey,
-    tech: ["Next.js 15", "TypeScript", "Node.js", "WebSocket", "React 19", "Tailwind CSS", "Sequelize", "Redis", "Socket.io"],
-    categoryKey: 'fullStack' as TranslationKey,
-    statusKey: 'inDevelopment' as TranslationKey,
-    github: "",
-    demo: "",
-    heroImage: "",
-    isPrivate: true
-  }
-].map(project => ({
-  ...project,
-  title: t(project.titleKey) as string,
-  description: t(project.descriptionKey) as string,
-  detailedDescription: t(project.detailedDescriptionKey) as string,
-  features: t(project.featuresKey) as string[],
-  challenges: t(project.challengesKey) as string,
-  learnings: t(project.learningsKey) as string,
-  category: t(project.categoryKey) as string,
-  status: t(project.statusKey) as string,
-  isLive: project.statusKey === 'live'
-}));
+const getProjects = (t: (key: TranslationKey) => string | string[]) =>
+  projectsData.map(project => ({
+    ...project,
+    title: t(project.titleKey as TranslationKey) as string,
+    description: t(project.descriptionKey as TranslationKey) as string,
+    detailedDescription: t(project.detailedDescriptionKey as TranslationKey) as string,
+    features: t(project.featuresKey as TranslationKey) as string[],
+    challenges: t(project.challengesKey as TranslationKey) as string,
+    learnings: t(project.learningsKey as TranslationKey) as string,
+    category: t(project.categoryKey as TranslationKey) as string,
+    status: t(project.statusKey as TranslationKey) as string,
+    isLive: project.statusKey === 'live'
+  }));
 
 export default function Projects() {
   const { t } = useTranslation();
@@ -56,24 +27,15 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-20 px-6 max-w-6xl mx-auto">
-      {/* Section Badge */}
-      <div className="mb-8">
-        <div className="flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300">
-          <svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
-            <path d="M216 56h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16M96 48a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm120 24v72H40V72Z"/>
-          </svg>
-          <h1 className="text-sm font-medium tracking-wide max-sm:text-xs">{t('projects')}</h1>
-        </div>
-      </div>
-
-      {/* Section Header */}
-      <div className="mb-16">
-        <h2 className="text-3xl font-medium text-white mb-3">{t('selectedWork')}</h2>
-        <p className="text-slate-400 text-base max-w-2xl">
-          {t('selectedWorkDesc')}
-          <span className="text-green-400 font-medium"> {t('innovative')}</span> {t('digitalSolutions')}.
-        </p>
-      </div>
+      <SectionHeader
+        icon={<svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
+          <path d="M216 56h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16M96 48a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm120 24v72H40V72Z"/>
+        </svg>}
+        badge={t('projects')}
+        title={t('selectedWork')}
+        description={t('selectedWorkDesc')}
+        highlightText={t('innovative')}
+      />
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -87,9 +49,11 @@ export default function Projects() {
             <div className="w-full bg-cover bg-center rounded-lg overflow-hidden">
               <div className="w-full aspect-[2] rounded-lg relative overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30">
                 {project.heroImage ? (
-                  <img 
+                  <Image 
                     src={project.heroImage}
                     alt={project.title}
+                    width={800}
+                    height={400}
                     className="w-full h-full object-cover object-top transition-all duration-300 group-hover:scale-105"
                   />
                 ) : (
