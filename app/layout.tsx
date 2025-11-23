@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavbarWrapper from "./components/layout/NavbarWrapper";
 import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
+import Footer from "./components/layout/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
 const inter = Inter({
@@ -48,6 +49,7 @@ export default function RootLayout({
           <NavbarWrapper />
           <LanguageToggleWrapper />
           {children}
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

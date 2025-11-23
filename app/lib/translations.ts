@@ -48,8 +48,6 @@ export const translations = {
     readMore: 'Read more',
     viewFullProject: 'View Full Project',
     code: 'Code',
-    demo: 'Demo',
-    liveDemo: 'Live Demo',
     overview: 'Overview',
     keyFeatures: 'Key Features',
     challengesSolutions: 'Challenges & Solutions',
@@ -130,6 +128,31 @@ export const translations = {
     demoNote: 'Some features like automated emails are disabled in the demo. Use these credentials to explore:',
     demoEmail: 'test@payto.com',
     demoPassword: 'Test123456',
+    
+    // Project Detail Page
+    projectNotFound: 'Project Not Found',
+    backToProjects: 'Back to Projects',
+    repositories: 'Repositories',
+    backendRepository: 'Backend Repository',
+    frontendRepository: 'Frontend Repository',
+    liveDemo: 'Live Demo',
+    viewLiveApplication: 'View the live application',
+    interestedInWorking: 'Interested in working together?',
+    getInTouchBtn: 'Get in touch',
+    
+    // Footer
+    footerDescription: 'A passionate full-stack developer who thrives on learning and building innovative digital solutions.',
+    footerNavigation: 'Navigation',
+    footerHome: 'Home',
+    footerProjects: 'Projects',
+    footerTechStack: 'Tech Stack',
+    footerContact: 'Contact',
+    footerConnect: 'Connect',
+    footerGitHub: 'GitHub',
+    footerLinkedIn: 'LinkedIn',
+    footerEmail: 'Email',
+    footerAllRightsReserved: 'All rights reserved.',
+    footerLastUpdated: 'Last updated by Alejo on',
   },
   es: {
     // Navigation
@@ -180,8 +203,6 @@ export const translations = {
     readMore: 'Leer más',
     viewFullProject: 'Ver Proyecto Completo',
     code: 'Código',
-    demo: 'Demo',
-    liveDemo: 'Demo en Vivo',
     overview: 'Descripción General',
     keyFeatures: 'Características Principales',
     challengesSolutions: 'Desafíos y Soluciones',
@@ -262,6 +283,31 @@ export const translations = {
     demoNote: 'Algunas características como envíos de email automatizados están deshabilitadas en la demo. Usa estas credenciales para explorar:',
     demoEmail: 'test@payto.com',
     demoPassword: 'Test123456',
+    
+    // Project Detail Page
+    projectNotFound: 'Proyecto No Encontrado',
+    backToProjects: 'Volver a Proyectos',
+    repositories: 'Repositorios',
+    backendRepository: 'Repositorio Backend',
+    frontendRepository: 'Repositorio Frontend',
+    liveDemo: 'Demo en Vivo',
+    viewLiveApplication: 'Ver la aplicación en vivo',
+    interestedInWorking: '¿Interesado en trabajar juntos?',
+    getInTouchBtn: 'Ponte en contacto',
+    
+    // Footer
+    footerDescription: 'Un apasionado desarrollador full-stack que prospera aprendiendo y construyendo soluciones digitales innovadoras.',
+    footerNavigation: 'Navegación',
+    footerHome: 'Inicio',
+    footerProjects: 'Proyectos',
+    footerTechStack: 'Stack Tecnológico',
+    footerContact: 'Contacto',
+    footerConnect: 'Conectar',
+    footerGitHub: 'GitHub',
+    footerLinkedIn: 'LinkedIn',
+    footerEmail: 'Correo',
+    footerAllRightsReserved: 'Todos los derechos reservados.',
+    footerLastUpdated: 'Última actualización por Alejo el',
   }
 };
 
