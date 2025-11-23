@@ -4,64 +4,8 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
-import { TranslationKey } from '@/app/lib/translations';
 import { Button, FeatureItem, TechTag, RepositoryLink, BackButton, Carousel, DemoCredentialsModal } from '@/app/components/ui';
-import type { ProjectDetail } from '@/app/types';
-
-const getProjects = (t: (key: TranslationKey) => string | string[]): ProjectDetail[] => [
-  {
-    id: 1,
-    titleKey: 'paytoTitle' as TranslationKey,
-    descriptionKey: 'paytoDesc' as TranslationKey,
-    detailedDescriptionKey: 'paytoDetailDesc' as TranslationKey,
-    featuresKey: 'paytoFeatures' as TranslationKey,
-    challengesKey: 'paytoChallenges' as TranslationKey,
-    learningsKey: 'paytoLearnings' as TranslationKey,
-    subtitle: "Financial management made simple for Argentine businesses",
-    tech: ["Laravel 12", "PHP 8.2", "Next.js 15", "React 19", "TypeScript", "MySQL", "Tailwind CSS", "shadcn/ui", "Recharts", "Sanctum", "Pest PHP"],
-    categoryKey: 'fullStack' as TranslationKey,
-    statusKey: 'live' as TranslationKey,
-    github: "https://github.com/alefeas/payto-backend",
-    githubFrontend: "https://github.com/alefeas/payto-frontend",
-    demo: "https://payto.vercel.app",
-    heroImage: "/projects/payto/hero.png",
-    images: [
-      '/projects/payto/screenshot-1.png',
-      '/projects/payto/screenshot-2.png',
-      '/projects/payto/screenshot-3.png',
-      '/projects/payto/screenshot-4.png'
-    ]
-  },
-  {
-    id: 2,
-    titleKey: 'argentumTitle' as TranslationKey,
-    descriptionKey: 'argentumDesc' as TranslationKey,
-    detailedDescriptionKey: 'argentumDetailDesc' as TranslationKey,
-    featuresKey: 'argentumFeatures' as TranslationKey,
-    challengesKey: 'argentumChallenges' as TranslationKey,
-    learningsKey: 'argentumLearnings' as TranslationKey,
-    subtitle: "Real-time collaborative platform for seamless team communication",
-    tech: ["Next.js 15", "TypeScript", "Node.js", "WebSocket", "React 19", "Tailwind CSS", "Sequelize", "Redis", "Socket.io"],
-    categoryKey: 'fullStack' as TranslationKey,
-    statusKey: 'inDevelopment' as TranslationKey,
-    github: "",
-    demo: "",
-    heroImage: "",
-    images: [],
-    isPrivate: true
-  }
-].map(project => ({
-  ...project,
-  title: t(project.titleKey) as string,
-  description: t(project.descriptionKey) as string,
-  detailedDescription: t(project.detailedDescriptionKey) as string,
-  features: t(project.featuresKey) as string[],
-  challenges: t(project.challengesKey) as string,
-  learnings: t(project.learningsKey) as string,
-  category: t(project.categoryKey) as string,
-  status: t(project.statusKey) as string,
-  isLive: project.statusKey === 'live'
-}));
+import { getProjects } from '@/app/constants/projects';
 
 export default function ProjectDetail() {
   const params = useParams();
