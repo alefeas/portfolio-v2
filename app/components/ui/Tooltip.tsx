@@ -7,7 +7,7 @@ export default function Tooltip({ label, children, isVisible }: TooltipProps) {
       {children}
       {isVisible && (
         <motion.div
-          className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-slate-700/30 whitespace-nowrap"
+          className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white px-4 py-2 rounded-full text-sm font-normal shadow-2xl border border-slate-700/30 whitespace-nowrap"
           style={{
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',

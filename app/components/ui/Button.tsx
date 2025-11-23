@@ -11,7 +11,7 @@ export default function Button({
   rel,
   title,
 }: ButtonProps) {
-  const baseStyles = 'flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-300';
+  const baseStyles = 'flex items-center justify-center gap-2 rounded-full font-normal transition-all duration-300';
 
   const variants = {
     primary: 'bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg',

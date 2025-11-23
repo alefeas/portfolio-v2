@@ -41,7 +41,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['Fustat Variable', 'system-ui', 'sans-serif'],
+        fustat: ['Fustat Variable', 'system-ui', 'sans-serif'],
+        switzer: ['Switzer', 'system-ui', 'sans-serif'],
       },
     },
   },

@@ -98,7 +98,7 @@ export default function Contact() {
         {/* Contact Info */}
         <div className="space-y-8 flex flex-col h-full">
           <div>
-            <h3 className="text-xl font-semibold text-white mb-6">{t('getInTouchTitle')}</h3>
+            <h3 className="heading-3 text-white mb-6">{t('getInTouchTitle')}</h3>
             
             {/* Contact Methods */}
             <div className="space-y-4">
@@ -116,8 +116,8 @@ export default function Contact() {
                         {getIcon(contact.icon)}
                       </div>
                       <div>
-                        <div className="text-sm font-medium text-white">{t(contact.labelKey as TranslationKey)}</div>
-                        <div className="text-xs text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
+                        <div className="heading-6 text-white">{t(contact.labelKey as TranslationKey)}</div>
+                        <div className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
                           {contact.value}
                         </div>
                       </div>
@@ -130,7 +130,7 @@ export default function Contact() {
 
           {/* Quick Message */}
           <Card className="p-6 flex-1 flex flex-col justify-center">
-            <h4 className="text-base font-semibold text-white mb-4 flex items-center gap-2">
+            <h4 className="heading-5 text-white mb-4 flex items-center gap-2">
               <StatusDot />
               {t('quickResponse')}
             </h4>
@@ -138,7 +138,7 @@ export default function Contact() {
               {t('responseTime')} <span className="text-primary-400 font-medium">{t('hours24')}</span>.
               {t('contactFormDesc')}
             </p>
-            <p className="text-slate-400 text-xs leading-relaxed">
+            <p className="text-slate-400 text-sm leading-relaxed">
               {t('contactFormDesc2')}
             </p>
           </Card>
@@ -146,7 +146,7 @@ export default function Contact() {
 
         {/* Contact Form */}
         <div className="flex flex-col h-full">
-          <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between mt-14">
+          <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between" style={{ marginTop: '57.59px' }}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <Input
                 type="text"
@@ -192,7 +192,7 @@ export default function Contact() {
                 className="w-full px-4 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300 resize-none"
                 placeholder={ts('tellAboutProject')}
               />
-              <p className="text-xs text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
+              <p className="text-sm text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
             </div>
 
             <button

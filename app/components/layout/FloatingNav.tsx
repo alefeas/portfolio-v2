@@ -56,7 +56,7 @@ export default function FloatingNav() {
             <AnimatePresence>
               {hoveredIndex === index && hoveredLabel && (
                 <motion.div
-                  className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white px-6 py-2 rounded-full text-sm font-medium shadow-2xl whitespace-nowrap border border-slate-700/30"
+                  className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white px-6 py-2 rounded-full text-sm font-normal shadow-2xl whitespace-nowrap border border-slate-700/30"
                   style={{
                     backdropFilter: 'blur(20px)',
                     WebkitBackdropFilter: 'blur(20px)',

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import "@fontsource-variable/fustat";
 import "./globals.css";
 import NavbarWrapper from "./components/layout/NavbarWrapper";
 import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
@@ -38,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${switzer.variable} ${inter.variable} font-sans antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
         style={{
           backgroundColor: 'rgb(9 9 11 / var(--tw-bg-opacity, 1))',
           position: 'relative',

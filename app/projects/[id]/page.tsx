@@ -31,7 +31,7 @@ export default function ProjectDetail() {
     return (
       <div className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">{t('projectNotFound')}</h1>
+          <h1 className="text-4xl font-semibold text-white mb-4">{t('projectNotFound')}</h1>
           <Link href="/#projects" className="text-green-400 hover:text-green-300">
             {t('backToProjects')}
           </Link>
@@ -72,7 +72,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl md:text-6xl font-bold mb-4 leading-tight">{safeProject.title}</h1>
+        <h1 className="text-5xl md:text-6xl font-semibold mb-4 leading-tight">{safeProject.title}</h1>
         
         {/* Subtitle */}
         <p className="text-xl text-white/70 leading-relaxed mb-12">
@@ -86,7 +86,7 @@ export default function ProjectDetail() {
 
         {/* Overview */}
         <div className="mb-20">
-          <h2 className="text-2xl font-medium mb-4">{t('overview') || 'Overview'}</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('overview') || 'Overview'}</h2>
           <p className="text-white/80 leading-relaxed">
             {safeProject.detailedDescription}
           </p>
@@ -94,7 +94,7 @@ export default function ProjectDetail() {
 
         {/* Features */}
         <div className="mb-20">
-          <h2 className="text-2xl font-medium mb-8">{t('keyFeatures')}</h2>
+          <h2 className="text-2xl font-semibold mb-8">{t('keyFeatures')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {(safeProject.features as string[]).map((feature: string, index: number) => (
               <FeatureItem key={index}>{feature}</FeatureItem>
@@ -104,7 +104,7 @@ export default function ProjectDetail() {
 
         {/* Challenges */}
         <div className="mb-20">
-          <h2 className="text-2xl font-medium mb-4">{t('challengesSolutions')}</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('challengesSolutions')}</h2>
           <p className="text-white/80 leading-relaxed">
             {safeProject.challenges}
           </p>
@@ -112,7 +112,7 @@ export default function ProjectDetail() {
 
         {/* What I Learned */}
         <div className="mb-20">
-          <h2 className="text-2xl font-medium mb-4">{t('whatILearned')}</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('whatILearned')}</h2>
           <p className="text-white/80 leading-relaxed">
             {safeProject.learnings}
           </p>
@@ -123,7 +123,7 @@ export default function ProjectDetail() {
         {/* Repositories */}
         {!safeProject.isPrivate && (safeProject.github || safeProject.githubFrontend) && (
           <div className="mb-20">
-            <h2 className="text-2xl font-medium mb-8">{t('repositories')}</h2>
+            <h2 className="text-2xl font-semibold mb-8">{t('repositories')}</h2>
             <div className="space-y-3">
               {safeProject.github && (
                 <RepositoryLink
@@ -162,7 +162,7 @@ export default function ProjectDetail() {
 
         {/* Tech Stack */}
         <div className="mb-20">
-          <h2 className="text-2xl font-medium mb-8">{t('builtWith')}</h2>
+          <h2 className="text-2xl font-semibold mb-8">{t('builtWith')}</h2>
           <div className="flex flex-wrap gap-2">
             {safeProject.tech.map((tech) => (
               <TechTag key={tech}>{tech}</TechTag>

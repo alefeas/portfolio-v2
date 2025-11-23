@@ -40,8 +40,8 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-start gap-12 mb-8">
           {/* Left: Brand Section */}
           <div className="flex-shrink-0">
-            <h3 className="text-white font-medium mb-2" style={{ fontSize: '18px' }}>Alejo Feas Matej • Developer</h3>
-            <p className="text-white/60 leading-relaxed mb-4 max-w-xs" style={{ fontSize: '13px' }}>
+            <h3 className="text-white font-semibold mb-2" style={{ fontSize: '18px' }}>Alejo Feas Matej • Developer</h3>
+            <p className="text-white/60 leading-relaxed mb-4 max-w-xs text-sm">
               {t('footerDescription')}
             </p>
             
@@ -85,25 +85,25 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-12 ml-auto">
             {/* Navigation Section */}
             <div>
-              <h4 className="text-white font-medium mb-3" style={{ fontSize: '14px' }}>{t('footerNavigation')}</h4>
+              <h4 className="text-white font-semibold mb-3 text-sm">{t('footerNavigation')}</h4>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/#hero" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <Link href="/#hero" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerHome')}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#projects" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <Link href="/#projects" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerProjects')}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#tech-stack" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <Link href="/#tech-stack" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerTechStack')}
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#contact" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <Link href="/#contact" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerContact')}
                   </Link>
                 </li>
@@ -112,20 +112,20 @@ export default function Footer() {
 
             {/* Connect Section */}
             <div>
-              <h4 className="text-white font-medium mb-3" style={{ fontSize: '14px' }}>{t('footerConnect')}</h4>
+              <h4 className="text-white font-semibold mb-3 text-sm">{t('footerConnect')}</h4>
               <ul className="space-y-2">
                 <li>
-                  <a href="https://github.com/alefeas" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <a href="https://github.com/alefeas" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerGitHub')} ↗
                   </a>
                 </li>
                 <li>
-                  <a href="https://linkedin.com/in/alefeas" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <a href="https://linkedin.com/in/alefeas" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerLinkedIn')} ↗
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:alfredo.feas@gmail.com" className="text-white/60 hover:text-white transition-colors" style={{ fontSize: '14px' }}>
+                  <a href="mailto:alfredo.feas@gmail.com" className="text-white/60 hover:text-white transition-colors text-sm">
                     {t('footerEmail')} ↗
                   </a>
                 </li>
@@ -135,7 +135,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/40" style={{ fontSize: '12px' }}>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-white/40 text-xs">
           <p>
             © {currentYear} Alejo Feas. {t('footerAllRightsReserved')}
           </p>

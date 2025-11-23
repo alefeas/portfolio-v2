@@ -1,9 +1,126 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
+/* Switzer Font Faces */
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Regular.woff2') format('woff2'),
+       url('/fonts/Switzer-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/Switzer-Semibold.woff2') format('woff2'),
+       url('/fonts/Switzer-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-display: swap;
+}
+
 :root {
   --background: transparent;
   --foreground: #e2e8f0;
+}
+
+/* Typography - All text uses Fustat Variable */
+* {
+  font-family: 'Fustat Variable', system-ui, sans-serif;
+}
+
+/* Default text weight - Medium (500) */
+body, p, span, div, li, a {
+  font-weight: 500;
+}
+
+/* Font weight variations */
+.font-normal {
+  font-weight: 500;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+.font-extrabold {
+  font-weight: 600;
+}
+
+.font-black {
+  font-weight: 600;
+}
+
+/* Typography Classes */
+.font-fustat {
+  font-family: 'Fustat Variable', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+.font-switzer {
+  font-family: 'Switzer', system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.font-switzer-semibold {
+  font-family: 'Switzer', system-ui, sans-serif;
+  font-weight: 600;
+}
+
+/* Semantic Typography Classes - Centralized for easy global changes */
+.heading-1 {
+  font-weight: 600;
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+
+.heading-2 {
+  font-weight: 600;
+  font-size: 1.875rem;
+  line-height: 1.3;
+}
+
+.heading-3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+.heading-4 {
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.heading-5 {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.heading-6 {
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.subheading {
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.subtitle {
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.5;
 }
 
 html {
@@ -40,7 +157,8 @@ html {
 body {
   background-color: transparent;
   color: var(--foreground);
-  font-family: var(--font-switzer), var(--font-inter), system-ui, sans-serif;
+  font-family: 'Fustat Variable', system-ui, sans-serif;
+  font-weight: 500;
   position: relative;
   overflow-x: hidden;
 }

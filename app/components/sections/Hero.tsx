@@ -49,7 +49,7 @@ export default function Hero() {
         transition={{ duration: 0.35, delay: 0.2, ease: "easeOut" }}
         className="max-w-2xl leading-relaxed text-gray-300 text-base max-sm:text-sm"
       >
-        <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
+        <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} <br /> {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
       </motion.h2>
 
       {/* Enhanced Keyboard Navigation */}

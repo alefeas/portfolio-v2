@@ -11,7 +11,7 @@ export default function StatusBadge({ children }: StatusBadgeProps) {
       className="flex w-fit items-center rounded-full gap-3 py-2 pl-4 pr-5 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 backdrop-blur-xl"
     >
       <StatusDot />
-      <h3 className="text-sm text-green-200 font-medium">
+      <h3 className="text-sm text-green-200 font-semibold">
         {children}
       </h3>
     </motion.div>

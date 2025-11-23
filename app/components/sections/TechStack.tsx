@@ -32,7 +32,7 @@ export default function TechStack() {
           >
             {/* Category Title */}
             <div className="text-center">
-              <h3 className="text-lg font-semibold text-white mb-2">{t(category.category.toLowerCase() as TranslationKey)}</h3>
+              <h3 className="heading-4 text-white mb-2">{t(category.category.toLowerCase() as TranslationKey)}</h3>
               <div className="w-8 h-px bg-green-500/60 mx-auto"></div>
             </div>
             
