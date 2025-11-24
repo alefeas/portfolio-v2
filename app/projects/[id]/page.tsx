@@ -72,20 +72,40 @@ export default function ProjectDetail() {
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl md:text-6xl font-semibold mb-4 leading-tight">{safeProject.title}</h1>
+        <h1 className="mb-4 leading-tight" style={{ fontSize: '36px', fontWeight: 700 }}>{safeProject.title}</h1>
         
         {/* Subtitle */}
-        <p className="text-xl text-white/70 leading-relaxed mb-12">
+        <p className="text-md text-white/70 leading-relaxed mb-12">
           {safeProject.description}
         </p>
 
         {/* Main Image / Carousel */}
         <Carousel images={allImages} title={safeProject.title} />
 
+        {/* Two Column Layout - Starts after Carousel */}
+        <div className="flex justify-between mt-8">
+          {/* Right: Section Navigator */}
+          <aside className="hidden lg:block w-48 flex-shrink-0 order-2">
+            <div className="sticky top-32 space-y-2 mt-8 max-h-[calc(100vh-200px)] overflow-y-scroll pr-2">
+              <h3 className="text-sm font-semibold text-white mb-4">Sections</h3>
+              <nav className="space-y-1">
+                <a href="#overview" className="block text-sm text-white/60 hover:text-white transition-colors">Overview</a>
+                <a href="#features" className="block text-sm text-white/60 hover:text-white transition-colors">Key Features</a>
+                <a href="#challenges" className="block text-sm text-white/60 hover:text-white transition-colors">Challenges</a>
+                <a href="#learnings" className="block text-sm text-white/60 hover:text-white transition-colors">What I Learned</a>
+                <a href="#repositories" className="block text-sm text-white/60 hover:text-white transition-colors">Repositories</a>
+                <a href="#tech" className="block text-sm text-white/60 hover:text-white transition-colors">Built With</a>
+              </nav>
+            </div>
+          </aside>
+
+          {/* Left: Main Content */}
+          <div className="flex-1 max-w-3xl order-1">
+
 
 
         {/* Overview */}
-        <div className="mb-20">
+        <div className="mb-8 pt-8" id="overview">
           <h2 className="text-2xl font-semibold mb-4">{t('overview') || 'Overview'}</h2>
           <p className="text-white/80 leading-relaxed">
             {safeProject.detailedDescription}
@@ -93,7 +113,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* Features */}
-        <div className="mb-20">
+        <div className="mb-8 pt-8" id="features">
           <h2 className="text-2xl font-semibold mb-8">{t('keyFeatures')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {(safeProject.features as string[]).map((feature: string, index: number) => (
@@ -103,7 +123,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* Challenges */}
-        <div className="mb-20">
+        <div className="mb-8 pt-8" id="challenges">
           <h2 className="text-2xl font-semibold mb-4">{t('challengesSolutions')}</h2>
           <p className="text-white/80 leading-relaxed">
             {safeProject.challenges}
@@ -111,7 +131,7 @@ export default function ProjectDetail() {
         </div>
 
         {/* What I Learned */}
-        <div className="mb-20">
+        <div className="mb-8 pt-8" id="learnings">
           <h2 className="text-2xl font-semibold mb-4">{t('whatILearned')}</h2>
           <p className="text-white/80 leading-relaxed">
             {safeProject.learnings}
@@ -122,9 +142,9 @@ export default function ProjectDetail() {
 
         {/* Repositories */}
         {!safeProject.isPrivate && (safeProject.github || safeProject.githubFrontend) && (
-          <div className="mb-20">
+          <div className="mb-8 pt-8" id="repositories">
             <h2 className="text-2xl font-semibold mb-8">{t('repositories')}</h2>
-            <div className="space-y-3">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
               {safeProject.github && (
                 <RepositoryLink
                   href={safeProject.github}
@@ -161,7 +181,7 @@ export default function ProjectDetail() {
         )}
 
         {/* Tech Stack */}
-        <div className="mb-20">
+        <div className="mb-8 pt-8" id="tech">
           <h2 className="text-2xl font-semibold mb-8">{t('builtWith')}</h2>
           <div className="flex flex-wrap gap-2">
             {safeProject.tech.map((tech) => (
@@ -169,10 +189,8 @@ export default function ProjectDetail() {
             ))}
           </div>
         </div>
-
-
-
-
+          </div>
+        </div>
       </div>
 
       {/* Demo Credentials Modal */}

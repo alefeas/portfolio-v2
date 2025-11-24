@@ -76,7 +76,7 @@ export default function Projects() {
                     : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
                 }`}>{project.status}</span>
               </div>
-              <h4 className="heading-3 leading-[1.25] text-white max-sm:text-lg">
+              <h4 className="text-xl font-semibold leading-[1.25] text-white max-sm:text-lg">
                 {project.title}
               </h4>
               <p className="text-sm text-slate-400">

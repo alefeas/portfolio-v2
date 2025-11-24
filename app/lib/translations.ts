@@ -27,7 +27,7 @@ export const translations = {
     whoIAm: 'Who I Am',
     fullStackDeveloper: 'Full Stack Developer',
     whoIAmDesc: 'I\'m a passionate',
-    whoIAmDesc2: 'with a strong foundation in modern web technologies. I love turning complex problems into simple and intuitive solutions.',
+    whoIAmDesc2: 'with a strong foundation in modern web technologies. I love turning complex problems into elegant and intuitive solutions.',
     seekingOpportunity: 'Currently seeking my first professional opportunity. I\'m dedicated to continuous learning and building projects that showcase my skills in web development.',
     currentlyLearning: 'Currently Learning',
     expandingKnowledge: 'Expanding my knowledge in',
@@ -70,15 +70,15 @@ export const translations = {
     sendMessage: 'Send Message',
     
     // Project Details
-    paytoTitle: 'PayTo',
-    paytoDesc: 'Comprehensive financial management platform for Argentine businesses with AFIP integration.',
+    paytoTitle: 'PayTo: Financial management platform for Argentine businesses',
+    paytoDesc: 'Seamless financial operations, compliance, and AFIP integration for Argentine businesses.',
     paytoDetailDesc: 'PayTo is a full-stack financial management solution designed specifically for Argentine businesses. It provides a robust REST API backend built with Laravel 12 and a modern React-based frontend with Next.js 15. The platform handles complex multi-company operations including invoice management, payment tracking, collections, and seamless AFIP integration for electronic invoice validation. With complete data isolation between companies, role-based access control, and real-time notifications, PayTo enables businesses to manage their financial operations efficiently and compliantly.',
     paytoFeatures: ['Multi-Company Invoice Management', 'AFIP Electronic Invoice Integration', 'Payment & Collection Tracking', 'Real-time Financial Dashboard', 'Accounts Receivable & Payable', 'VAT Balance Calculations', 'B2B Network Connections', 'Audit Logging & Compliance', 'Multi-Currency Support', 'Role-Based Access Control'],
     paytoChallenges: 'The primary challenges involved implementing secure AFIP integration with certificate-based authentication, ensuring complete data isolation in a multi-company environment, and building a real-time financial dashboard that handles complex calculations while maintaining optimal performance. Additionally, managing payment status synchronization across multiple systems required careful state management and error handling.',
     paytoLearnings: 'This project deepened my understanding of financial systems architecture, AFIP compliance requirements for Argentine businesses, multi-tenant application design patterns, and the importance of audit logging in financial applications. I also gained expertise in building scalable REST APIs with Laravel and creating responsive financial dashboards with React.',
     
-    argentumTitle: 'Argentum Online Web',
-    argentumDesc: 'Bringing the legendary Argentum Online game to the web with modern technologies.',
+    argentumTitle: 'Argentum Online Web: Classic MMORPG reimagined for the web',
+    argentumDesc: 'A collaborative recreation of the classic MMORPG with real-time multiplayer gameplay and persistent world.',
     argentumDetailDesc: 'Argentum Online Web is a collaborative project to recreate the famous Argentum Online game as a fully functional web application. This ambitious undertaking involves porting the classic game mechanics to a modern web stack using Next.js with TypeScript for the frontend and Node.js for the backend. The project focuses on maintaining the essence of the original game while leveraging web technologies to make it accessible to a broader audience. Features include real-time multiplayer gameplay, character progression, inventory management, combat systems, and a persistent game world.',
     argentumFeatures: ['Real-time Multiplayer Gameplay', 'Character Creation & Progression', 'Inventory Management System', 'Combat & Skill Systems', 'Persistent Game World', 'NPC Interactions', 'Quest System', 'Trading & Economy', 'Guild Management', 'Real-time Chat & Communication'],
     argentumChallenges: 'Recreating a complex game with real-time multiplayer mechanics in a web environment presents significant technical challenges. Managing real-time synchronization between multiple players, handling server state consistency, optimizing network communication, and ensuring smooth gameplay performance across different devices and network conditions are critical. Additionally, balancing game mechanics and maintaining the original game\'s feel while adapting to web constraints requires careful design decisions.',
@@ -225,15 +225,15 @@ export const translations = {
     sendMessage: 'Enviar Mensaje',
     
     // Project Details
-    paytoTitle: 'PayTo',
-    paytoDesc: 'Plataforma integral de gestión financiera para empresas argentinas con integración AFIP.',
+    paytoTitle: 'PayTo: Gestión financiera para empresas argentinas',
+    paytoDesc: 'Operaciones financieras fluidas, cumplimiento normativo e integración AFIP para empresas argentinas.',
     paytoDetailDesc: 'PayTo es una solución de gestión financiera full-stack diseñada específicamente para empresas argentinas. Proporciona un robusto backend REST API construido con Laravel 12 y un moderno frontend basado en React con Next.js 15. La plataforma maneja operaciones complejas multi-empresa incluyendo gestión de facturas, seguimiento de pagos, cobranzas e integración perfecta con AFIP para validación de facturas electrónicas. Con aislamiento completo de datos entre empresas, control de acceso basado en roles y notificaciones en tiempo real, PayTo permite a las empresas gestionar sus operaciones financieras de manera eficiente y cumplida.',
     paytoFeatures: ['Gestión de Facturas Multi-Empresa', 'Integración Electrónica de Facturas AFIP', 'Seguimiento de Pagos y Cobranzas', 'Panel Financiero en Tiempo Real', 'Cuentas por Cobrar y Pagar', 'Cálculos de Saldo de IVA', 'Conexiones B2B en Red', 'Auditoría y Cumplimiento', 'Soporte Multi-Moneda', 'Control de Acceso Basado en Roles'],
     paytoChallenges: 'Los desafíos principales implicaron implementar integración segura con AFIP con autenticación basada en certificados, garantizar aislamiento completo de datos en un entorno multi-empresa y construir un panel financiero en tiempo real que maneje cálculos complejos manteniendo rendimiento óptimo. Además, gestionar la sincronización de estado de pagos entre múltiples sistemas requirió cuidadosa gestión de estado y manejo de errores.',
     paytoLearnings: 'Este proyecto profundizó mi comprensión de la arquitectura de sistemas financieros, requisitos de cumplimiento AFIP para empresas argentinas, patrones de diseño de aplicaciones multi-tenant e importancia del registro de auditoría en aplicaciones financieras. También gané experiencia en construir APIs REST escalables con Laravel y crear paneles financieros responsivos con React.',
     
-    argentumTitle: 'Argentum Online Web',
-    argentumDesc: 'Llevando el legendario juego Argentum Online a la web con tecnologías modernas.',
+    argentumTitle: 'Argentum Online Web: MMORPG clásico reimaginado para la web',
+    argentumDesc: 'Una recreación colaborativa del MMORPG clásico con juego multijugador en tiempo real y mundo persistente.',
     argentumDetailDesc: 'Argentum Online Web es un proyecto colaborativo para recrear el famoso juego Argentum Online como una aplicación web completamente funcional. Este ambicioso emprendimiento implica portar la mecánica clásica del juego a un stack web moderno usando Next.js con TypeScript para el frontend y Node.js para el backend. El proyecto se enfoca en mantener la esencia del juego original mientras aprovecha tecnologías web para hacerlo accesible a una audiencia más amplia. Las características incluyen juego multijugador en tiempo real, progresión de personajes, gestión de inventario, sistemas de combate y un mundo de juego persistente.',
     argentumFeatures: ['Juego Multijugador en Tiempo Real', 'Creación y Progresión de Personajes', 'Sistema de Gestión de Inventario', 'Sistemas de Combate y Habilidades', 'Mundo de Juego Persistente', 'Interacciones con NPCs', 'Sistema de Misiones', 'Economía y Comercio', 'Gestión de Gremios', 'Chat y Comunicación en Tiempo Real'],
     argentumChallenges: 'Recrear un juego complejo con mecánicas multijugador en tiempo real en un entorno web presenta desafíos técnicos significativos. Gestionar sincronización en tiempo real entre múltiples jugadores, manejar consistencia de estado del servidor, optimizar comunicación de red y garantizar rendimiento suave del juego en diferentes dispositivos y condiciones de red son críticos. Además, equilibrar mecánicas del juego y mantener la esencia del juego original mientras se adapta a restricciones web requiere decisiones de diseño cuidadosas.',
