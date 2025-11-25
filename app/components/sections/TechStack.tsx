@@ -71,8 +71,8 @@ export default function TechStack() {
                         alt={tech.name}
                         width={48}
                         height={48}
-                        className="w-full h-full object-contain filter brightness-75 group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.4)] group-hover:saturate-110"
-                        style={{ transition: "all 0.1s ease-out" }}
+                        className="w-full h-full object-contain filter grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.4)]"
+                        style={{ transition: "all 0.2s ease-out" }}
                       />
                     </div>
                     

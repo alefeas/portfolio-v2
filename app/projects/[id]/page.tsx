@@ -59,7 +59,7 @@ export default function ProjectDetail() {
       <div className="max-w-6xl mx-auto px-6 py-20 mt-20">
         {/* Badges */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="px-3 py-1 rounded-full bg-white/10 text-xs text-white/70 border border-white/20">
+          <span className="px-3 py-1 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-xs text-white/70 border border-slate-700/30">
             {safeProject.category}
           </span>
           <span className={`px-3 py-1 rounded-full text-xs border ${

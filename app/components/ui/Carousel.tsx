@@ -49,11 +49,8 @@ export default function Carousel({ images, title }: CarouselProps) {
     <div className="mb-20">
       <div className="relative group">
         <motion.div
-          className="relative w-full rounded-lg overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30"
+          className="relative w-full rounded-lg overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 shadow-lg"
           style={{ aspectRatio: '2/1' }}
-          initial={{ boxShadow: `0 25px 0px 0px ${dominantColor}` }}
-          animate={{ boxShadow: `0 25px 50px -12px ${dominantColor}` }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           <AnimatePresence mode="wait">
             <motion.img
@@ -75,21 +72,21 @@ export default function Carousel({ images, title }: CarouselProps) {
           <>
             <motion.button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-sm border border-slate-700/30 text-white/80 hover:text-white hover:cursor-pointer flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/50 backdrop-blur-md border border-slate-600/50 text-white hover:text-green-400 hover:border-green-500/50 hover:cursor-pointer flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 hover:shadow-lg hover:shadow-green-500/20"
               whileTap={{ scale: 0.95 }}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </motion.button>
 
             <motion.button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-sm border border-slate-700/30 text-white/80 hover:text-white hover:cursor-pointer flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/50 backdrop-blur-md border border-slate-600/50 text-white hover:text-green-400 hover:border-green-500/50 hover:cursor-pointer flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 hover:shadow-lg hover:shadow-green-500/20"
               whileTap={{ scale: 0.95 }}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </motion.button>
 

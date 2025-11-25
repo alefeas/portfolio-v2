@@ -45,8 +45,6 @@ export default function Button({
       rel={rel}
       title={title}
       className={`${baseStyles} ${variants[variant]} ${className}`}
-      whileHover={isCtaVariant ? { y: -2 } : {}}
-      whileTap={isCtaVariant ? { y: 0 } : {}}
     >
       {children}
     </Component>

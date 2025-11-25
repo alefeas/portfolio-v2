@@ -126,4 +126,5 @@ export interface TooltipProps {
   label: string;
   children: ReactNode;
   isVisible: boolean;
+  offset?: string;
 }

@@ -7,14 +7,17 @@ export default function Tooltip({ label, children, isVisible }: TooltipProps) {
       {children}
       {isVisible && (
         <motion.div
-          className="absolute top-16 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white px-4 py-2 rounded-full text-sm font-normal shadow-2xl border border-slate-700/30 whitespace-nowrap"
-          style={{
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-          }}
-          initial={{ opacity: 0, y: 10, scale: 0.8 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 10, scale: 0.8 }}
+          // 1. Agregué z-50 para asegurar que flote sobre el contenido a desenfocar.
+          // 2. Usé backdrop-blur-[20px] nativo de Tailwind (o backdrop-blur-xl).
+          // 3. ELIMINÉ 'transform -translate-x-1/2' de aquí para evitar conflictos.
+          className="absolute top-16 left-1/2 z-50 bg-slate-900/60 text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-slate-700/30 whitespace-nowrap backdrop-blur-[20px]"
+          
+          // Movemos el centrado horizontal (x: "-50%") a las props de animación
+          // para que conviva pacíficamente con el scale y el y.
+          initial={{ opacity: 0, y: 10, scale: 0.8, x: "-50%" }}
+          animate={{ opacity: 1, y: 0, scale: 1, x: "-50%" }}
+          exit={{ opacity: 0, y: 10, scale: 0.8, x: "-50%" }}
+          
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
         >
           <motion.span
