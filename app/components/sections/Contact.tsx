@@ -94,14 +94,14 @@ export default function Contact() {
       />
 
       {/* Contact Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
         {/* Contact Info */}
-        <div className="space-y-8 flex flex-col h-full">
+        <div className="space-y-6 lg:space-y-8 flex flex-col h-full">
           <div>
-            <h3 className="heading-3 text-white mb-6">{t('getInTouchTitle')}</h3>
+            <h3 className="heading-3 text-white mb-4 lg:mb-6">{t('getInTouchTitle')}</h3>
             
             {/* Contact Methods */}
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 lg:flex lg:flex-col">
               {contactLinks.map((contact, index) => (
                 <a
                   key={index}
@@ -110,14 +110,14 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="block group"
                 >
-                  <Card variant="hover" className="p-4">
-                    <div className="flex items-center gap-4">
-                      <div className="text-green-400 group-hover:text-green-300 transition-colors duration-300">
+                  <Card variant="hover" className="p-3 lg:p-4 h-full">
+                    <div className="flex items-center gap-3 lg:gap-4">
+                      <div className="text-green-400 group-hover:text-green-300 transition-colors duration-300 flex-shrink-0">
                         {getIcon(contact.icon)}
                       </div>
-                      <div>
-                        <div className="heading-6 text-white">{t(contact.labelKey as TranslationKey)}</div>
-                        <div className="text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
+                      <div className="min-w-0">
+                        <div className="heading-6 text-white truncate">{t(contact.labelKey as TranslationKey)}</div>
+                        <div className="text-xs lg:text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300 truncate">
                           {contact.value}
                         </div>
                       </div>
@@ -129,16 +129,16 @@ export default function Contact() {
           </div>
 
           {/* Quick Message */}
-          <Card className="p-6 flex-1 flex flex-col justify-center">
-            <h4 className="heading-5 text-white mb-4 flex items-center gap-2">
+          <Card className="p-4 lg:p-6 flex-1 flex flex-col justify-center">
+            <h4 className="heading-5 text-white mb-3 lg:mb-4 flex items-center gap-2">
               <StatusDot />
               {t('quickResponse')}
             </h4>
-            <p className="text-slate-300 text-sm leading-relaxed mb-4">
+            <p className="text-slate-300 text-xs lg:text-sm leading-relaxed mb-3 lg:mb-4">
               {t('responseTime')} <span className="text-primary-400 font-medium">{t('hours24')}</span>.
               {t('contactFormDesc')}
             </p>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-400 text-xs lg:text-sm leading-relaxed">
               {t('contactFormDesc2')}
             </p>
           </Card>
@@ -146,8 +146,8 @@ export default function Contact() {
 
         {/* Contact Form */}
         <div className="flex flex-col h-full">
-          <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between" style={{ marginTop: '57.59px' }}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between lg:mt-[57.59px]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4">
               <Input
                 type="text"
                 name="name"
@@ -184,21 +184,21 @@ export default function Contact() {
             <div>
               <textarea
                 name="message"
-                rows={6}
+                rows={5}
                 maxLength={500}
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300 resize-none"
+                className="w-full px-3 lg:px-4 py-2 lg:py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-xl text-base text-white placeholder-slate-400 focus:border-green-500/50 focus:outline-none transition-all duration-300 resize-none"
                 placeholder={ts('tellAboutProject')}
               />
-              <p className="text-sm text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
+              <p className="text-xs lg:text-sm text-slate-500 mt-2 ml-1 char-counter">{ts('messageLabel')} (500 {ts('charactersRemaining')})</p>
             </div>
 
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full px-6 py-3 bg-green-600 hover:bg-green-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-white rounded-lg font-medium transition-colors duration-150"
+              className="w-full px-4 lg:px-6 py-2 lg:py-3 bg-green-600 hover:bg-green-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-white text-sm lg:text-base rounded-lg font-medium transition-colors duration-150"
             >
               {isSubmitting ? 'Sending...' : t('sendMessage')}
             </button>
