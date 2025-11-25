@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
@@ -66,18 +65,19 @@ export default function TechStack() {
                     
                     {/* Logo */}
                     <div className="w-12 h-12 mb-2 flex items-center justify-center relative z-10">
-                      <Image 
+                      <img 
                         src={tech.logo} 
                         alt={tech.name}
-                        width={48}
-                        height={48}
-                        className="w-full h-full object-contain filter grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-110 group-hover:drop-shadow-[0_0_12px_rgba(34,197,94,0.4)]"
-                        style={{ transition: "all 0.2s ease-out" }}
+                        className="w-full h-full object-contain"
+                        style={{ 
+                          transition: "all 0.2s ease-out",
+                          filter: "brightness(0) invert(1)",
+                        }}
                       />
                     </div>
                     
                     {/* Tech Name */}
-                    <span className="text-sm font-semibold text-slate-400 group-hover:text-white text-center relative z-10 tracking-wide"
+                    <span className="text-xs font-semibold text-slate-400 group-hover:text-white text-center relative z-10 tracking-wide whitespace-nowrap"
                           style={{ transition: "color 0.1s ease-out" }}>
                       {tech.name}
                     </span>
