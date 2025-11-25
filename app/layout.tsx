@@ -4,6 +4,7 @@ import "@fontsource-variable/fustat";
 import "./globals.css";
 import NavbarWrapper from "./components/layout/NavbarWrapper";
 import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
+import MobileNavWrapper from "./components/layout/MobileNavWrapper";
 import Footer from "./components/layout/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
         <LanguageProvider>
           <NavbarWrapper />
           <LanguageToggleWrapper />
+          <MobileNavWrapper />
           {children}
           <Footer />
         </LanguageProvider>

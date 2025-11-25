@@ -26,7 +26,7 @@ export default function Hero() {
           filter: 'blur(80px)',
         }}
       />
-      <section id="hero" className="relative flex h-screen flex-col gap-8 pb-32 pt-24 sm:justify-center px-6 max-w-6xl mx-auto overflow-visible">
+      <section id="hero" className="relative flex min-h-screen flex-col gap-6 md:gap-8 pb-20 md:pb-32 pt-20 md:pt-24 justify-center px-4 md:px-6 max-w-6xl mx-auto overflow-visible">
 
       {/* Status Badge */}
       <StatusBadge>
@@ -38,10 +38,11 @@ export default function Hero() {
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
-        className="text-[clamp(1.75rem,5vw,3rem)] font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+        className="hero-title font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+        style={{ textWrap: 'balance' }}
       >
         {t('hiIm')} <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
-        <span className="whitespace-nowrap">{t('buildingFuture')}</span>
+        {t('buildingFuture')}
       </motion.h1>
 
       {/* Subtitle */}
@@ -49,7 +50,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 0.35, delay: 0.2, ease: "easeOut" }}
-        className="max-w-2xl leading-relaxed text-gray-300 text-base max-sm:text-sm"
+        className="max-w-2xl leading-relaxed text-gray-300 text-sm md:text-base"
       >
         <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} <br /> {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
       </motion.h2>
@@ -59,7 +60,7 @@ export default function Hero() {
         initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
         transition={{ duration: 0.25, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="flex items-start text-center max-xs:flex-col gap-6"
+        className="hero-actions flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6"
       >
         <div className="hero-nav-board">
           {heroNavLinks.map((item) => (

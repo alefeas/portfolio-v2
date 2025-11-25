@@ -7,21 +7,31 @@ export default function Modal({ isOpen, onClose, title, children, actionButton }
   if (!isOpen) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center px-6 bg-black/70 backdrop-blur-sm"
-    >
+    <>
+      {/* Backdrop */}
       <motion.div
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
-        transition={{ type: "spring", damping: 20, stiffness: 300 }}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-sm rounded-lg bg-gradient-to-br from-slate-900/80 to-slate-800/70 border border-slate-700/50 p-6 shadow-2xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+        className="fixed inset-0 bg-black/30 z-40"
+      />
+      
+      {/* Modal Container */}
+      <div
+        onClick={onClose}
+        className="fixed inset-0 z-50 flex items-center justify-center px-6"
       >
+        {/* Modal Content - Animated with blur */}
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.95, opacity: 0 }}
+          transition={{ type: "spring", damping: 20, stiffness: 300 }}
+          onClick={(e) => e.stopPropagation()}
+          className="w-full max-w-sm rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 p-6"
+          style={{ backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)' }}
+        >
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h3 className="text-lg font-semibold text-white">{title}</h3>
@@ -49,7 +59,8 @@ export default function Modal({ isOpen, onClose, title, children, actionButton }
             {actionButton.label}
           </button>
         )}
-      </motion.div>
-    </motion.div>
+        </motion.div>
+      </div>
+    </>
   );
 }

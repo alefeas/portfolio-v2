@@ -59,7 +59,7 @@ export default function ProjectDetail() {
       <div className="max-w-6xl mx-auto px-6 py-20 mt-20">
         {/* Badges */}
         <div className="flex items-center gap-3 mb-6">
-          <span className="px-3 py-1 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-xs text-white/70 border border-slate-700/30">
+          <span className="px-3 py-1 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-xs text-white/60 border border-slate-700/30">
             {safeProject.category}
           </span>
           <span className={`px-3 py-1 rounded-full text-xs border ${
@@ -75,7 +75,7 @@ export default function ProjectDetail() {
         <h1 className="mb-4 leading-tight" style={{ fontSize: '36px', fontWeight: 700 }}>{safeProject.title}</h1>
         
         {/* Subtitle */}
-        <p className="text-md text-white/70 leading-relaxed mb-12">
+        <p className="text-md text-white/60 leading-relaxed mb-12">
           {safeProject.description}
         </p>
 
