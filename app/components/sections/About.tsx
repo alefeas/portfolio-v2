@@ -19,12 +19,22 @@ export default function About() {
       />
 
       {/* Content */}
-      <div className="flex flex-col lg:flex-row gap-10 items-start">
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
         {/* Image */}
-        <div className="relative w-full max-w-sm flex-shrink-0">
-          <div className="aspect-[3/4] rounded-2xl overflow-hidden">
+        <div className="relative w-full max-w-2xl lg:max-w-sm flex-shrink-0">
+          {/* Mobile: Square image */}
+          <div className="lg:hidden aspect-square rounded-2xl overflow-hidden">
             <img 
-              src="/profile.jpg"
+              src="/profile-v2.jpeg"
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+          </div>
+          
+          {/* Desktop: Vertical image */}
+          <div className="hidden lg:block aspect-[3/4] rounded-2xl overflow-hidden">
+            <img 
+              src="/profile-v2.jpeg"
               alt="Profile"
               className="w-full h-full object-cover"
             />
@@ -32,7 +42,7 @@ export default function About() {
         </div>
 
         {/* Content */}
-        <div className="max-w-lg">
+        <div className="w-full max-w-2xl">
           <div className="space-y-8">
             {/* Bio */}
             <div>
