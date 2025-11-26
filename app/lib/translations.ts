@@ -189,7 +189,7 @@ export const translations = {
     cloudTech: 'tecnologías en la nube',
     microservices: 'arquitectura de microservicios',
     databaseOpt: 'optimización avanzada de bases de datos',
-    stayingCurrent: 'para mantenerme actualizado con las tendencias de la industria.',
+    stayingCurrent: 'para mantenerme actualizado con las tendencias de la industria',
     whatIBest: 'Lo Que Hago Mejor',
     fullStackWeb: 'Desarrollo web full-stack con frameworks modernos',
     databaseDesign: 'Diseño y optimización de bases de datos',

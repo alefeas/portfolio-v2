@@ -5,23 +5,49 @@ import { motion, AnimatePresence } from 'framer-motion';
 import ColorThief from 'colorthief';
 import { CarouselProps } from '@/app/types';
 
+const AUTOPLAY_INTERVAL = 5000; // 5 seconds
+
 export default function Carousel({ images, title }: CarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [dominantColor, setDominantColor] = useState<string>('rgba(0, 0, 0, 0)');
+  const [progress, setProgress] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const hasImages = images.length > 0;
 
   const nextImage = () => {
     if (hasImages) {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
+      setProgress(0);
     }
   };
 
-  const prevImage = () => {
-    if (hasImages) {
-      setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
-    }
-  };
+  // Autoplay effect
+  useEffect(() => {
+    if (!hasImages || isPaused) return;
+
+    const interval = setInterval(() => {
+      nextImage();
+    }, AUTOPLAY_INTERVAL);
+
+    return () => clearInterval(interval);
+  }, [hasImages, currentImageIndex, isPaused]);
+
+  // Progress bar effect
+  useEffect(() => {
+    if (isPaused) return;
+
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          return 0;
+        }
+        return prev + (100 / (AUTOPLAY_INTERVAL / 50));
+      });
+    }, 50);
+
+    return () => clearInterval(progressInterval);
+  }, [isPaused]);
 
   useEffect(() => {
     const extractColor = async () => {
@@ -47,9 +73,13 @@ export default function Carousel({ images, title }: CarouselProps) {
 
   return (
     <div className="mb-20">
-      <div className="relative group">
+      <div 
+        className="relative"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <motion.div
-          className="relative w-full rounded-lg overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 shadow-lg"
+          className="relative w-full rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 shadow-lg"
           style={{ aspectRatio: '2/1' }}
         >
           <AnimatePresence mode="wait">
@@ -64,49 +94,17 @@ export default function Carousel({ images, title }: CarouselProps) {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             />
           </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 rounded-lg" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 rounded-3xl" />
+          
+          {/* Progress Bar */}
+          <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-green-500 to-green-400"
+              style={{ width: `${progress}%` }}
+              transition={{ duration: 0.05, ease: "linear" }}
+            />
+          </div>
         </motion.div>
-
-        {/* Navigation Buttons - Only show if multiple images */}
-        {images.length > 1 && (
-          <>
-            <motion.button
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/50 backdrop-blur-md border border-slate-600/50 text-white hover:text-green-400 hover:border-green-500/50 hover:cursor-pointer flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 hover:shadow-lg hover:shadow-green-500/20"
-              whileTap={{ scale: 0.95 }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
-            </motion.button>
-
-            <motion.button
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/50 backdrop-blur-md border border-slate-600/50 text-white hover:text-green-400 hover:border-green-500/50 hover:cursor-pointer flex items-center justify-center transition-all duration-300 opacity-0 group-hover:opacity-100 hover:shadow-lg hover:shadow-green-500/20"
-              whileTap={{ scale: 0.95 }}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </motion.button>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center gap-2 mt-4">
-              {images.map((_, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => setCurrentImageIndex(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentImageIndex
-                      ? 'bg-green-500 w-8 shadow-lg shadow-green-500/50'
-                      : 'bg-white/30 w-2 hover:bg-green-500/60'
-                  }`}
-                  whileTap={{ scale: 0.9 }}
-                />
-              ))}
-            </div>
-          </>
-        )}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ export default function About() {
       {/* Content */}
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
         {/* Image */}
-        <div className="relative w-full max-w-2xl lg:max-w-sm flex-shrink-0">
+        <div className="relative w-full max-w-2xl lg:w-sm lg:flex-shrink-0">
           {/* Mobile: Square image */}
           <div className="lg:hidden aspect-square rounded-2xl overflow-hidden">
             <img 
@@ -42,7 +42,7 @@ export default function About() {
         </div>
 
         {/* Content */}
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-2xl lg:w-130">
           <div className="space-y-8">
             {/* Bio */}
             <div>

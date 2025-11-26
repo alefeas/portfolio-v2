@@ -9,35 +9,44 @@ import { IconButton, Button, StatusBadge, Tooltip } from '@/app/components/ui';
 export default function Hero() {
   const { t } = useTranslation();
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <>
-      {/* Background with gradient - only in hero section */}
-      <div 
+      {/* Prismatic Aurora Burst Background - Only on Hover */}
+      <motion.div 
         className="absolute top-0 left-0 w-full -z-10 pointer-events-none"
         style={{
-          height: '20vh',
-          background: `
-            radial-gradient(circle at 15% 40%, rgba(34, 197, 94, 0.5) 0%, transparent 50%),
-            radial-gradient(circle at 85% 70%, rgba(34, 197, 94, 0.4) 0%, transparent 55%),
-            radial-gradient(circle at 50% 0%, rgba(34, 197, 94, 0.3) 0%, transparent 40%),
-            #0a0a0a
-          `,
-          filter: 'blur(80px)',
+          height: '15%',
+          background: `radial-gradient(ellipse 120% 80% at 70% 20%, rgb(34, 197, 94, 0.15), transparent 50%),
+            radial-gradient(ellipse 100% 60% at 30% 10%, rgb(22, 163, 74, 0.12), transparent 60%),
+            radial-gradient(ellipse 90% 70% at 50% 0%, rgb(21, 128, 61, 0.18), transparent 65%),
+            radial-gradient(ellipse 110% 50% at 80% 30%, rgb(74, 222, 128, 0.08), transparent 40%)`,
         }}
       />
-      <section id="hero" className="relative flex min-h-screen flex-col gap-6 md:gap-8 pb-20 md:pb-32 pt-20 md:pt-24 justify-center px-4 md:px-6 max-w-6xl mx-auto overflow-visible">
+      <section 
+        id="hero" 
+        className="relative flex min-h-screen flex-col gap-6 md:gap-8 pb-20 md:pb-32 pt-20 md:pt-24 justify-center px-4 md:px-6 max-w-6xl mx-auto overflow-visible"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
 
       {/* Status Badge */}
-      <StatusBadge>
-        {t('available')}
-      </StatusBadge>
+      <motion.div
+        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+        transition={{ duration: 0.3, delay: 0, ease: "easeOut" }}
+      >
+        <StatusBadge>
+          {t('available')}
+        </StatusBadge>
+      </motion.div>
 
       {/* Main Title */}
       <motion.h1 
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.3, delay: 0.1, ease: "easeOut" }}
+        transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
         className="hero-title font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
         style={{ textWrap: 'balance' }}
       >
@@ -49,7 +58,7 @@ export default function Hero() {
       <motion.h2 
         initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.35, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
         className="max-w-2xl leading-relaxed text-gray-300 text-sm md:text-base"
       >
         <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} <br /> {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
@@ -59,12 +68,18 @@ export default function Hero() {
       <motion.div 
         initial={{ opacity: 0, filter: "blur(10px)" }}
         animate={{ opacity: 1, filter: "blur(0px)" }}
-        transition={{ duration: 0.25, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.3, delay: 0.45, ease: "easeOut" }}
         className="hero-actions flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6"
       >
         <div className="hero-nav-board">
-          {heroNavLinks.map((item) => (
-            <div key={item.key} className="relative">
+          {heroNavLinks.map((item, index) => (
+            <motion.div 
+              key={item.key} 
+              className="relative"
+              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.3, delay: 0.45 + index * 0.05, ease: "easeOut" }}
+            >
               <Tooltip label={item.key.charAt(0).toUpperCase() + item.key.slice(1)} isVisible={hoveredButton === item.key}>
                 <IconButton
                   icon={<svg className="size-5" fill="currentColor" viewBox={item.icon === 'github' ? "0 0 24 24" : item.icon === 'linkedin' ? "0 0 24 24" : item.icon === 'resume' ? "0 0 24 24" : "0 0 24 24"}>
@@ -80,11 +95,16 @@ export default function Hero() {
                   onMouseLeave={() => setHoveredButton(null)}
                 />
               </Tooltip>
-            </div>
+            </motion.div>
           ))}
         </div>
         
-        <div className="hero-cta-container">
+        <motion.div 
+          className="hero-cta-container"
+          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.3, delay: 0.45 + heroNavLinks.length * 0.05, ease: "easeOut" }}
+        >
           <Button href="#projects" variant="cta">
             <span>{t('exploreMore')}</span>
             <motion.div 
@@ -99,7 +119,7 @@ export default function Hero() {
               →
             </motion.div>
           </Button>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
     </>
