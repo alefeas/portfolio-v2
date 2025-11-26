@@ -13,7 +13,7 @@ export default function Hero() {
 
   return (
     <>
-      {/* Prismatic Aurora Burst Background - Only on Hover */}
+      {/* Prismatic Aurora Burst Background */}
       <motion.div 
         className="absolute top-0 left-0 w-full -z-10 pointer-events-none"
         style={{

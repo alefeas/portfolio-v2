@@ -26,7 +26,7 @@ export default function Projects() {
   const projects = getProjects(t);
 
   return (
-    <section id="projects" className="py-20 px-6 max-w-6xl mx-auto">
+    <section id="projects" className="py-16 md:py-20 px-4 md:px-6 max-w-6xl mx-auto">
       <SectionHeader
         icon={<svg width="1em" height="1em" viewBox="0 0 256 256" fill="currentColor">
           <path d="M216 56h-40v-8a24 24 0 0 0-24-24h-48a24 24 0 0 0-24 24v8H40a16 16 0 0 0-16 16v128a16 16 0 0 0 16 16h176a16 16 0 0 0 16-16V72a16 16 0 0 0-16-16M96 48a8 8 0 0 1 8-8h48a8 8 0 0 1 8 8v8H96Zm120 24v72H40V72Z"/>
@@ -38,7 +38,7 @@ export default function Projects() {
       />
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6">
         {projects.map((project) => (
           <Link
             key={project.id}
@@ -67,27 +67,27 @@ export default function Projects() {
             </div>
 
             {/* Project Info */}
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-slate-500 text-sm">{project.category}</span>
+            <div className="flex flex-col gap-3 md:gap-4">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-slate-500 text-xs md:text-sm">{project.category}</span>
                 <span className={`text-xs px-2 py-1 rounded-full border ${
                   project.isLive
                     ? 'bg-green-500/20 text-green-400 border-green-500/30' 
                     : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
                 }`}>{project.status}</span>
               </div>
-              <h4 className="text-xl font-semibold leading-[1.25] text-white max-sm:text-lg">
+              <h4 className="text-lg md:text-xl font-semibold leading-[1.25] text-white">
                 {project.title}
               </h4>
-              <p className="text-sm text-slate-400">
+              <p className="text-xs md:text-sm text-slate-400 line-clamp-2">
                 {project.description}
               </p>
-              <span className="w-fit text-sm text-green-400 flex items-center">
+              <span className="w-fit text-xs md:text-sm text-green-400 flex items-center gap-1">
                 <span className="relative">
                   {t('readMore')}
                   <span className="absolute bottom-[-4px] left-0 w-0 h-px transition-all duration-300 group-hover:w-full" style={{borderBottom: '1px dotted white', height: '1px', background: 'none'}}></span>
                 </span>
-                <svg className="ml-1 inline-block transition-all duration-300 group-hover:ml-2" width="1em" height="1em" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-4 h-4 transition-all duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
                 </svg>
               </span>

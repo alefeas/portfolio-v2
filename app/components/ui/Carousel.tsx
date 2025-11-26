@@ -1,73 +1,96 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import ColorThief from 'colorthief';
 import { CarouselProps } from '@/app/types';
 
 const AUTOPLAY_INTERVAL = 5000; // 5 seconds
 
 export default function Carousel({ images, title }: CarouselProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [dominantColor, setDominantColor] = useState<string>('rgba(0, 0, 0, 0)');
-  const [progress, setProgress] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const progressRef = useRef<HTMLDivElement>(null);
+  const cycleStartRef = useRef<number>(Date.now());
+  const pausedElapsedRef = useRef<number>(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const isPausedRef = useRef<boolean>(false);
 
   const hasImages = images.length > 0;
 
-  const nextImage = () => {
-    if (hasImages) {
-      setCurrentImageIndex((prev) => (prev + 1) % images.length);
-      setProgress(0);
+  const nextImage = useCallback(() => {
+    if (!hasImages) return;
+
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+
+    // Solo resetear timers si NO estaba pausado
+    if (!isPausedRef.current) {
+      cycleStartRef.current = Date.now();
+      pausedElapsedRef.current = 0;
     }
-  };
+  }, [hasImages]);
 
-  // Autoplay effect
+  // Actualizar ref cuando isPaused cambia
   useEffect(() => {
-    if (!hasImages || isPaused) return;
+    isPausedRef.current = isPaused;
+  }, [isPaused]);
 
-    const interval = setInterval(() => {
+  // Autoplay effect - control manual del intervalo
+  useEffect(() => {
+    if (!hasImages) return;
+
+    if (isPaused) {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+      return;
+    }
+
+    intervalRef.current = setInterval(() => {
       nextImage();
     }, AUTOPLAY_INTERVAL);
 
-    return () => clearInterval(interval);
-  }, [hasImages, currentImageIndex, isPaused]);
-
-  // Progress bar effect
-  useEffect(() => {
-    if (isPaused) return;
-
-    const progressInterval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          return 0;
-        }
-        return prev + (100 / (AUTOPLAY_INTERVAL / 50));
-      });
-    }, 50);
-
-    return () => clearInterval(progressInterval);
-  }, [isPaused]);
-
-  useEffect(() => {
-    const extractColor = async () => {
-      if (images && images[currentImageIndex]) {
-        try {
-          const img = new Image();
-          img.crossOrigin = 'Anonymous';
-          img.onload = () => {
-            const colorThief = new ColorThief();
-            const color = colorThief.getColor(img);
-            setDominantColor(`rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.3)`);
-          };
-          img.src = images[currentImageIndex];
-        } catch (error) {
-          console.error('Error extracting color:', error);
-        }
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
       }
     };
-    extractColor();
-  }, [currentImageIndex, images]);
+  }, [hasImages, isPaused, nextImage]);
+
+  // Handle pause/resume
+  useEffect(() => {
+    if (isPaused) {
+      pausedElapsedRef.current = Date.now() - cycleStartRef.current;
+    } else {
+      // Al reanudar, reiniciar el ciclo desde cero
+      cycleStartRef.current = Date.now();
+      pausedElapsedRef.current = 0;
+    }
+  }, [isPaused]);
+
+  // Progress bar animation
+  useEffect(() => {
+    if (!progressRef.current || !hasImages) return;
+
+    let animationFrameId: number;
+
+    const animate = () => {
+      if (!progressRef.current) return;
+
+      const elapsed = isPaused 
+        ? pausedElapsedRef.current 
+        : Date.now() - cycleStartRef.current;
+
+      const progress = Math.min((elapsed / AUTOPLAY_INTERVAL) * 100, 100);
+      progressRef.current.style.width = `${progress}%`;
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isPaused, hasImages]);
 
   if (!hasImages) return null;
 
@@ -83,25 +106,30 @@ export default function Carousel({ images, title }: CarouselProps) {
           style={{ aspectRatio: '2/1' }}
         >
           <AnimatePresence mode="wait">
-            <motion.img
+            <motion.div
               key={currentImageIndex}
-              src={images[currentImageIndex]}
-              alt={`${title} - Image ${currentImageIndex + 1}`}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-            />
+            >
+              <img
+                src={images[currentImageIndex]}
+                alt={`${title} - Image ${currentImageIndex + 1}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </motion.div>
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 rounded-3xl" />
           
           {/* Progress Bar */}
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
-            <motion.div
-              className="h-full bg-gradient-to-r from-green-500 to-green-400"
-              style={{ width: `${progress}%` }}
-              transition={{ duration: 0.05, ease: "linear" }}
+            <div
+              ref={progressRef}
+              className="h-full bg-gradient-to-r from-green-500 to-green-400 transition-none"
+              style={{ width: '0%' }}
             />
           </div>
         </motion.div>

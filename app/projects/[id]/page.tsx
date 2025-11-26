@@ -2,23 +2,19 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
-import { Button, FeatureItem, TechTag, RepositoryLink, BackButton, Carousel, DemoCredentialsModal } from '@/app/components/ui';
+import { FeatureItem, TechTag, RepositoryLink, BackButton, Carousel, DemoCredentialsModal } from '@/app/components/ui';
 import { getProjects } from '@/app/constants/projects';
 
 export default function ProjectDetail() {
   const params = useParams();
   const projectId = parseInt(params.id as string);
-  const [isLoaded, setIsLoaded] = useState(false);
   const [showDemoModal, setShowDemoModal] = useState(false);
   const { t } = useTranslation();
-  const projects = getProjects(t);
-  const project = projects.find(p => p.id === projectId);
-
-  useEffect(() => {
-    setIsLoaded(true);
-  }, [projectId]);
+  
+  const projects = useMemo(() => getProjects(t), [t]);
+  const project = useMemo(() => projects.find(p => p.id === projectId), [projects, projectId]);
 
   const allImages = useMemo(() => {
     if (!project) return [];
@@ -42,23 +38,15 @@ export default function ProjectDetail() {
 
   const safeProject = project!;
 
-  if (!isLoaded) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white">Loading...</div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen text-white">
       {/* Back Button */}
       <BackButton href="/#projects" title="Back to Projects" />
 
       {/* Main Content */}
-      <div className="max-w-6xl mx-auto px-6 py-20 mt-20">
+      <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20 mt-16 md:mt-20">
         {/* Badges */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-2 md:gap-3 mb-6 flex-wrap">
           <span className="px-3 py-1 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-xs text-white/60 border border-slate-700/30">
             {safeProject.category}
           </span>
@@ -72,10 +60,10 @@ export default function ProjectDetail() {
         </div>
 
         {/* Title */}
-        <h1 className="mb-4 leading-tight" style={{ fontSize: '36px', fontWeight: 700 }}>{safeProject.title}</h1>
+        <h1 className="mb-4 leading-tight text-3xl sm:text-3xl md:text-4xl font-bold">{safeProject.title}</h1>
         
         {/* Subtitle */}
-        <p className="text-md text-white/60 leading-relaxed mb-12">
+        <p className="text-base text-white/60 leading-relaxed mb-8 md:mb-12">
           {safeProject.description}
         </p>
 
@@ -83,7 +71,7 @@ export default function ProjectDetail() {
         <Carousel images={allImages} title={safeProject.title} />
 
         {/* Two Column Layout - Starts after Carousel */}
-        <div className="flex justify-between mt-8">
+        <div className="flex justify-between gap-8 mt-2 md:mt-4">
           {/* Right: Section Navigator */}
           <aside className="hidden lg:block w-48 flex-shrink-0 order-2">
             <div className="sticky top-32 space-y-2 mt-8 max-h-[calc(100vh-200px)] overflow-y-scroll pr-2">
@@ -105,17 +93,17 @@ export default function ProjectDetail() {
 
 
         {/* Overview */}
-        <div className="mb-8 pt-8" id="overview">
-          <h2 className="text-2xl font-semibold mb-4">{t('overview') || 'Overview'}</h2>
-          <p className="text-white/80 leading-relaxed">
+        <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="overview">
+          <h2 className="text-2xl font-semibold mb-3">{t('overview') || 'Overview'}</h2>
+          <p className="text-base text-white/80 leading-relaxed">
             {safeProject.detailedDescription}
           </p>
         </div>
 
         {/* Features */}
-        <div className="mb-8 pt-8" id="features">
-          <h2 className="text-2xl font-semibold mb-8">{t('keyFeatures')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="features">
+          <h2 className="text-2xl font-semibold mb-4 md:mb-5">{t('keyFeatures')}</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {(safeProject.features as string[]).map((feature: string, index: number) => (
               <FeatureItem key={index}>{feature}</FeatureItem>
             ))}
@@ -123,17 +111,17 @@ export default function ProjectDetail() {
         </div>
 
         {/* Challenges */}
-        <div className="mb-8 pt-8" id="challenges">
-          <h2 className="text-2xl font-semibold mb-4">{t('challengesSolutions')}</h2>
-          <p className="text-white/80 leading-relaxed">
+        <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="challenges">
+          <h2 className="text-2xl font-semibold mb-3">{t('challengesSolutions')}</h2>
+          <p className="text-base text-white/80 leading-relaxed">
             {safeProject.challenges}
           </p>
         </div>
 
         {/* What I Learned */}
-        <div className="mb-8 pt-8" id="learnings">
-          <h2 className="text-2xl font-semibold mb-4">{t('whatILearned')}</h2>
-          <p className="text-white/80 leading-relaxed">
+        <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="learnings">
+          <h2 className="text-2xl font-semibold mb-3">{t('whatILearned')}</h2>
+          <p className="text-base text-white/80 leading-relaxed">
             {safeProject.learnings}
           </p>
         </div>
@@ -142,9 +130,9 @@ export default function ProjectDetail() {
 
         {/* Repositories */}
         {!safeProject.isPrivate && (safeProject.github || safeProject.githubFrontend) && (
-          <div className="mb-8 pt-8" id="repositories">
-            <h2 className="text-2xl font-semibold mb-8">{t('repositories')}</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="repositories">
+            <h2 className="text-2xl font-semibold mb-4 md:mb-5">{t('repositories')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {safeProject.github && (
                 <RepositoryLink
                   href={safeProject.github}
@@ -181,9 +169,9 @@ export default function ProjectDetail() {
         )}
 
         {/* Tech Stack */}
-        <div className="mb-8 pt-8" id="tech">
-          <h2 className="text-2xl font-semibold mb-8">{t('builtWith')}</h2>
-          <div className="flex flex-wrap gap-2">
+        <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="tech">
+          <h2 className="text-2xl font-semibold mb-4 md:mb-5">{t('builtWith')}</h2>
+          <div className="flex flex-wrap gap-2 md:gap-3">
             {safeProject.tech.map((tech) => (
               <TechTag key={tech}>{tech}</TechTag>
             ))}
