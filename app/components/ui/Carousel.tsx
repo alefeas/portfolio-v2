@@ -128,7 +128,7 @@ export default function Carousel({ images, title }: CarouselProps) {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
             <div
               ref={progressRef}
-              className="h-full bg-gradient-to-r from-green-500 to-green-400 transition-none"
+              className="h-full bg-green-500/80 transition-none"
               style={{ width: '0%' }}
             />
           </div>

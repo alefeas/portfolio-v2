@@ -2,10 +2,12 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, lazy, Suspense } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
-import { FeatureItem, TechTag, RepositoryLink, BackButton, Carousel, DemoCredentialsModal } from '@/app/components/ui';
+import { FeatureItem, TechTag, RepositoryLink, Carousel, DemoCredentialsModal } from '@/app/components/ui';
 import { getProjects } from '@/app/constants/projects';
+
+const BackButton = lazy(() => import('@/app/components/ui/BackButton'));
 
 export default function ProjectDetail() {
   const params = useParams();
@@ -41,7 +43,9 @@ export default function ProjectDetail() {
   return (
     <div className="min-h-screen text-white">
       {/* Back Button */}
-      <BackButton href="/#projects" title="Back to Projects" />
+      <Suspense fallback={null}>
+        <BackButton href="/#projects" title="Back to Projects" />
+      </Suspense>
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20 mt-16 md:mt-20">
@@ -78,10 +82,14 @@ export default function ProjectDetail() {
               <h3 className="text-sm font-semibold text-white mb-4">Sections</h3>
               <nav className="space-y-1">
                 <a href="#overview" className="block text-sm text-white/60 hover:text-white transition-colors">Overview</a>
-                <a href="#features" className="block text-sm text-white/60 hover:text-white transition-colors">Key Features</a>
+                {(safeProject.features as string[]).length > 0 && (
+                  <a href="#features" className="block text-sm text-white/60 hover:text-white transition-colors">Key Features</a>
+                )}
                 <a href="#challenges" className="block text-sm text-white/60 hover:text-white transition-colors">Challenges</a>
                 <a href="#learnings" className="block text-sm text-white/60 hover:text-white transition-colors">What I Learned</a>
-                <a href="#repositories" className="block text-sm text-white/60 hover:text-white transition-colors">Repositories</a>
+                {!safeProject.isPrivate && (safeProject.github || safeProject.githubFrontend) && (
+                  <a href="#repositories" className="block text-sm text-white/60 hover:text-white transition-colors">Repositories</a>
+                )}
                 <a href="#tech" className="block text-sm text-white/60 hover:text-white transition-colors">Built With</a>
               </nav>
             </div>
