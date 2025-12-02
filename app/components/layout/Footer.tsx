@@ -10,27 +10,71 @@ export default function Footer() {
   const [lastUpdated, setLastUpdated] = useState<string>('');
 
   useEffect(() => {
-    // Format: "Last updated by Alejo on July 18, 2025 at 5:20 PM UTC+7"
-    const date = new Date();
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Bangkok' // UTC+7
+    const fetchLastCommit = async () => {
+      try {
+        const response = await fetch(
+          'https://api.github.com/repos/alefeas/portfolio-v2/commits?per_page=1',
+          {
+            headers: {
+              'Accept': 'application/vnd.github.v3+json',
+            },
+          }
+        );
+        
+        if (response.ok) {
+          const data = await response.json();
+          if (data.length > 0) {
+            const commitDate = new Date(data[0].commit.author.date);
+            const options: Intl.DateTimeFormatOptions = {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true,
+              timeZone: 'Asia/Bangkok' // UTC+7
+            };
+            
+            const formattedDate = commitDate.toLocaleDateString('en-US', options);
+            const timeString = commitDate.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true,
+              timeZone: 'Asia/Bangkok'
+            });
+            
+            setLastUpdated(`${t('footerLastUpdated')} ${formattedDate} at ${timeString} UTC+7`);
+            return;
+          }
+        }
+      } catch (error) {
+        console.error('Failed to fetch last commit:', error);
+      }
+      
+      // Fallback to current date if API fails
+      const date = new Date();
+      const options: Intl.DateTimeFormatOptions = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Bangkok'
+      };
+      
+      const formattedDate = date.toLocaleDateString('en-US', options);
+      const timeString = date.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+        timeZone: 'Asia/Bangkok'
+      });
+      
+      setLastUpdated(`${t('footerLastUpdated')} ${formattedDate} at ${timeString} UTC+7`);
     };
-    
-    const formattedDate = date.toLocaleDateString('en-US', options);
-    const timeString = date.toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: 'Asia/Bangkok'
-    });
-    
-    setLastUpdated(`${t('footerLastUpdated')} ${formattedDate} at ${timeString} UTC+7`);
+
+    fetchLastCommit();
   }, [t]);
 
   return (

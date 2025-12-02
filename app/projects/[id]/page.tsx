@@ -4,12 +4,12 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState, useMemo, lazy, Suspense } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
-import { FeatureItem, TechTag, RepositoryLink, Carousel, DemoCredentialsModal } from '@/app/components/ui';
+import { FeatureItem, TechTag, RepositoryLink, Carousel, DemoCredentialsModal, ProjectDetailSkeleton } from '@/app/components/ui';
 import { getProjects } from '@/app/constants/projects';
 
 const BackButton = lazy(() => import('@/app/components/ui/BackButton'));
 
-export default function ProjectDetail() {
+function ProjectDetailContent() {
   const params = useParams();
   const projectId = parseInt(params.id as string);
   const [showDemoModal, setShowDemoModal] = useState(false);
@@ -203,5 +203,13 @@ export default function ProjectDetail() {
         }}
       />
     </div>
+  );
+}
+
+export default function ProjectDetail() {
+  return (
+    <Suspense fallback={<ProjectDetailSkeleton />}>
+      <ProjectDetailContent />
+    </Suspense>
   );
 }

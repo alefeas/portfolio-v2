@@ -53,7 +53,8 @@ export default function DemoCredentialsModal({
       {/* Note */}
       <p className="text-sm text-slate-300 mb-6">{note}</p>
 
-      {/* Credentials */}
+      {/* Credentials - Only show if email and password are provided */}
+      {email && password && (
       <div className="space-y-4 mb-6">
         <div>
           <p className="text-xs text-slate-400 mb-1">Email:</p>
@@ -127,6 +128,7 @@ export default function DemoCredentialsModal({
           </div>
         </div>
       </div>
+      )}
     </Modal>
   );
 }

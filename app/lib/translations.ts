@@ -124,10 +124,10 @@ export const translations = {
     messageSentErrorDesc: 'Please try again or contact me through another channel.',
     
     // Demo Credentials
-    demoCredentials: 'Demo Credentials',
-    demoNote: 'Some features like automated emails are disabled in the demo. Use these credentials to explore:',
-    demoEmail: 'test@payto.com',
-    demoPassword: 'Test123456',
+    demoCredentials: 'Demo Unavailable',
+    demoNote: 'The backend server is currently offline due to free trial expiration. You can explore the frontend code, design, and architecture on GitHub repositories.',
+    demoEmail: '',
+    demoPassword: '',
     
     // Project Detail Page
     projectNotFound: 'Project Not Found',
@@ -279,10 +279,10 @@ export const translations = {
     messageSentErrorDesc: 'Intenta de nuevo o contacta por otro medio.',
     
     // Demo Credentials
-    demoCredentials: 'Credenciales de Demo',
-    demoNote: 'Algunas características como envíos de email automatizados están deshabilitadas en la demo. Usa estas credenciales para explorar:',
-    demoEmail: 'test@payto.com',
-    demoPassword: 'Test123456',
+    demoCredentials: 'Demo No Disponible',
+    demoNote: 'El servidor backend está actualmente offline debido a la expiración de la prueba gratuita. Puedes explorar el código frontend, diseño y arquitectura en los repositorios de GitHub.',
+    demoEmail: '',
+    demoPassword: '',
     
     // Project Detail Page
     projectNotFound: 'Proyecto No Encontrado',

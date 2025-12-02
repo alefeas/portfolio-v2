@@ -16,4 +16,5 @@ export { default as Toast } from './Toast';
 export { default as Modal } from './Modal';
 export { default as DemoCredentialsModal } from './DemoCredentialsModal';
 export { default as ProjectLoader } from './ProjectLoader';
+export { default as ProjectDetailSkeleton } from './ProjectDetailSkeleton';
 export { GithubIcon, LinkedinIcon, ResumeIcon, EmailIcon, getIconComponent } from './icons';
