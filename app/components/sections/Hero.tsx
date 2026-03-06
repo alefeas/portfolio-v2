@@ -7,9 +7,14 @@ import { heroNavLinks } from '@/app/constants/navigation';
 import { IconButton, Button, StatusBadge, Tooltip } from '@/app/components/ui';
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
-  const [isHovering, setIsHovering] = useState(false);
+
+  // Generate dynamic CV link based on language
+  const cvFileName = language === 'es' ? 'CV_Alejo_Feas_Matej_ES.pdf' : 'CV_Alejo_Feas_Matej_EN.pdf';
+  const navLinksWithDynamicCV = heroNavLinks.map(link => 
+    link.key === 'Resume' ? { ...link, href: `/resume/${cvFileName}` } : link
+  );
 
   return (
     <>
@@ -27,8 +32,6 @@ export default function Hero() {
       <section 
         id="hero" 
         className="relative flex min-h-screen flex-col gap-6 md:gap-8 pb-20 md:pb-32 pt-20 md:pt-24 justify-center px-4 md:px-6 max-w-6xl mx-auto overflow-visible"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
       >
 
       {/* Status Badge */}
@@ -72,7 +75,7 @@ export default function Hero() {
         className="hero-actions flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6"
       >
         <div className="hero-nav-board">
-          {heroNavLinks.map((item, index) => (
+          {navLinksWithDynamicCV.map((item, index) => (
             <motion.div 
               key={item.key} 
               className="relative"
@@ -103,7 +106,7 @@ export default function Hero() {
           className="hero-cta-container"
           initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.3, delay: 0.45 + heroNavLinks.length * 0.05, ease: "easeOut" }}
+          transition={{ duration: 0.3, delay: 0.45 + navLinksWithDynamicCV.length * 0.05, ease: "easeOut" }}
         >
           <Button href="#projects" variant="cta">
             <span>{t('exploreMore')}</span>

@@ -17,6 +17,7 @@ export const technologies: TechCategory[] = [
     techs: [
       { name: "C#", logo: "/icons/csharp.svg" },
       { name: "ASP.NET", logo: "/icons/dotnet.svg" },
+      { name: "PHP", logo: "/icons/php.svg"},
       { name: "Laravel", logo: "/icons/laravel.svg" },
       { name: "C", logo: "/icons/c.svg" },
       { name: "C++", logo: "/icons/cplusplus.svg" }

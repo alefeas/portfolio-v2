@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 export default function ProjectDetailSkeleton() {
   return (
     <div className="min-h-screen text-white">

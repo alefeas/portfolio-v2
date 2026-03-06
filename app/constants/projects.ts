@@ -1,29 +1,43 @@
 import type { TranslationKey } from '@/app/lib/translations';
-import type { ProjectDetail } from '@/app/types';
-
-export interface ProjectRaw {
-  id: number;
-  titleKey: TranslationKey;
-  descriptionKey: TranslationKey;
-  detailedDescriptionKey: TranslationKey;
-  featuresKey: TranslationKey;
-  challengesKey: TranslationKey;
-  learningsKey: TranslationKey;
-  subtitle: string;
-  tech: string[];
-  categoryKey: TranslationKey;
-  statusKey: TranslationKey;
-  github: string;
-  githubFrontend?: string;
-  demo: string;
-  heroImage: string;
-  images: string[];
-  isPrivate?: boolean;
-}
+import type { ProjectDetail, ProjectRaw } from '@/app/types';
 
 export const projectsRaw: ProjectRaw[] = [
   {
     id: 1,
+    titleKey: 'houseOfCbTitle',
+    descriptionKey: 'houseOfCbDesc',
+    detailedDescriptionKey: 'houseOfCbDetailDesc',
+    featuresKey: 'houseOfCbFeatures',
+    challengesKey: 'houseOfCbChallenges',
+    learningsKey: 'houseOfCbLearnings',
+    subtitle: 'Fashion e-commerce platform',
+    tech: [
+      'Smarty',
+      'PHP 8.2',
+      'Next.js 15',
+      'React 19',
+      'TypeScript',
+      'MySQL',
+      'Tailwind CSS',
+      'REST API',
+      'Docker',
+      'AWS',
+    ],
+    categoryKey: 'fullStack',
+    statusKey: 'live',
+    github: '',
+    demo: 'https://www.houseofcb.com',
+    heroImage: '/projects/hofcb/hero.png',
+    images: [
+      '/projects/hofcb/screenshot-1.png',
+      '/projects/hofcb/screenshot-2.png',
+      '/projects/hofcb/screenshot-3.png',
+      '/projects/hofcb/screenshot-4.png',
+    ],
+    isPrivate: true,
+  },
+  {
+    id: 2,
     titleKey: 'paytoTitle',
     descriptionKey: 'paytoDesc',
     detailedDescriptionKey: 'paytoDetailDesc',
@@ -58,31 +72,32 @@ export const projectsRaw: ProjectRaw[] = [
     ],
   },
   {
-    id: 2,
-    titleKey: 'argentumTitle',
-    descriptionKey: 'argentumDesc',
-    detailedDescriptionKey: 'argentumDetailDesc',
-    featuresKey: 'argentumFeatures',
-    challengesKey: 'argentumChallenges',
-    learningsKey: 'argentumLearnings',
-    subtitle: 'Real-time collaborative platform for seamless team communication',
+    id: 3,
+    titleKey: 'airGeorgeTitle',
+    descriptionKey: 'airGeorgeDesc',
+    detailedDescriptionKey: 'airGeorgeDetailDesc',
+    featuresKey: 'airGeorgeFeatures',
+    challengesKey: 'airGeorgeChallenges',
+    learningsKey: 'airGeorgeLearnings',
+    subtitle: 'Automotive service site',
     tech: [
       'Next.js 15',
-      'TypeScript',
-      'Node.js',
-      'WebSocket',
       'React 19',
+      'TypeScript',
       'Tailwind CSS',
-      'Sequelize',
-      'Redis',
-      'Socket.io',
+      'Email Integration',
+      'SEO Optimization',
+      'Responsive Design',
     ],
     categoryKey: 'fullStack',
-    statusKey: 'inDevelopment',
+    statusKey: 'live',
     github: '',
-    demo: '',
-    heroImage: '',
-    images: [],
+    demo: 'https://www.airgeorge.ar',
+    heroImage: '/projects/air-george/hero.png',
+    images: [
+      '/projects/air-george/screenshot-1.png',
+      '/projects/air-george/screenshot-2.png'
+    ],
     isPrivate: true,
   },
 ];

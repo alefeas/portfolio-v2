@@ -3,6 +3,22 @@ import { Project } from '../types';
 export const projects: Project[] = [
   {
     id: 1,
+    titleKey: 'houseOfCbTitle',
+    descriptionKey: 'houseOfCbDesc',
+    detailedDescriptionKey: 'houseOfCbDetailDesc',
+    featuresKey: 'houseOfCbFeatures',
+    challengesKey: 'houseOfCbChallenges',
+    learningsKey: 'houseOfCbLearnings',
+    tech: ["Smarty, PHP 8.2", "Next.js 15", "React 19", "TypeScript", "MySQL", "Tailwind CSS", "REST API", "Docker", "AWS"],
+    categoryKey: 'fullStack',
+    statusKey: 'live',
+    github: "",
+    demo: "https://app.houseofcb.com",
+    heroImage: "/projects/hofcb/hero.png",
+    isPrivate: true
+  },
+  {
+    id: 2,
     titleKey: 'paytoTitle',
     descriptionKey: 'paytoDesc',
     detailedDescriptionKey: 'paytoDetailDesc',
@@ -17,19 +33,19 @@ export const projects: Project[] = [
     heroImage: "/projects/payto/hero.png"
   },
   {
-    id: 2,
-    titleKey: 'argentumTitle',
-    descriptionKey: 'argentumDesc',
-    detailedDescriptionKey: 'argentumDetailDesc',
-    featuresKey: 'argentumFeatures',
-    challengesKey: 'argentumChallenges',
-    learningsKey: 'argentumLearnings',
-    tech: ["Next.js 15", "TypeScript", "Node.js", "WebSocket", "React 19", "Tailwind CSS", "Sequelize", "Redis", "Socket.io"],
-    categoryKey: 'fullStack',
-    statusKey: 'inDevelopment',
+    id: 3,
+    titleKey: 'airGeorgeTitle',
+    descriptionKey: 'airGeorgeDesc',
+    detailedDescriptionKey: 'airGeorgeDetailDesc',
+    featuresKey: 'airGeorgeFeatures',
+    challengesKey: 'airGeorgeChallenges',
+    learningsKey: 'airGeorgeLearnings',
+    tech: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Email Integration", "SEO Optimization", "Responsive Design"],
+    categoryKey: 'frontEnd',
+    statusKey: 'live',
     github: "",
-    demo: "",
-    heroImage: "",
+    demo: "https://www.airgeorge.ar",
+    heroImage: "/projects/air-george/hero.png",
     isPrivate: true
   }
 ];

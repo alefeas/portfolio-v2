@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 
 const projectTitles: Record<string, string> = {
-  "1": "Payto",
-  "2": "Argentum",
+  "1": "House of CB",
+  "2": "Payto",
+  "3": "Air George",
 };
 
 export async function generateMetadata({

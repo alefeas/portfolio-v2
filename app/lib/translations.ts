@@ -28,7 +28,7 @@ export const translations = {
     fullStackDeveloper: 'Full Stack Developer',
     whoIAmDesc: 'I\'m a passionate',
     whoIAmDesc2: 'with a strong foundation in modern web technologies. I love turning complex problems into elegant and intuitive solutions.',
-    seekingOpportunity: 'Currently seeking my first professional opportunity. I\'m dedicated to continuous learning and building projects that showcase my skills in web development.',
+    seekingOpportunity: 'Currently Junior Full-Stack Developer at House of CB (London women’s fashion brand). Backend-focused development for its global e-commerce platform.',
     currentlyLearning: 'Currently Learning',
     expandingKnowledge: 'Expanding my knowledge in',
     cloudTech: 'cloud technologies',
@@ -58,6 +58,7 @@ export const translations = {
     live: 'Live',
     inDevelopment: 'In Development',
     fullStack: 'Full Stack',
+    frontEnd: 'Front End',
     
     // Tech Stack Section
     techStackTitle: 'Tech Stack',
@@ -69,7 +70,7 @@ export const translations = {
     contactDesc: 'Feel free to reach out for collaborations or just a friendly hello',
     sendMessage: 'Send Message',
     
-    // Project Details
+    // PayTo Details
     paytoTitle: 'PayTo: Financial management platform for Argentine businesses',
     paytoDesc: 'Seamless financial operations, compliance, and AFIP integration for Argentine businesses.',
     paytoDetailDesc: 'PayTo is a full-stack financial management solution designed specifically for Argentine businesses. It provides a robust REST API backend built with Laravel 12 and a modern React-based frontend with Next.js 15. The platform handles complex multi-company operations including invoice management, payment tracking, collections, and seamless AFIP integration for electronic invoice validation. With complete data isolation between companies, role-based access control, and real-time notifications, PayTo enables businesses to manage their financial operations efficiently and compliantly.',
@@ -77,12 +78,21 @@ export const translations = {
     paytoChallenges: 'The primary challenges involved implementing secure AFIP integration with certificate-based authentication, ensuring complete data isolation in a multi-company environment, and building a real-time financial dashboard that handles complex calculations while maintaining optimal performance. Additionally, managing payment status synchronization across multiple systems required careful state management and error handling.',
     paytoLearnings: 'This project deepened my understanding of financial systems architecture, AFIP compliance requirements for Argentine businesses, multi-tenant application design patterns, and the importance of audit logging in financial applications. I also gained expertise in building scalable REST APIs with Laravel and creating responsive financial dashboards with React.',
     
-    argentumTitle: 'Argentum Online Web: Classic MMORPG reimagined for the web',
-    argentumDesc: 'A collaborative recreation of the classic MMORPG with real-time multiplayer gameplay and persistent world.',
-    argentumDetailDesc: 'Argentum Online Web is a collaborative project to recreate the famous Argentum Online game as a fully functional web application. This ambitious undertaking involves porting the classic game mechanics to a modern web stack using Next.js with TypeScript for the frontend and Node.js for the backend. The project focuses on maintaining the essence of the original game while leveraging web technologies to make it accessible to a broader audience. Features include real-time multiplayer gameplay, character progression, inventory management, combat systems, and a persistent game world.',
-    argentumFeatures: ['Real-time Multiplayer Gameplay', 'Character Creation & Progression', 'Inventory Management System', 'Combat & Skill Systems', 'Persistent Game World', 'NPC Interactions', 'Quest System', 'Trading & Economy', 'Guild Management', 'Real-time Chat & Communication'],
-    argentumChallenges: 'Recreating a complex game with real-time multiplayer mechanics in a web environment presents significant technical challenges. Managing real-time synchronization between multiple players, handling server state consistency, optimizing network communication, and ensuring smooth gameplay performance across different devices and network conditions are critical. Additionally, balancing game mechanics and maintaining the original game\'s feel while adapting to web constraints requires careful design decisions.',
-    argentumLearnings: 'This collaborative project has provided invaluable experience in real-time multiplayer game development, WebSocket communication for live synchronization, game state management at scale, and optimizing performance for web-based games. Working with a team has also enhanced my understanding of collaborative development practices and the importance of clear communication in complex projects.',
+    // House of CB Project
+    houseOfCbTitle: 'House of CB: E-commerce Platform Development',
+    houseOfCbDesc: 'Development of new features and improvements with international team collaboration.',
+    houseOfCbDetailDesc: 'House of CB is a premium fashion e-commerce platform where I am actively contributing to the development of new features and platform improvements with a focus on backend architecture. Working in an international team on a production application, I participate actively in the implementation, maintenance, and continuous evolution of the system. The project involves developing robust backend solutions using PHP with Smarty templating engine and Next.js, managing complex database operations with MySQL, and ensuring seamless integration between frontend and backend systems. My contributions include API development, database optimization, feature implementation, and system maintenance.',
+    houseOfCbFeatures: ['E-commerce Platform Architecture', 'Product Management System', 'Order Processing & Fulfillment', 'Payment Gateway Integration', 'Inventory Management', 'User Authentication & Authorization', 'Shopping Cart & Checkout', 'Admin Dashboard', 'Analytics & Reporting', 'Performance Optimization'],
+    houseOfCbChallenges: 'Working on a production e-commerce platform requires careful attention to system stability and performance. Key challenges include maintaining backward compatibility while implementing new features, optimizing database queries for high-traffic scenarios, ensuring data consistency across multiple systems, and coordinating changes across an international team with different time zones. Additionally, managing the complexity of a large codebase while maintaining code quality and implementing new features simultaneously is a significant undertaking.',
+    houseOfCbLearnings: 'This experience is providing deep insights into production-level e-commerce systems, the importance of code quality and testing in high-traffic applications, and effective collaboration in international teams. I am gaining expertise in backend optimization, database architecture, and the challenges of maintaining and evolving large-scale applications. Understanding the full lifecycle of features from conception to production deployment is invaluable.',
+    
+    // Air George Project
+    airGeorgeTitle: 'Air George: Automotive Technical Service Landing Page',
+    airGeorgeDesc: 'Professional SEO-optimized landing page for an automotive technical service.',
+    airGeorgeDetailDesc: 'Air George is a professional landing page developed for a real automotive technical service business. The project showcases the company\'s services, provides comprehensive information about their offerings, and includes multiple sections for customer engagement. Built with Next.js, the site features a modern, responsive design that works seamlessly across all devices. The landing page includes a hero section with company information, detailed services section, frequently asked questions, contact form with email integration, social media links, and downloadable resources. The site is optimized for search engines and provides an excellent user experience for potential customers seeking automotive services.',
+    airGeorgeFeatures: ['Responsive Landing Page Design', 'Services Showcase Section', 'FAQ Section with Accordion', 'Contact Form with Email Integration', 'Social Media Integration', 'SEO Optimization', 'Mobile-First Design', 'Performance Optimization', 'Business Information Display'],
+    airGeorgeChallenges: 'Creating an effective landing page for a service business required balancing aesthetic design with functional elements. Key challenges included designing an intuitive navigation structure, implementing a reliable contact form with email delivery, optimizing page load times for better SEO, ensuring mobile responsiveness across various devices, and creating compelling content that converts visitors into customers. Additionally, integrating social media links and maintaining consistent branding throughout the site was important.',
+    airGeorgeLearnings: 'This project enhanced my understanding of landing page best practices, the importance of user experience in conversion optimization, and effective use of Next.js for static and dynamic content. I learned valuable lessons about SEO optimization, email integration, and creating responsive designs that work flawlessly across all devices. The experience also reinforced the importance of clear communication with clients and understanding their business needs.',
     
     // Tech Stack Section
     technologiesIWorkWith: 'Technologies I Work With',
@@ -132,6 +142,7 @@ export const translations = {
     // Project Detail Page
     projectNotFound: 'Project Not Found',
     backToProjects: 'Back to Projects',
+    sections: 'Sections',
     repositories: 'Repositories',
     backendRepository: 'Backend Repository',
     frontendRepository: 'Frontend Repository',
@@ -153,6 +164,11 @@ export const translations = {
     footerEmail: 'Email',
     footerAllRightsReserved: 'All rights reserved.',
     footerLastUpdated: 'Last updated by Alejo on',
+    
+    // CV/Resume
+    downloadCV: 'Download CV',
+    downloadResume: 'Download Resume',
+    cvFileName: 'CV_Alejo_Feas_Matej_EN.pdf',
   },
   es: {
     // Navigation
@@ -183,7 +199,7 @@ export const translations = {
     fullStackDeveloper: 'Desarrollador Full Stack',
     whoIAmDesc: 'Soy un',
     whoIAmDesc2: 'apasionado con base sólida en tecnologías web modernas. Me encanta convertir problemas en soluciones elegantes e intuitivas.',
-    seekingOpportunity: 'Busco mi primera oportunidad profesional. Dedicado al aprendizaje continuo y a construir proyectos que demuestren mis habilidades en desarrollo web.',
+    seekingOpportunity: 'Actualmente Desarrollador Full-Stack Jr. en House of CB (marca de moda de Londres). Enfocado en desarrollo backend de su e-commerce global.',
     currentlyLearning: 'Aprendiendo Actualmente',
     expandingKnowledge: 'Expandiendo mis conocimientos en',
     cloudTech: 'tecnologías en la nube',
@@ -213,6 +229,7 @@ export const translations = {
     live: 'En Vivo',
     inDevelopment: 'En Desarrollo',
     fullStack: 'Full Stack',
+    frontEnd: 'Front End',
     
     // Tech Stack Section
     techStackTitle: 'Stack Tecnológico',
@@ -224,7 +241,7 @@ export const translations = {
     contactDesc: 'Siéntete libre de comunicarte para colaboraciones o simplemente un saludo amistoso',
     sendMessage: 'Enviar Mensaje',
     
-    // Project Details
+    // PayTo Details
     paytoTitle: 'PayTo: Gestión financiera para empresas argentinas',
     paytoDesc: 'Operaciones financieras fluidas, cumplimiento normativo e integración AFIP para empresas argentinas.',
     paytoDetailDesc: 'PayTo es una solución de gestión financiera full-stack diseñada específicamente para empresas argentinas. Proporciona un robusto backend REST API construido con Laravel 12 y un moderno frontend basado en React con Next.js 15. La plataforma maneja operaciones complejas multi-empresa incluyendo gestión de facturas, seguimiento de pagos, cobranzas e integración perfecta con AFIP para validación de facturas electrónicas. Con aislamiento completo de datos entre empresas, control de acceso basado en roles y notificaciones en tiempo real, PayTo permite a las empresas gestionar sus operaciones financieras de manera eficiente y cumplida.',
@@ -232,12 +249,21 @@ export const translations = {
     paytoChallenges: 'Los desafíos principales implicaron implementar integración segura con AFIP con autenticación basada en certificados, garantizar aislamiento completo de datos en un entorno multi-empresa y construir un panel financiero en tiempo real que maneje cálculos complejos manteniendo rendimiento óptimo. Además, gestionar la sincronización de estado de pagos entre múltiples sistemas requirió cuidadosa gestión de estado y manejo de errores.',
     paytoLearnings: 'Este proyecto profundizó mi comprensión de la arquitectura de sistemas financieros, requisitos de cumplimiento AFIP para empresas argentinas, patrones de diseño de aplicaciones multi-tenant e importancia del registro de auditoría en aplicaciones financieras. También gané experiencia en construir APIs REST escalables con Laravel y crear paneles financieros responsivos con React.',
     
-    argentumTitle: 'Argentum Online Web: MMORPG clásico reimaginado para la web',
-    argentumDesc: 'Una recreación colaborativa del MMORPG clásico con juego multijugador en tiempo real y mundo persistente.',
-    argentumDetailDesc: 'Argentum Online Web es un proyecto colaborativo para recrear el famoso juego Argentum Online como una aplicación web completamente funcional. Este ambicioso emprendimiento implica portar la mecánica clásica del juego a un stack web moderno usando Next.js con TypeScript para el frontend y Node.js para el backend. El proyecto se enfoca en mantener la esencia del juego original mientras aprovecha tecnologías web para hacerlo accesible a una audiencia más amplia. Las características incluyen juego multijugador en tiempo real, progresión de personajes, gestión de inventario, sistemas de combate y un mundo de juego persistente.',
-    argentumFeatures: ['Juego Multijugador en Tiempo Real', 'Creación y Progresión de Personajes', 'Sistema de Gestión de Inventario', 'Sistemas de Combate y Habilidades', 'Mundo de Juego Persistente', 'Interacciones con NPCs', 'Sistema de Misiones', 'Economía y Comercio', 'Gestión de Gremios', 'Chat y Comunicación en Tiempo Real'],
-    argentumChallenges: 'Recrear un juego complejo con mecánicas multijugador en tiempo real en un entorno web presenta desafíos técnicos significativos. Gestionar sincronización en tiempo real entre múltiples jugadores, manejar consistencia de estado del servidor, optimizar comunicación de red y garantizar rendimiento suave del juego en diferentes dispositivos y condiciones de red son críticos. Además, equilibrar mecánicas del juego y mantener la esencia del juego original mientras se adapta a restricciones web requiere decisiones de diseño cuidadosas.',
-    argentumLearnings: 'Este proyecto colaborativo ha proporcionado experiencia invaluable en desarrollo de juegos multijugador en tiempo real, comunicación WebSocket para sincronización en vivo, gestión de estado de juego a escala y optimización de rendimiento para juegos basados en web. Trabajar con un equipo también ha mejorado mi comprensión de prácticas de desarrollo colaborativo e importancia de comunicación clara en proyectos complejos.',
+    // House of CB Project
+    houseOfCbTitle: 'House of CB: Desarrollo de Plataforma E-commerce',
+    houseOfCbDesc: 'Desarrollo de nuevas funcionalidades y mejoras con colaboración de equipo internacional.',
+    houseOfCbDetailDesc: 'House of CB es una plataforma de e-commerce de moda premium donde estoy contribuyendo activamente al desarrollo de nuevas funcionalidades y mejoras de plataforma con enfoque en arquitectura backend. Trabajando en un equipo internacional en una aplicación en producción, participo activamente en la implementación, mantenimiento y evolución continua del sistema. El proyecto implica desarrollar soluciones backend robustas usando PHP con motor de plantillas Smarty y Next.js, gestionar operaciones complejas de bases de datos con MySQL y garantizar integración perfecta entre sistemas frontend y backend. Mis contribuciones incluyen desarrollo de APIs, optimización de bases de datos, implementación de funcionalidades y mantenimiento del sistema.',
+    houseOfCbFeatures: ['Arquitectura de Plataforma E-commerce', 'Sistema de Gestión de Productos', 'Procesamiento y Cumplimiento de Pedidos', 'Integración de Pasarelas de Pago', 'Gestión de Inventario', 'Autenticación y Autorización de Usuarios', 'Carrito de Compras y Checkout', 'Panel de Administración', 'Análisis e Informes', 'Optimización de Rendimiento'],
+    houseOfCbChallenges: 'Trabajar en una plataforma e-commerce en producción requiere atención cuidadosa a la estabilidad y rendimiento del sistema. Los desafíos clave incluyen mantener compatibilidad hacia atrás mientras se implementan nuevas funcionalidades, optimizar consultas de bases de datos para escenarios de alto tráfico, garantizar consistencia de datos entre múltiples sistemas y coordinar cambios en un equipo internacional con diferentes zonas horarias. Además, gestionar la complejidad de una base de código grande mientras se mantiene la calidad del código e implementan nuevas funcionalidades simultáneamente es un emprendimiento significativo.',
+    houseOfCbLearnings: 'Esta experiencia está proporcionando información profunda sobre sistemas de e-commerce a nivel de producción, la importancia de la calidad del código y pruebas en aplicaciones de alto tráfico y colaboración efectiva en equipos internacionales. Estoy ganando experiencia en optimización backend, arquitectura de bases de datos y los desafíos de mantener y evolucionar aplicaciones a gran escala. Comprender el ciclo de vida completo de funcionalidades desde concepción hasta implementación en producción es invaluable.',
+    
+    // Air George Project
+    airGeorgeTitle: 'Air George: Landing Page de Servicio Técnico Automotor',
+    airGeorgeDesc: 'Landing page profesional optimizada para SEO para un servicio técnico automotriz.',
+    airGeorgeDetailDesc: 'Air George es una landing page profesional desarrollada para un negocio real de servicio técnico automotor. El proyecto muestra los servicios de la empresa, proporciona información completa sobre sus ofertas e incluye múltiples secciones para engagement de clientes. Construido con Next.js, el sitio presenta un diseño moderno y responsivo que funciona perfectamente en todos los dispositivos. La landing page incluye una sección hero con información de la empresa, sección detallada de servicios, preguntas frecuentes, formulario de contacto con integración de email, enlaces a redes sociales y recursos descargables. El sitio está optimizado para motores de búsqueda y proporciona una excelente experiencia de usuario para clientes potenciales que buscan servicios automotores.',
+    airGeorgeFeatures: ['Diseño Responsivo de Landing Page', 'Sección de Exhibición de Servicios', 'Sección de FAQs con Acordeón', 'Formulario de Contacto con Integración de Email', 'Integración de Redes Sociales', 'Optimización SEO', 'Diseño Mobile-First', 'Optimización de Rendimiento', 'Exhibición de Información del Negocio'],
+    airGeorgeChallenges: 'Crear una landing page efectiva para un negocio de servicios requería equilibrar diseño estético con elementos funcionales. Los desafíos clave incluyeron diseñar una estructura de navegación intuitiva, implementar un formulario de contacto confiable con entrega de email, optimizar tiempos de carga de página para mejor SEO, garantizar responsividad móvil en varios dispositivos y crear contenido convincente que convierta visitantes en clientes. Además, integrar enlaces a redes sociales y mantener marca consistente en todo el sitio fue importante.',
+    airGeorgeLearnings: 'Este proyecto mejoró mi comprensión de mejores prácticas de landing pages, la importancia de experiencia de usuario en optimización de conversión y uso efectivo de Next.js para contenido estático y dinámico. Aprendí lecciones valiosas sobre optimización SEO, integración de email y creación de diseños responsivos que funcionan impecablemente en todos los dispositivos. La experiencia también reforzó la importancia de comunicación clara con clientes y comprensión de sus necesidades de negocio.',
     
     // Tech Stack Section
     technologiesIWorkWith: 'Tecnologías con las que Trabajo',
@@ -287,6 +313,7 @@ export const translations = {
     // Project Detail Page
     projectNotFound: 'Proyecto No Encontrado',
     backToProjects: 'Volver a Proyectos',
+    sections: 'Secciones',
     repositories: 'Repositorios',
     backendRepository: 'Repositorio Backend',
     frontendRepository: 'Repositorio Frontend',
@@ -308,6 +335,11 @@ export const translations = {
     footerEmail: 'Correo',
     footerAllRightsReserved: 'Todos los derechos reservados.',
     footerLastUpdated: 'Última actualización por Alejo el',
+    
+    // CV/Resume
+    downloadCV: 'Descargar CV',
+    downloadResume: 'Descargar Currículum',
+    cvFileName: 'CV_Alejo_Feas_Matej_ES.pdf',
   }
 };
 

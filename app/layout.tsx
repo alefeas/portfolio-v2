@@ -14,10 +14,10 @@ const inter = Inter({
 });
 
 // Switzer no está disponible en Google Fonts, usando Inter como principal
-const switzer = Inter({
+/* const switzer = Inter({
   subsets: ["latin"],
   variable: "--font-switzer",
-});
+}); */
 
 export const metadata: Metadata = {
   title: "Alejo Feas Matej - Full Stack Developer",
