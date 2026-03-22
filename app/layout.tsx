@@ -7,6 +7,7 @@ import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
 import MobileNavWrapper from "./components/layout/MobileNavWrapper";
 import Footer from "./components/layout/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -53,6 +54,7 @@ export default function RootLayout({
           <MobileNavWrapper />
           {children}
           <Footer />
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
