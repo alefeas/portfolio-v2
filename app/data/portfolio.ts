@@ -34,6 +34,22 @@ export const projects: Project[] = [
   },
   {
     id: 3,
+    titleKey: 'hofcbAiTitle',
+    descriptionKey: 'hofcbAiDesc',
+    detailedDescriptionKey: 'hofcbAiDetailDesc',
+    featuresKey: 'hofcbAiFeatures',
+    challengesKey: 'hofcbAiChallenges',
+    learningsKey: 'hofcbAiLearnings',
+    tech: ["Next.js 16", "React 19", "TypeScript", "Prisma", "MySQL", "Tailwind CSS", "Generative AI", "Vision Models", "Image Generation", "Nano Banana API"],
+    categoryKey: 'fullStack',
+    statusKey: 'inDevelopment',
+    github: "",
+    demo: "",
+    heroImage: "/projects/hofcb-ai/hero.png",
+    isPrivate: true
+  },
+  {
+    id: 4,
     titleKey: 'airGeorgeTitle',
     descriptionKey: 'airGeorgeDesc',
     detailedDescriptionKey: 'airGeorgeDetailDesc',
