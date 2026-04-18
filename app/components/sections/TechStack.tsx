@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
@@ -65,10 +66,12 @@ export default function TechStack() {
                     
                     {/* Logo */}
                     <div className="w-12 h-12 mb-2 flex items-center justify-center relative z-10">
-                      <img 
+                      <Image 
                         src={tech.logo} 
                         alt={tech.name}
-                        className="w-full h-full object-contain"
+                        width={48}
+                        height={48}
+                        className="object-contain"
                         style={{ 
                           transition: "all 0.2s ease-out",
                           filter: "brightness(0) invert(1)",

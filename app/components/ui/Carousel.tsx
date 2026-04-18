@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CarouselProps } from '@/app/types';
@@ -131,10 +132,12 @@ export default function Carousel({ images, title }: CarouselProps) {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <img
+              <Image
                 src={images[currentImageIndex]}
                 alt={`${title} - Image ${currentImageIndex + 1}`}
-                className="w-full h-full object-cover"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                 loading="lazy"
               />
             </motion.div>

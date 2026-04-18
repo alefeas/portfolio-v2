@@ -21,7 +21,6 @@ export default function Button({
   };
 
   const isInternalLink = href && href.startsWith('#');
-  const isCtaVariant = variant === 'cta';
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
     if (isInternalLink && href) {

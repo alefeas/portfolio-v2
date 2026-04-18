@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "@fontsource-variable/fustat";
 import "./globals.css";
 import NavbarWrapper from "./components/layout/NavbarWrapper";
@@ -8,17 +7,6 @@ import MobileNavWrapper from "./components/layout/MobileNavWrapper";
 import Footer from "./components/layout/Footer";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-// Switzer no está disponible en Google Fonts, usando Inter como principal
-/* const switzer = Inter({
-  subsets: ["latin"],
-  variable: "--font-switzer",
-}); */
 
 export const metadata: Metadata = {
   title: "Alejo Feas Matej - Full Stack Developer",
@@ -41,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased`}
+        className="font-sans antialiased"
         style={{
           backgroundColor: 'rgb(9 9 11 / var(--tw-bg-opacity, 1))',
           position: 'relative',

@@ -43,7 +43,6 @@ module.exports = {
       fontFamily: {
         sans: ['Fustat Variable', 'system-ui', 'sans-serif'],
         fustat: ['Fustat Variable', 'system-ui', 'sans-serif'],
-        switzer: ['Switzer', 'system-ui', 'sans-serif'],
       },
     },
   },

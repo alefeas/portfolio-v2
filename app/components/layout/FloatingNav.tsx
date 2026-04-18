@@ -6,7 +6,6 @@ import { floatingNavItems, getNavIcon } from '@/app/constants/floatingNav';
 import { Tooltip } from '@/app/components/ui';
 
 export default function FloatingNav() {
-  const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
@@ -38,11 +37,9 @@ export default function FloatingNav() {
                 href={`#${item.id}`}
                 className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
                 onMouseEnter={() => {
-                  setHoveredLabel(item.label);
                   setHoveredIndex(index);
                 }}
                 onMouseLeave={() => {
-                  setHoveredLabel(null);
                   setHoveredIndex(null);
                 }}
               >

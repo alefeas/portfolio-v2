@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { StatusDot, SectionHeader, Card } from '@/app/components/ui';
 
@@ -23,20 +24,26 @@ export default function About() {
         {/* Image */}
         <div className="relative w-full max-w-2xl lg:w-sm lg:flex-shrink-0">
           {/* Mobile: Square image */}
-          <div className="lg:hidden aspect-square rounded-2xl overflow-hidden">
-            <img 
+          <div className="lg:hidden aspect-square rounded-2xl overflow-hidden relative">
+            <Image 
               src="/profile-v2.jpeg"
               alt="Profile"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 400px"
+              priority
             />
           </div>
           
           {/* Desktop: Vertical image */}
-          <div className="hidden lg:block aspect-[3/4] rounded-2xl overflow-hidden">
-            <img 
+          <div className="hidden lg:block aspect-[3/4] rounded-2xl overflow-hidden relative">
+            <Image 
               src="/profile-v2.jpeg"
               alt="Profile"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="400px"
+              priority
             />
           </div>
         </div>

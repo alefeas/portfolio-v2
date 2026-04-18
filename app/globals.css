@@ -1,23 +1,6 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
-/* Switzer Font Faces */
-@font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/Switzer-Regular.woff2') format('woff2'),
-       url('/fonts/Switzer-Regular.woff') format('woff');
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Switzer';
-  src: url('/fonts/Switzer-Semibold.woff2') format('woff2'),
-       url('/fonts/Switzer-Semibold.woff') format('woff');
-  font-weight: 600;
-  font-display: swap;
-}
-
+/* Fustat Variable - Main Font */
 :root {
   --background: transparent;
   --foreground: #e2e8f0;
@@ -61,16 +44,6 @@ body, p, span, div, li, a {
 /* Typography Classes */
 .font-fustat {
   font-family: 'Fustat Variable', system-ui, sans-serif;
-  font-weight: 600;
-}
-
-.font-switzer {
-  font-family: 'Switzer', system-ui, sans-serif;
-  font-weight: 400;
-}
-
-.font-switzer-semibold {
-  font-family: 'Switzer', system-ui, sans-serif;
   font-weight: 600;
 }
 
