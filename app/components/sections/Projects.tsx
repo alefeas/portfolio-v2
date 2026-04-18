@@ -3,23 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/app/hooks/useTranslation';
-import { TranslationKey } from '@/app/lib/translations';
-import { projects as projectsData } from '@/app/data/portfolio';
+import { getProjects } from '@/app/constants/projects';
 import { SectionHeader } from '@/app/components/ui';
-
-const getProjects = (t: (key: TranslationKey) => string | string[]) =>
-  projectsData.map(project => ({
-    ...project,
-    title: t(project.titleKey as TranslationKey) as string,
-    description: t(project.descriptionKey as TranslationKey) as string,
-    detailedDescription: t(project.detailedDescriptionKey as TranslationKey) as string,
-    features: t(project.featuresKey as TranslationKey) as string[],
-    challenges: t(project.challengesKey as TranslationKey) as string,
-    learnings: t(project.learningsKey as TranslationKey) as string,
-    category: t(project.categoryKey as TranslationKey) as string,
-    status: t(project.statusKey as TranslationKey) as string,
-    isLive: project.statusKey === 'live'
-  }));
 
 export default function Projects() {
   const { t } = useTranslation();

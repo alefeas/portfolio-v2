@@ -8,14 +8,16 @@ export const technologies: TechCategory[] = [
       { name: "Next.js", logo: "/icons/nextdotjs.svg" },
       { name: "TypeScript", logo: "/icons/typescript.svg" },
       { name: "JavaScript", logo: "/icons/javascript.svg" },
+      { name: "Tailwind CSS", logo: "/icons/tailwindcss.svg" },
       { name: "HTML5", logo: "/icons/html5.svg" },
-      { name: "CSS3", logo: "/icons/css3.svg" }
+      // { name: "CSS3", logo: "/icons/css3.svg" }
     ]
   },
   {
     category: "Backend",
     techs: [
-      { name: "C#", logo: "/icons/csharp.svg" },
+      // { name: "C#", logo: "/icons/csharp.svg" },
+      { name: "Node.js", logo: "/icons/nodejs.svg" },
       { name: "ASP.NET", logo: "/icons/dotnet.svg" },
       { name: "PHP", logo: "/icons/php.svg"},
       { name: "Laravel", logo: "/icons/laravel.svg" },
