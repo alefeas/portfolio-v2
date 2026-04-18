@@ -3,6 +3,9 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CarouselProps } from '@/app/types';
+import CarouselDots from './CarouselDots';
+import CarouselCounter from './CarouselCounter';
+import CarouselNavButton from './CarouselNavButton';
 
 const AUTOPLAY_INTERVAL = 5000; // 5 seconds
 
@@ -22,12 +25,26 @@ export default function Carousel({ images, title }: CarouselProps) {
 
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
 
-    // Solo resetear timers si NO estaba pausado
-    if (!isPausedRef.current) {
-      cycleStartRef.current = Date.now();
-      pausedElapsedRef.current = 0;
-    }
-  }, [hasImages]);
+    // Resetear timers
+    cycleStartRef.current = Date.now();
+    pausedElapsedRef.current = 0;
+  }, [hasImages, images.length]);
+
+  const prevImage = useCallback(() => {
+    if (!hasImages) return;
+
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+
+    // Resetear timers
+    cycleStartRef.current = Date.now();
+    pausedElapsedRef.current = 0;
+  }, [hasImages, images.length]);
+
+  const goToImage = useCallback((index: number) => {
+    setCurrentImageIndex(index);
+    cycleStartRef.current = Date.now();
+    pausedElapsedRef.current = 0;
+  }, []);
 
   // Actualizar ref cuando isPaused cambia
   useEffect(() => {
@@ -95,15 +112,15 @@ export default function Carousel({ images, title }: CarouselProps) {
   if (!hasImages) return null;
 
   return (
-    <div className="mb-20">
-      <div 
-        className="relative"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+    <div 
+      className="mb-20"
+    >
+      <div className="relative group">
         <motion.div
           className="relative w-full rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 shadow-lg"
           style={{ aspectRatio: '2/1' }}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
           <AnimatePresence mode="wait">
             <motion.div
@@ -124,6 +141,15 @@ export default function Carousel({ images, title }: CarouselProps) {
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20 rounded-3xl" />
           
+          {/* Navigation Buttons - Only show if more than 1 image */}
+          {images.length > 1 && (
+            <>
+              <CarouselNavButton direction="prev" onClick={prevImage} />
+              <CarouselNavButton direction="next" onClick={nextImage} />
+              <CarouselCounter current={currentImageIndex + 1} total={images.length} />
+            </>
+          )}
+          
           {/* Progress Bar */}
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
             <div
@@ -133,6 +159,21 @@ export default function Carousel({ images, title }: CarouselProps) {
             />
           </div>
         </motion.div>
+
+        {/* Dot Indicators - Only show if more than 1 image */}
+        {images.length > 1 && (
+          <div 
+            className='w-30 m-auto'
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            <CarouselDots 
+              total={images.length} 
+              current={currentImageIndex} 
+              onDotClick={goToImage}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
