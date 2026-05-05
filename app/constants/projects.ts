@@ -157,7 +157,7 @@ export const projectsRaw: ProjectRaw[] = [
     categoryKey: 'frontEnd',
     statusKey: 'live',
     github: '',
-    demo: 'https://strongwood-sandy.vercel.app/',
+    demo: 'https://www.strongwood.com.ar/',
     heroImage: '/projects/strongwood/hero.png',
     images: [
       '/projects/strongwood/screenshot-1.png',

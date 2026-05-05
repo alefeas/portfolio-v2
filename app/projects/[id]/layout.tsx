@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { translations } from '@/app/lib/translations';
+import { projectsRaw } from '@/app/constants/projects';
 
-const projectTitles: Record<string, string> = {
-  "1": "House of CB",
-  "2": "Payto",
-  "3": "Air George",
-};
+// Usar inglés por defecto para los títulos de las pestañas
+const projectTitles: Record<string, string> = Object.fromEntries(
+  projectsRaw.map((project) => [
+    project.id.toString(), 
+    translations.en[project.titleKey] as string
+  ])
+);
 
 export async function generateMetadata({
   params,
