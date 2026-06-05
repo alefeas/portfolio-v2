@@ -1,14 +1,27 @@
 'use client';
 
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { getProjects } from '@/app/constants/projects';
-import { SectionHeader } from '@/app/components/ui';
+import { SectionHeader, CarouselNavButton } from '@/app/components/ui';
+
+const PAGE_SIZE = 6;
 
 export default function Projects() {
   const { t } = useTranslation();
   const projects = getProjects(t);
+  const [page, setPage] = useState(1);
+
+  const totalPages = Math.ceil(projects.length / PAGE_SIZE);
+  const paginated = projects.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    if (isFirstRender.current) { isFirstRender.current = false; return; }
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  }, [page]);
 
   return (
     <section id="projects" className="py-16 md:py-20 px-4 md:px-6 max-w-6xl mx-auto">
@@ -24,7 +37,7 @@ export default function Projects() {
 
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-6">
-        {projects.map((project) => (
+        {paginated.map((project) => (
           <Link
             key={project.id}
             href={`/projects/${project.id}`}
@@ -80,6 +93,29 @@ export default function Projects() {
           </Link>
         ))}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-12">
+          <CarouselNavButton direction="prev" onClick={() => setPage(p => p - 1)} disabled={page === 1} variant="standalone" />
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+            <button
+              key={n}
+              onClick={() => setPage(n)}
+              className={`w-9 h-9 rounded-full text-sm backdrop-blur-sm border transition-all duration-300 cursor-pointer ${
+                n === page
+                  ? 'border-green-500/50 bg-green-500/10 text-green-400'
+                  : 'bg-gradient-to-br from-slate-900/60 to-slate-800/40 border-slate-700/30 text-white/60 hover:border-slate-600/50 hover:from-slate-900/80 hover:to-slate-800/60 hover:text-white'
+              }`}
+            >
+              {n}
+            </button>
+          ))}
+
+          <CarouselNavButton direction="next" onClick={() => setPage(p => p + 1)} disabled={page === totalPages} variant="standalone" />
+        </div>
+      )}
     </section>
   );
 }

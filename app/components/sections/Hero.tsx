@@ -36,9 +36,9 @@ export default function Hero() {
 
       {/* Status Badge */}
       <motion.div
-        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.3, delay: 0, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2, delay: 0, ease: "easeOut" }}
       >
         <StatusBadge>
           {t('available')}
@@ -47,9 +47,9 @@ export default function Hero() {
 
       {/* Main Title */}
       <motion.h1 
-        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.3, delay: 0.15, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2, delay: 0.08, ease: "easeOut" }}
         className="hero-title font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
         style={{ textWrap: 'balance' }}
       >
@@ -59,9 +59,9 @@ export default function Hero() {
 
       {/* Subtitle */}
       <motion.h2 
-        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.3, delay: 0.3, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2, delay: 0.16, ease: "easeOut" }}
         className="max-w-2xl leading-relaxed text-gray-300 text-sm md:text-base"
       >
         <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} <br /> {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
@@ -69,9 +69,9 @@ export default function Hero() {
 
       {/* Enhanced Keyboard Navigation */}
       <motion.div 
-        initial={{ opacity: 0, filter: "blur(10px)" }}
-        animate={{ opacity: 1, filter: "blur(0px)" }}
-        transition={{ duration: 0.3, delay: 0.45, ease: "easeOut" }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2, delay: 0.24, ease: "easeOut" }}
         className="hero-actions flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6"
       >
         <div className="hero-nav-board">
@@ -79,9 +79,9 @@ export default function Hero() {
             <motion.div 
               key={item.key} 
               className="relative"
-              initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.3, delay: 0.45 + index * 0.05, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2, delay: 0.24 + index * 0.03, ease: "easeOut" }}
             >
               <Tooltip label={item.key.charAt(0).toUpperCase() + item.key.slice(1)} isVisible={hoveredButton === item.key}>
                 <IconButton
@@ -104,9 +104,9 @@ export default function Hero() {
         
         <motion.div 
           className="hero-cta-container"
-          initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.3, delay: 0.45 + navLinksWithDynamicCV.length * 0.05, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2, delay: 0.24 + navLinksWithDynamicCV.length * 0.03, ease: "easeOut" }}
         >
           <Button href="#projects" variant="cta">
             <span>{t('exploreMore')}</span>

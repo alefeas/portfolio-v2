@@ -1,8 +1,9 @@
 import { IconButtonProps } from '@/app/types';
+import Link from 'next/link';
 
 export default function IconButton({ icon, label, href, target = '_blank', className = '', onMouseEnter, onMouseLeave }: IconButtonProps & { onMouseEnter?: () => void; onMouseLeave?: () => void }) {
   return (
-    <a
+    <Link
       href={href}
       target={target}
       rel="noopener noreferrer"
@@ -12,6 +13,6 @@ export default function IconButton({ icon, label, href, target = '_blank', class
       onMouseLeave={onMouseLeave}
     >
       {icon}
-    </a>
+    </Link>
   );
 }

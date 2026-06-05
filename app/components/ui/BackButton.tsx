@@ -4,23 +4,14 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { BackButtonProps } from '@/app/types';
 
-export default function BackButton({ href, title = "Back" }: BackButtonProps) {
+export default function BackButton({ scrollToId, title = "Back" }: BackButtonProps & { scrollToId?: string }) {
   const router = useRouter();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    
-    // If href starts with #, scroll to element
-    if (href.startsWith('#')) {
-      const targetId = href.replace('#', '');
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      // Otherwise navigate using router
-      router.push(href);
+  const handleClick = () => {
+    if (scrollToId) {
+      sessionStorage.setItem('scrollTo', scrollToId);
     }
+    router.back();
   };
 
   return (

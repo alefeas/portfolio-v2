@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { floatingNavItems, getNavIcon } from '@/app/constants/floatingNav';
 import { Tooltip } from '@/app/components/ui';
@@ -27,21 +27,21 @@ export default function FloatingNav() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = useCallback((id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   return (
     <div className="hidden md:fixed md:top-6 md:left-1/2 z-40 md:transform md:-translate-x-1/2 md:flex md:items-center">
       <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 rounded-full shadow-2xl">
         {floatingNavItems.map((item, index) => (
           <li key={item.id} className="relative">
             <Tooltip label={item.label} isVisible={hoveredIndex === index}>
-              <a
-                href={`#${item.id}`}
+              <button
+                onClick={() => scrollToSection(item.id)}
                 className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
-                onMouseEnter={() => {
-                  setHoveredIndex(index);
-                }}
-                onMouseLeave={() => {
-                  setHoveredIndex(null);
-                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
                 {getNavIcon(item.icon)}
                 {selectedIndex === index && (
@@ -51,7 +51,7 @@ export default function FloatingNav() {
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                 )}
-              </a>
+              </button>
             </Tooltip>
           </li>
         ))}

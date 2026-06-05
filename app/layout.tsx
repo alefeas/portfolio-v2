@@ -5,6 +5,7 @@ import NavbarWrapper from "./components/layout/NavbarWrapper";
 import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
 import MobileNavWrapper from "./components/layout/MobileNavWrapper";
 import Footer from "./components/layout/Footer";
+import ScrollManager from "./components/layout/ScrollManager";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         }}
       >
         <LanguageProvider>
+          <ScrollManager />
           <NavbarWrapper />
           <LanguageToggleWrapper />
           <MobileNavWrapper />

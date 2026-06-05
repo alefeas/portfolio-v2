@@ -6,6 +6,7 @@ import { useTranslation } from '@/app/hooks/useTranslation';
 import { TranslationKey } from '@/app/lib/translations';
 import { contactLinks } from '@/app/constants/contact';
 import { SectionHeader, Card, StatusDot, Input, Toast } from '@/app/components/ui';
+import Link from 'next/link';
 
 export default function Contact() {
   const { t, ts } = useTranslation();
@@ -103,7 +104,7 @@ export default function Contact() {
             {/* Contact Methods */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 lg:flex lg:flex-col">
               {contactLinks.map((contact, index) => (
-                <a
+                <Link
                   key={index}
                   href={contact.href}
                   target="_blank"
@@ -123,7 +124,7 @@ export default function Contact() {
                       </div>
                     </div>
                   </Card>
-                </a>
+                </Link>
               ))}
             </div>
           </div>

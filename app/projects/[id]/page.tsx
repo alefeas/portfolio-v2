@@ -1,13 +1,12 @@
 'use client';
 
-import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { useState, useMemo, lazy, Suspense } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslation } from '@/app/hooks/useTranslation';
-import { FeatureItem, TechTag, RepositoryLink, Carousel, DemoCredentialsModal, ProjectDetailSkeleton } from '@/app/components/ui';
+import { FeatureItem, TechTag, RepositoryLink, Carousel, DemoCredentialsModal } from '@/app/components/ui';
 import { getProjects } from '@/app/constants/projects';
-
-const BackButton = lazy(() => import('@/app/components/ui/BackButton'));
+import BackButton from '@/app/components/ui/BackButton';
+import Link from 'next/link';
 
 function ProjectDetailContent() {
   const params = useParams();
@@ -43,9 +42,7 @@ function ProjectDetailContent() {
   return (
     <div className="min-h-screen text-white">
       {/* Back Button */}
-      <Suspense fallback={null}>
-        <BackButton href="/#projects" title="Back to Projects" />
-      </Suspense>
+      <BackButton scrollToId="projects" title="Back to Projects" />
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20 mt-16 md:mt-20">
@@ -81,16 +78,16 @@ function ProjectDetailContent() {
             <div className="sticky top-32 space-y-2 mt-8 max-h-[calc(100vh-200px)] overflow-y-scroll pr-2">
               <h3 className="text-sm font-semibold text-white mb-4">{t('sections') || 'Sections'}</h3>
               <nav className="space-y-1">
-                <a href="#overview" className="block text-sm text-white/60 hover:text-white transition-colors">{t('overview') || 'Overview'}</a>
+                <Link href="#overview" className="block text-sm text-white/60 hover:text-white transition-colors">{t('overview') || 'Overview'}</Link>
                 {(safeProject.features as string[]).length > 0 && (
-                  <a href="#features" className="block text-sm text-white/60 hover:text-white transition-colors">{t('keyFeatures') || 'Key Features'}</a>
+                  <Link href="#features" className="block text-sm text-white/60 hover:text-white transition-colors">{t('keyFeatures') || 'Key Features'}</Link>
                 )}
-                <a href="#challenges" className="block text-sm text-white/60 hover:text-white transition-colors">{t('challengesSolutions') || 'Challenges'}</a>
-                <a href="#learnings" className="block text-sm text-white/60 hover:text-white transition-colors">{t('whatILearned') || 'What I Learned'}</a>
+                <Link href="#challenges" className="block text-sm text-white/60 hover:text-white transition-colors">{t('challengesSolutions') || 'Challenges'}</Link>
+                <Link href="#learnings" className="block text-sm text-white/60 hover:text-white transition-colors">{t('whatILearned') || 'What I Learned'}</Link>
                 {(safeProject.github || safeProject.githubFrontend || safeProject.demo) && (
-                  <a href="#repositories" className="block text-sm text-white/60 hover:text-white transition-colors">{t('repositories') || 'Repositories'}</a>
+                  <Link href="#repositories" className="block text-sm text-white/60 hover:text-white transition-colors">{t('repositories') || 'Repositories'}</Link>
                 )}
-                <a href="#tech" className="block text-sm text-white/60 hover:text-white transition-colors">{t('builtWith') || 'Built With'}</a>
+                <Link href="#tech" className="block text-sm text-white/60 hover:text-white transition-colors">{t('builtWith') || 'Built With'}</Link>
               </nav>
             </div>
           </aside>
@@ -207,9 +204,5 @@ function ProjectDetailContent() {
 }
 
 export default function ProjectDetail() {
-  return (
-    <Suspense fallback={<ProjectDetailSkeleton />}>
-      <ProjectDetailContent />
-    </Suspense>
-  );
+  return <ProjectDetailContent />;
 }

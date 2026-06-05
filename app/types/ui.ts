@@ -14,7 +14,7 @@ export interface ButtonProps {
 
 // BackButton Component
 export interface BackButtonProps {
-  href: string;
+  scrollToId?: string;
   title?: string;
 }
 
@@ -31,6 +31,14 @@ export interface CardProps {
   className?: string;
   variant?: 'default' | 'hover';
   onClick?: () => void;
+}
+
+// CarouselNavButton Component
+export interface CarouselNavButtonProps {
+  direction: 'prev' | 'next';
+  onClick: () => void;
+  disabled?: boolean;
+  variant?: 'carousel' | 'standalone';
 }
 
 // Carousel Component

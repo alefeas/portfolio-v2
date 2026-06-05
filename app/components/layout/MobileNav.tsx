@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { floatingNavItems, getNavIcon } from '@/app/constants/floatingNav';
+import Link from 'next/link';
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -61,7 +62,7 @@ export default function MobileNav() {
           >
             <nav className="flex flex-col">
               {floatingNavItems.map((item, index) => (
-                <a
+                <Link
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={handleNavClick}
@@ -78,7 +79,7 @@ export default function MobileNav() {
                       transition={{ duration: 2, repeat: Infinity }}
                     />
                   )}
-                </a>
+                </Link>
               ))}
             </nav>
           </motion.div>

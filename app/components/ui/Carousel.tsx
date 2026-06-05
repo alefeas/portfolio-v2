@@ -21,6 +21,14 @@ export default function Carousel({ images, title }: CarouselProps) {
 
   const hasImages = images.length > 0;
 
+  // Preload all non-first images on mount
+  useEffect(() => {
+    images.slice(1).forEach((src) => {
+      const img = new window.Image();
+      img.src = src;
+    });
+  }, [images]);
+
   const nextImage = useCallback(() => {
     if (!hasImages) return;
 
@@ -134,11 +142,11 @@ export default function Carousel({ images, title }: CarouselProps) {
             >
               <Image
                 src={images[currentImageIndex]}
-                alt={`${title} - Image ${currentImageIndex + 1}`}
+                alt={`${title} - screenshot ${currentImageIndex + 1}`}
                 fill
+                priority={currentImageIndex === 0}
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                loading="lazy"
               />
             </motion.div>
           </AnimatePresence>
@@ -154,13 +162,15 @@ export default function Carousel({ images, title }: CarouselProps) {
           )}
           
           {/* Progress Bar */}
-          <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
-            <div
-              ref={progressRef}
-              className="h-full bg-green-500/80 transition-none"
-              style={{ width: '0%' }}
-            />
-          </div>
+          {images.length > 1 && (
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
+              <div
+                ref={progressRef}
+                className="h-full bg-green-500/80 transition-none"
+                style={{ width: '0%' }}
+              />
+            </div>
+          )}
         </motion.div>
 
         {/* Dot Indicators - Only show if more than 1 image */}
