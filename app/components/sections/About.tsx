@@ -26,24 +26,24 @@ export default function About() {
           {/* Mobile: Square image */}
           <div className="lg:hidden aspect-square rounded-2xl overflow-hidden relative">
             <Image 
-              src="/profile-v2_result.avif"
+              src="/profile_result.avif"
               alt="Profile"
               fill
+              quality={100}
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 400px"
-              priority
             />
           </div>
           
           {/* Desktop: Vertical image */}
           <div className="hidden lg:block aspect-[3/4] rounded-2xl overflow-hidden relative">
             <Image 
-              src="/profile-v2_result.avif"
+              src="/profile_result.avif"
               alt="Profile"
               fill
+              quality={100}
               className="object-cover"
               sizes="400px"
-              priority
             />
           </div>
         </div>

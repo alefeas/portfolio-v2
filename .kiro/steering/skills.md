@@ -541,6 +541,7 @@ import Image from 'next/image';
 - `priority` para imágenes above-the-fold (LCP)
 - `lazy` por defecto para below-the-fold
 - `.avif` es el formato preferido para imágenes del proyecto
+- `quality={95}` o `quality={100}` para fotos de perfil o imágenes donde la nitidez es crítica — el default `q=75` de Next.js es notablemente peor. Usar `100` es válido si la imagen está below-the-fold (hay tiempo de carga); para above-the-fold preferir `95` para no penalizar el LCP
 
 ### Client vs Server Components
 
