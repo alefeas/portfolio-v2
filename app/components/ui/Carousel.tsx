@@ -21,11 +21,15 @@ export default function Carousel({ images, title }: CarouselProps) {
 
   const hasImages = images.length > 0;
 
-  // Preload all non-first images on mount
+  // Preload all non-first images on mount using Next.js optimized URLs
   useEffect(() => {
     images.slice(1).forEach((src) => {
-      const img = new window.Image();
-      img.src = src;
+      const url = `/_next/image?url=${encodeURIComponent(src)}&w=1200&q=75`;
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = url;
+      document.head.appendChild(link);
     });
   }, [images]);
 
