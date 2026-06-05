@@ -50,9 +50,9 @@ export default function Projects() {
                   <Image 
                     src={project.heroImage}
                     alt={project.title}
-                    width={800}
-                    height={400}
-                    className="w-full h-full object-cover object-top transition-all duration-300 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    className="object-cover object-top transition-all duration-300 group-hover:scale-105"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 flex items-center justify-center text-slate-500">
