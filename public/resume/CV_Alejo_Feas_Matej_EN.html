@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --dark-grey: #333333;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.5;
+            color: var(--dark-grey);
+            margin: 0;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--black);
+        }
+        .contact-info {
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        
+        .summary {
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            color: var(--dark-grey);
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--black);
+        }
+        .item-subtitle {
+            font-size: 14px;
+            color: var(--dark-grey);
+        }
+        .item-date {
+            font-size: 14px;
+            color: var(--dark-grey);
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+
+        .exp-list {
+            font-size: 14px;
+            margin: 8px 0 20px 0;
+            padding-left: 18px;
+        }
+        .exp-list li {
+            margin-bottom: 5px;
+        }
+
+        .skills-section {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .skills-section strong {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        @media print {
+            body { padding: 0; }
+            @page { margin: 1.5cm; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Alejo Feas Matej</h1>
+    <div class="contact-info">
+        Villa Devoto, CABA • +54 11 6628-2804 •
+        <a href="mailto:alefeas99@gmail.com">alefeas99@gmail.com</a> •
+        <a href="https://linkedin.com/in/afeas" target="_blank">LinkedIn</a> •
+        <a href="https://afeas.vercel.app" target="_blank">Portfolio</a> •
+        <a href="https://github.com/alefeas" target="_blank">GitHub</a>
+    </div>
+
+    <h2>Full-Stack Developer · AI Integration & Legacy Systems</h2>
+
+    <div class="summary">
+        Full-Stack Developer with production experience in international teams and independent software delivery for businesses. University Technician in Programming (UTN). Specialized in legacy modernization, infrastructure migrations, and AI integration to automate processes and deliver production-ready solutions with a focus on security and performance at scale.
+    </div>
+
+    <h3>EXPERIENCE</h3>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Full-Stack Developer</div>
+            <div class="item-subtitle">House of CB – Luxury British women's fashion brand</div>
+        </div>
+        <div class="item-date">Feb 2026 – Present</div>
+    </div>
+    <ul class="exp-list">
+        <li>Backend development on high-traffic international e-commerce (PHP, MySQL, Docker, AWS) within a global team.</li>
+        <li>Led PHP 7.2 → 8.5 migration for House of CB and Mistress Rocks (secondary brand), including full-stack legacy modernization and business-logic refactoring.</li>
+        <li>Designed and integrated AI solutions and autonomous agents to automate internal workflows.</li>
+    </ul>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Founder & Full-Stack Developer</div>
+            <div class="item-subtitle">AFM · Independent Software & AI Studio</div>
+        </div>
+        <div class="item-date">May 2025 – Present</div>
+    </div>
+    <ul class="exp-list">
+        <li>End-to-end delivery of a production financial management platform for businesses — full-stack development and AI integration.</li>
+    </ul>
+
+    <h3>EDUCATION</h3>
+
+    <div class="item">
+        <div>
+            <div class="item-title">University Technician in Programming</div>
+            <div class="item-subtitle">National Technological University (UTN)</div>
+        </div>
+        <div class="item-date">2024 – 2025</div>
+    </div>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Full-Stack Web Development</div>
+            <div class="item-subtitle">Coderhouse</div>
+        </div>
+        <div class="item-date">2022 – 2023</div>
+    </div>
+
+    <div class="item" style="margin-bottom: 25px;">
+        <div>
+            <div class="item-title">Secondary Education</div>
+            <div class="item-subtitle">Instituto Cardenal Copello</div>
+        </div>
+        <div class="item-date">2016 – 2020</div>
+    </div>
+
+    <h3>SKILLS</h3>
+    <div class="skills-section">
+        <div><strong>Backend:</strong> ASP.NET Core, C# / .NET, PHP, Laravel, Node.js</div>
+        <div><strong>Databases:</strong> SQL (Oracle PL/SQL, SQL Server, MySQL)</div>
+        <div><strong>Frontend:</strong> HTML, Tailwind CSS, React.js / Next.js, TypeScript / JavaScript</div>
+        <div><strong>AI & Automation:</strong> LLMs, AI Agents, Generative AI, Prompt Engineering, Process Automation</div>
+        <div><strong>Tools:</strong> Docker, Kubernetes, AWS, Git / GitHub, Supabase</div>
+        <div><strong>Languages:</strong> Spanish (Native), English (B2 – Upper-Intermediate)</div>
+        <div><strong>Methodologies:</strong> Scrum</div>
+    </div>
+
+</body>
+</html>

@@ -20,6 +20,7 @@ export interface ProjectRaw {
   heroImage: string;
   images: string[];
   isPrivate?: boolean;
+  demoUnavailable?: boolean;
 }
 
 export type ProjectDetail = {
@@ -41,4 +42,5 @@ export type ProjectDetail = {
   demo?: string;
   heroImage?: string;
   images?: string[];
+  demoUnavailable?: boolean;
 };

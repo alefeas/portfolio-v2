@@ -12,34 +12,34 @@ export const translations = {
     hiIm: 'Hi, I\'m',
     buildingFuture: 'Building the future.',
     passionate: 'Passionate',
-    about_desc: 'about crafting exceptional digital experiences with modern technologies.',
+    about_desc: 'about building production software with modern technologies and practical AI.',
     building: 'Building',
     innovative: 'innovative',
-    solutions: 'solutions through clean code and continuous learning',
+    solutions: 'solutions through legacy modernization, clean and reliable code',
     exploreMore: 'Explore More',
     
     // About Section
     aboutMe: 'About Me',
     getToKnowMe: 'Get to Know Me',
-    getToKnowDesc: 'Passionate developer with a love for creating',
+    getToKnowDesc: 'Full-stack developer focused on creating',
     meaningful: 'meaningful',
     digitalExperiences: 'digital experiences',
     whoIAm: 'Who I Am',
     fullStackDeveloper: 'Full Stack Developer',
-    whoIAmDesc: 'I\'m a passionate',
-    whoIAmDesc2: 'with a strong foundation in modern web technologies. I love turning complex problems into elegant and intuitive solutions.',
-    seekingOpportunity: 'Currently Junior Full-Stack Developer at House of CB (London women’s fashion brand). Backend-focused development for its global e-commerce platform.',
-    currentlyLearning: 'Currently Learning',
-    expandingKnowledge: 'Expanding my knowledge in',
-    cloudTech: 'cloud technologies',
-    microservices: 'microservices architecture',
-    databaseOpt: 'advanced database optimization',
-    stayingCurrent: 'to stay current with industry trends',
+    whoIAmDesc: 'I\'m a',
+    whoIAmDesc2: 'with real production experience in international teams and high-traffic environments. I turn complex legacy systems into secure, scalable, and reliable solutions.',
+    seekingOpportunity: 'Full-Stack Developer at House of CB, backend-focused on global e-commerce. I also independently build full-stack and AI solutions for clients.',
+    currentlyLearning: 'Currently Focused On',
+    expandingKnowledge: 'Focused on',
+    cloudTech: 'applied AI and LLMs',
+    microservices: 'autonomous agents',
+    databaseOpt: 'legacy system modernization',
+    stayingCurrent: 'to deliver production-ready solutions',
     whatIBest: 'What I Do Best',
-    fullStackWeb: 'Full-stack web development with modern frameworks',
+    fullStackWeb: 'Full-stack development and legacy system modernization',
     databaseDesign: 'Database design and optimization',
     apiDev: 'API development and integration',
-    uiUx: 'UI/UX implementation with attention to detail',
+    uiUx: 'AI integration and process automation in production',
     
     // Projects Section
     selectedWork: 'Selected Work',
@@ -98,12 +98,12 @@ export const translations = {
     houseOfCbLearnings: 'This experience deepened my expertise in production backend modernization, legacy system migration strategies, and architecting AI-driven automation for real business workflows. Working on a high-traffic international platform reinforced the critical importance of performance, security, and architectural decisions at scale. Collaborating with a global team validated my ability to deliver production-level engineering in a professional, fast-paced environment.',
     
     // Mistress Rocks Project
-    mistressRocksTitle: 'Mistress Rocks: Core Backend Migration & Optimization',
-    mistressRocksDesc: 'Complete backend migration of an international fashion e-commerce from PHP 7.2 to PHP 8.5 for security and performance.',
-    mistressRocksDetailDesc: 'Mistress Rocks is an international fashion brand based in Hong Kong with a global customer base, known for its statement pieces that have appeared in major magazines and on celebrities worldwide. I was solely responsible for the complete backend migration of the platform from PHP 7.2 to PHP 8.5 — a critical undertaking driven by security vulnerabilities and end-of-life support in the legacy version. The migration covered the entire codebase: updating deprecated syntax, resolving breaking changes across PHP versions, modernizing dependencies, and ensuring full platform stability post-migration. The platform now runs on a secure, supported, and performant PHP version. I also provide occasional maintenance support, handling any issues that may arise on an as-needed basis.',
-    mistressRocksFeatures: ['Complete PHP 7.2 → PHP 8.5 Backend Migration', 'Security Vulnerability Remediation', 'Deprecated Syntax & Breaking Change Resolution', 'Dependency Modernization', 'Full Platform Stability Validation', 'Post-Migration QA & Testing', 'International E-commerce Platform', 'Occasional Maintenance Support'],
-    mistressRocksChallenges: 'Migrating a live international e-commerce platform across multiple major PHP versions required deep knowledge of each version\'s breaking changes, deprecated features, and behavioral differences. Key challenges included identifying and resolving incompatibilities across a large legacy codebase, ensuring platform stability for a global customer base throughout the transition, updating third-party dependencies to compatible versions, and thoroughly validating functionality after each migration stage.',
-    mistressRocksLearnings: 'This project reinforced expertise in PHP version migrations, legacy codebase modernization, and the discipline required to execute high-stakes production changes safely. It deepened my understanding of PHP internals across versions and validated my ability to independently own and deliver a critical infrastructure project end-to-end.',
+    mistressRocksTitle: 'Mistress Rocks: Full-Stack Migration & Platform Modernization',
+    mistressRocksDesc: 'Full-stack modernization of an international fashion e-commerce — backend migration from PHP 7.2 to 8.5 and frontend transition from legacy Smarty templating.',
+    mistressRocksDetailDesc: 'Mistress Rocks is an international fashion brand based in Hong Kong with a global customer base, known for its statement pieces that have appeared in major magazines and on celebrities worldwide. I was solely responsible for the complete platform migration: upgrading the backend from PHP 7.2 to PHP 8.5 and modernizing the frontend originally built with Smarty template files (.tpl). The legacy codebase required extensive logic rewrites across both layers — outdated patterns, deprecated syntax, and accumulated technical debt made a straightforward version bump impossible. The work encompassed resolving breaking changes across PHP versions, modernizing dependencies, restructuring frontend presentation logic, and ensuring full platform stability for a global customer base post-migration. The platform now runs on a secure, supported, and performant stack. I also provide occasional maintenance support on an as-needed basis.',
+    mistressRocksFeatures: ['Complete PHP 7.2 → PHP 8.5 Backend Migration', 'Frontend Modernization from Smarty Templates', 'Legacy Business Logic Rewrite & Refactoring', 'Security Vulnerability Remediation', 'Deprecated Syntax & Breaking Change Resolution', 'Dependency Modernization', 'Full Platform Stability Validation', 'Post-Migration QA & Testing', 'International E-commerce Platform', 'Occasional Maintenance Support'],
+    mistressRocksChallenges: 'Migrating a live international e-commerce platform across multiple major PHP versions required deep knowledge of each version\'s breaking changes, deprecated features, and behavioral differences. The frontend layer — built on Smarty .tpl templates tightly coupled to legacy PHP logic — demanded a parallel modernization effort rather than a simple template swap. Key challenges included identifying and resolving incompatibilities across a large legacy codebase, rebuilding core business logic that had degraded over years of incremental patches, ensuring platform stability for a global customer base throughout the transition, updating third-party dependencies to compatible versions, and thoroughly validating functionality after each migration stage.',
+    mistressRocksLearnings: 'This project reinforced expertise in PHP version migrations, legacy codebase modernization across both backend and presentation layers, and the discipline required to execute high-stakes production changes safely. It deepened my understanding of PHP internals across versions, Smarty-based frontend architectures, and validated my ability to independently own and deliver a critical full-stack infrastructure project end-to-end.',
 
     // Air George Project
     airGeorgeTitle: 'Air George: Automotive Technical Service Landing Page',
@@ -187,7 +187,7 @@ export const translations = {
     getInTouchBtn: 'Get in touch',
     
     // Footer
-    footerDescription: 'A passionate full-stack developer who thrives on learning and building innovative digital solutions.',
+    footerDescription: 'Full-stack developer with production experience in international teams, building software and AI-driven solutions.',
     footerNavigation: 'Navigation',
     footerHome: 'Home',
     footerProjects: 'Projects',
@@ -203,6 +203,7 @@ export const translations = {
     // CV/Resume
     downloadCV: 'Download CV',
     downloadResume: 'Download Resume',
+    resumeTooltip: 'Resume',
     cvFileName: 'CV_Alejo_Feas_Matej_EN.pdf',
   },
   es: {
@@ -218,34 +219,34 @@ export const translations = {
     hiIm: 'Hola, soy',
     buildingFuture: 'Construyendo el futuro.',
     passionate: 'Apasionado',
-    about_desc: 'por crear experiencias digitales excepcionales con tecnologías modernas.',
+    about_desc: 'por construir software en producción con tecnologías modernas e IA aplicada.',
     building: 'Construyendo',
     innovative: 'innovadoras',
-    solutions: 'soluciones a través de código limpio y aprendizaje continuo',
+    solutions: 'soluciones con modernización legacy, código limpio y confiable',
     exploreMore: 'Explorar Más',
     
     // About Section
     aboutMe: 'Acerca de Mí',
     getToKnowMe: 'Conóceme Mejor',
-    getToKnowDesc: 'Desarrollador apasionado con amor por crear',
+    getToKnowDesc: 'Desarrollador full-stack enfocado en crear',
     meaningful: 'significativas',
     digitalExperiences: 'experiencias digitales',
     whoIAm: 'Quién Soy',
     fullStackDeveloper: 'Desarrollador Full Stack',
     whoIAmDesc: 'Soy un',
-    whoIAmDesc2: 'apasionado con base sólida en tecnologías web modernas. Me encanta convertir problemas en soluciones elegantes e intuitivas.',
-    seekingOpportunity: 'Actualmente Desarrollador Full-Stack Jr. en House of CB (marca de moda de Londres). Enfocado en desarrollo backend de su e-commerce global.',
-    currentlyLearning: 'Aprendiendo Actualmente',
-    expandingKnowledge: 'Expandiendo mis conocimientos en',
-    cloudTech: 'tecnologías en la nube',
-    microservices: 'arquitectura de microservicios',
-    databaseOpt: 'optimización avanzada de bases de datos',
-    stayingCurrent: 'para mantenerme actualizado con las tendencias de la industria',
+    whoIAmDesc2: 'con experiencia real en producción en equipos internacionales y entornos de alto tráfico. Transformo sistemas legacy complejos en soluciones seguras, escalables y confiables.',
+    seekingOpportunity: 'Desarrollador Full-Stack en House of CB, con foco backend en e-commerce global. También desarrollo soluciones full-stack e IA de forma independiente.',
+    currentlyLearning: 'Enfoque Actual',
+    expandingKnowledge: 'Enfocado en',
+    cloudTech: 'IA aplicada y LLMs',
+    microservices: 'agentes autónomos',
+    databaseOpt: 'modernización de sistemas legacy',
+    stayingCurrent: 'para entregar soluciones listas para producción',
     whatIBest: 'Lo Que Hago Mejor',
-    fullStackWeb: 'Desarrollo web full-stack con frameworks modernos',
+    fullStackWeb: 'Desarrollo full-stack y modernización de sistemas legacy',
     databaseDesign: 'Diseño y optimización de bases de datos',
     apiDev: 'Desarrollo e integración de APIs',
-    uiUx: 'Implementación de UI/UX con atención al detalle',
+    uiUx: 'Integración de IA y automatización de procesos en producción',
     
     // Projects Section
     selectedWork: 'Trabajos Seleccionados',
@@ -304,12 +305,12 @@ export const translations = {
     houseOfCbLearnings: 'Esta experiencia profundizó mi expertise en modernización de backends en producción, estrategias de migración de sistemas legacy y arquitectura de automatización impulsada por IA para flujos de trabajo reales. Trabajar en una plataforma internacional de alto tráfico reforzó la importancia crítica del rendimiento, la seguridad y las decisiones arquitectónicas a escala. Colaborar con un equipo global validó mi capacidad de entregar ingeniería a nivel producción en un entorno profesional y dinámico.',
     
     // Mistress Rocks Project
-    mistressRocksTitle: 'Mistress Rocks: Migración y Optimización de Backend',
-    mistressRocksDesc: 'Migración completa del backend de un e-commerce de moda internacional de PHP 7.2 a PHP 8.5 por seguridad y rendimiento.',
-    mistressRocksDetailDesc: 'Mistress Rocks es una marca de moda internacional con sede en Hong Kong y una base de clientes global, reconocida por sus piezas icónicas que han aparecido en revistas de renombre y en celebrities de todo el mundo. Fui el único responsable de la migración completa del backend de la plataforma de PHP 7.2 a PHP 8.5 — una tarea crítica motivada por vulnerabilidades de seguridad y el fin del soporte de la versión legacy. La migración abarcó todo el codebase: actualización de sintaxis deprecada, resolución de breaking changes entre versiones de PHP, modernización de dependencias y validación completa de estabilidad post-migración. La plataforma ahora corre sobre una versión de PHP segura, soportada y performante. También brindo soporte de mantenimiento ocasional, atendiendo cualquier inconveniente que pueda surgir cuando sea necesario.',
-    mistressRocksFeatures: ['Migración Completa PHP 7.2 → PHP 8.5', 'Remediación de Vulnerabilidades de Seguridad', 'Resolución de Sintaxis Deprecada y Breaking Changes', 'Modernización de Dependencias', 'Validación de Estabilidad Post-Migración', 'QA y Testing Post-Migración', 'Plataforma E-commerce Internacional', 'Soporte de Mantenimiento Ocasional'],
-    mistressRocksChallenges: 'Migrar una plataforma e-commerce internacional en vivo a través de múltiples versiones mayores de PHP requirió un conocimiento profundo de los breaking changes, features deprecadas y diferencias de comportamiento entre versiones. Los desafíos clave incluyeron identificar y resolver incompatibilidades en un codebase legacy extenso, garantizar la estabilidad de la plataforma para una base de clientes global durante la transición, actualizar dependencias de terceros a versiones compatibles y validar exhaustivamente la funcionalidad tras cada etapa de la migración.',
-    mistressRocksLearnings: 'Este proyecto reforzó mi expertise en migraciones de versiones PHP, modernización de codebases legacy y la disciplina necesaria para ejecutar cambios críticos en producción de forma segura. Profundizó mi comprensión de los internos de PHP entre versiones y validó mi capacidad de apropiarse y entregar de forma independiente un proyecto de infraestructura crítica de principio a fin.',
+    mistressRocksTitle: 'Mistress Rocks: Migración Full-Stack y Modernización de Plataforma',
+    mistressRocksDesc: 'Modernización full-stack de un e-commerce de moda internacional — migración de backend de PHP 7.2 a 8.5 y transición del frontend desde templates Smarty legacy.',
+    mistressRocksDetailDesc: 'Mistress Rocks es una marca de moda internacional con sede en Hong Kong y una base de clientes global, reconocida por sus piezas icónicas que han aparecido en revistas de renombre y en celebrities de todo el mundo. Fui el único responsable de la migración completa de la plataforma: actualización del backend de PHP 7.2 a PHP 8.5 y modernización del frontend originalmente construido con archivos de template Smarty (.tpl). El codebase legacy requirió reescrituras extensas de lógica en ambas capas — patrones obsoletos, sintaxis deprecada y deuda técnica acumulada hicieron imposible una simple actualización de versión. El trabajo abarcó la resolución de breaking changes entre versiones de PHP, modernización de dependencias, reestructuración de la lógica de presentación del frontend y validación completa de estabilidad para una base de clientes global post-migración. La plataforma ahora corre sobre un stack seguro, soportado y performante. También brindo soporte de mantenimiento ocasional cuando sea necesario.',
+    mistressRocksFeatures: ['Migración Completa PHP 7.2 → PHP 8.5', 'Modernización de Frontend desde Templates Smarty', 'Reescritura y Refactorización de Lógica Legacy', 'Remediación de Vulnerabilidades de Seguridad', 'Resolución de Sintaxis Deprecada y Breaking Changes', 'Modernización de Dependencias', 'Validación de Estabilidad Post-Migración', 'QA y Testing Post-Migración', 'Plataforma E-commerce Internacional', 'Soporte de Mantenimiento Ocasional'],
+    mistressRocksChallenges: 'Migrar una plataforma e-commerce internacional en vivo a través de múltiples versiones mayores de PHP requirió un conocimiento profundo de los breaking changes, features deprecadas y diferencias de comportamiento entre versiones. La capa frontend — construida sobre templates Smarty .tpl fuertemente acoplados a lógica PHP legacy — demandó un esfuerzo de modernización paralelo en lugar de un simple reemplazo de templates. Los desafíos clave incluyeron identificar y resolver incompatibilidades en un codebase legacy extenso, reconstruir lógica de negocio central que se había degradado tras años de parches incrementales, garantizar la estabilidad de la plataforma para una base de clientes global durante la transición, actualizar dependencias de terceros a versiones compatibles y validar exhaustivamente la funcionalidad tras cada etapa de la migración.',
+    mistressRocksLearnings: 'Este proyecto reforzó mi expertise en migraciones de versiones PHP, modernización de codebases legacy en capas de backend y presentación, y la disciplina necesaria para ejecutar cambios críticos en producción de forma segura. Profundizó mi comprensión de los internos de PHP entre versiones, arquitecturas frontend basadas en Smarty, y validó mi capacidad de apropiarse y entregar de forma independiente un proyecto de infraestructura full-stack crítico de principio a fin.',
 
     // Air George Project
     airGeorgeTitle: 'Air George: Landing Page de Servicio Técnico Automotor',
@@ -393,7 +394,7 @@ export const translations = {
     getInTouchBtn: 'Ponte en contacto',
     
     // Footer
-    footerDescription: 'Un apasionado desarrollador full-stack que prospera aprendiendo y construyendo soluciones digitales innovadoras.',
+    footerDescription: 'Desarrollador full-stack con experiencia en producción en equipos internacionales, construyendo software y soluciones impulsadas por IA.',
     footerNavigation: 'Navegación',
     footerHome: 'Inicio',
     footerProjects: 'Proyectos',
@@ -409,6 +410,7 @@ export const translations = {
     // CV/Resume
     downloadCV: 'Descargar CV',
     downloadResume: 'Descargar Currículum',
+    resumeTooltip: 'Currículum',
     cvFileName: 'CV_Alejo_Feas_Matej_ES.pdf',
   }
 };

@@ -332,6 +332,24 @@ export const getProjects = (t) => projectsRaw.map(p => ({ ...p, title: t(p.title
 
 **No duplicar** esta información en otros archivos. Un solo origen.
 
+#### Flags opcionales en proyectos
+
+- `isPrivate?: boolean` — oculta repos en la UI cuando corresponde
+- `demoUnavailable?: boolean` — muestra el modal "Demo Unavailable" al clickear Live Demo (ej: PayTo con backend offline). **No hardcodear por `projectId`**.
+
+### CV / Resume (`public/resume/`)
+
+- Fuentes editables: `CV_Alejo_Feas_Matej_EN.html` y `CV_Alejo_Feas_Matej_ES.html`
+- PDFs generados: mismos nombres con extensión `.pdf` (los sirve el Hero / DownloadCV)
+- Regenerar tras editar HTML:
+
+```bash
+npm run resume:setup   # solo la primera vez (instala Chromium para Playwright)
+npm run resume         # genera ambos PDF
+```
+
+- Tooltip del ícono Resume en Hero: key `resumeTooltip` en `translations.ts` (EN: Resume / ES: Currículum)
+
 ### Patrón datos + traducciones
 
 1. Los datos RAW tienen **keys de traducción**, no texto directo
@@ -400,16 +418,39 @@ Ver `typography-system.md` para el sistema completo de headings.
 Componente global en el root layout. Maneja dos comportamientos:
 
 1. **F5 / recarga** → siempre va al top (`window.history.scrollRestoration = 'manual'` + `window.scrollTo(0, 0)`)
-2. **Back button desde project detail** → va directo a `#projects` sin scroll animado
+2. **Back button desde project detail** → navega a `/` con `router.push('/')` (no `router.back()`) y scroll instantáneo a `#projects` vía `sessionStorage`
 
 ### Patrón Back Button con scroll a sección
 
 ```typescript
-// En BackButton — guardar target antes de navegar
+// En BackButton — guardar target y navegar explícito a home (evita historial sucio por #hash)
 const handleClick = () => {
-  if (scrollToId) sessionStorage.setItem('scrollTo', scrollToId);
+  if (scrollToId) {
+    sessionStorage.setItem('scrollTo', scrollToId);
+    router.push('/');
+    return;
+  }
   router.back();
 };
+```
+
+**Por qué no `router.back()` en project detail:** los links internos de sección no deben usar `#hash` (ensucian URL e historial). El back debe ser predecible: siempre volver a Projects en home.
+
+### Navegación por secciones en Project Detail
+
+**No usar** `<Link href="#overview">` ni similares. Usar botones + scroll programático:
+
+```typescript
+const scrollToSection = (sectionId: string) => {
+  document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+};
+
+<button type="button" onClick={() => scrollToSection('overview')} className={sectionNavClassName}>
+  {t('overview')}
+</button>
+```
+
+Los `id` en las secciones del contenido se mantienen (`overview`, `features`, etc.) solo como anchors de scroll, no en la URL.
 
 // En ScrollManager — leer y aplicar después del render
 useEffect(() => {
@@ -659,6 +700,18 @@ img.src = src;
 - Loaders para transiciones de página si los datos son síncronos
 - `filter: blur()` en animaciones de entrada
 
+### Dependencias y seguridad
+
+Next.js puede arrastrar `postcss < 8.5.10` como dependencia anidada. **No usar** `npm audit fix --force` (baja Next a versiones rotas). Usar override en `package.json`:
+
+```json
+"overrides": {
+  "postcss": "^8.5.10"
+}
+```
+
+Luego `npm install` y verificar con `npm audit`.
+
 ---
 
 ## 📚 Guía para Descripciones de Proyectos
@@ -698,7 +751,11 @@ Antes de cualquier cambio, verificar:
 - [ ] ¿Tiene tipos? → `app/types/`
 - [ ] ¿Usa los tokens de estilo correctos? → Ver sección "Estilos Base"
 - [ ] ¿Los botones siguen el patrón `CarouselNavButton`? → `rounded-full`, gradients, `backdrop-blur-sm`
-- [ ] ¿El scroll programático está en `useEffect`? → No en `onClick`
+- [ ] ¿El scroll programático está en `useEffect`? → No en `onClick` (excepto nav interna de project detail con `scrollToSection`)
+- [ ] ¿Links de sección en project detail usan botones, no `#hash`? → No ensuciar URL/historial
+- [ ] ¿Back desde project detail usa `router.push('/')` + `scrollToId`? → No `router.back()` cuando hay `scrollToId`
+- [ ] ¿Demo offline usa `demoUnavailable` en `projects.ts`? → No hardcodear `projectId`
+- [ ] ¿Editaste CV HTML? → Correr `npm run resume` para regenerar PDFs
 - [ ] ¿Se exporta desde `index.ts` solo si se usa? → No dead exports
 - [ ] ¿Usa `<Image>` de Next.js? → No `<img>`
 - [ ] ¿Sin `filter: blur()` en animaciones? → Performance
@@ -707,5 +764,5 @@ Antes de cualquier cambio, verificar:
 
 ---
 
-**Última actualización**: Junio 2025
+**Última actualización**: Julio 2026
 **Versión del Proyecto**: 2.0

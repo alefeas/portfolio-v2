@@ -8,6 +8,13 @@ import { getProjects } from '@/app/constants/projects';
 import BackButton from '@/app/components/ui/BackButton';
 import Link from 'next/link';
 
+const scrollToSection = (sectionId: string) => {
+  document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
+};
+
+const sectionNavClassName =
+  'block w-full text-left text-sm text-white/60 hover:text-white transition-colors cursor-pointer';
+
 function ProjectDetailContent() {
   const params = useParams();
   const projectId = parseInt(params.id as string);
@@ -78,16 +85,28 @@ function ProjectDetailContent() {
             <div className="sticky top-32 space-y-2 mt-8 max-h-[calc(100vh-200px)] overflow-y-scroll pr-2">
               <h3 className="text-sm font-semibold text-white mb-4">{t('sections') || 'Sections'}</h3>
               <nav className="space-y-1">
-                <Link href="#overview" className="block text-sm text-white/60 hover:text-white transition-colors">{t('overview') || 'Overview'}</Link>
+                <button type="button" onClick={() => scrollToSection('overview')} className={sectionNavClassName}>
+                  {t('overview') || 'Overview'}
+                </button>
                 {(safeProject.features as string[]).length > 0 && (
-                  <Link href="#features" className="block text-sm text-white/60 hover:text-white transition-colors">{t('keyFeatures') || 'Key Features'}</Link>
+                  <button type="button" onClick={() => scrollToSection('features')} className={sectionNavClassName}>
+                    {t('keyFeatures') || 'Key Features'}
+                  </button>
                 )}
-                <Link href="#challenges" className="block text-sm text-white/60 hover:text-white transition-colors">{t('challengesSolutions') || 'Challenges'}</Link>
-                <Link href="#learnings" className="block text-sm text-white/60 hover:text-white transition-colors">{t('whatILearned') || 'What I Learned'}</Link>
+                <button type="button" onClick={() => scrollToSection('challenges')} className={sectionNavClassName}>
+                  {t('challengesSolutions') || 'Challenges'}
+                </button>
+                <button type="button" onClick={() => scrollToSection('learnings')} className={sectionNavClassName}>
+                  {t('whatILearned') || 'What I Learned'}
+                </button>
                 {(safeProject.github || safeProject.githubFrontend || safeProject.demo) && (
-                  <Link href="#repositories" className="block text-sm text-white/60 hover:text-white transition-colors">{t('repositories') || 'Repositories'}</Link>
+                  <button type="button" onClick={() => scrollToSection('repositories')} className={sectionNavClassName}>
+                    {t('repositories') || 'Repositories'}
+                  </button>
                 )}
-                <Link href="#tech" className="block text-sm text-white/60 hover:text-white transition-colors">{t('builtWith') || 'Built With'}</Link>
+                <button type="button" onClick={() => scrollToSection('tech')} className={sectionNavClassName}>
+                  {t('builtWith') || 'Built With'}
+                </button>
               </nav>
             </div>
           </aside>
@@ -161,7 +180,7 @@ function ProjectDetailContent() {
                   subtitle={t('viewLiveApplication') as string}
                   icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>}
                   onClick={() => {
-                    if (projectId === 2) {
+                    if (safeProject.demoUnavailable) {
                       setShowDemoModal(true);
                     } else {
                       window.open(safeProject.demo, '_blank');

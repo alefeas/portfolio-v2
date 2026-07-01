@@ -10,6 +10,8 @@ export default function BackButton({ scrollToId, title = "Back" }: BackButtonPro
   const handleClick = () => {
     if (scrollToId) {
       sessionStorage.setItem('scrollTo', scrollToId);
+      router.push('/');
+      return;
     }
     router.back();
   };

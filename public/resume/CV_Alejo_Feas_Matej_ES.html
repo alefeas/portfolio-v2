@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --dark-grey: #333333;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.5;
+            color: var(--dark-grey);
+            margin: 0;
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            color: var(--black);
+        }
+        .contact-info {
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+        
+        h2 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--black);
+        }
+        
+        .summary {
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            color: var(--dark-grey);
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        .item-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--black);
+        }
+        .item-subtitle {
+            font-size: 14px;
+            color: var(--dark-grey);
+        }
+        .item-date {
+            font-size: 14px;
+            color: var(--dark-grey);
+            white-space: nowrap;
+            margin-left: 16px;
+        }
+
+        .exp-list {
+            font-size: 14px;
+            margin: 8px 0 20px 0;
+            padding-left: 18px;
+        }
+        .exp-list li {
+            margin-bottom: 5px;
+        }
+
+        .skills-section {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .skills-section strong {
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        @media print {
+            body { padding: 0; }
+            @page { margin: 1.5cm; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Alejo Feas Matej</h1>
+    <div class="contact-info">
+        Villa Devoto, CABA • +54 11 6628-2804 •
+        <a href="mailto:alefeas99@gmail.com">alefeas99@gmail.com</a> •
+        <a href="https://linkedin.com/in/afeas" target="_blank">LinkedIn</a> •
+        <a href="https://afeas.vercel.app" target="_blank">Portfolio</a> •
+        <a href="https://github.com/alefeas" target="_blank">GitHub</a>
+    </div>
+
+    <h2>Desarrollador Full-Stack · Integración de IA y Sistemas Legacy</h2>
+
+    <div class="summary">
+        Desarrollador Full-Stack con experiencia en equipos internacionales y entrega independiente de software para empresas. Técnico Universitario en Programación (UTN). Especializado en modernización legacy, migraciones de infraestructura e integración de IA para automatizar procesos y entregar soluciones para producción con foco en seguridad y rendimiento a escala.
+    </div>
+
+    <h3>EXPERIENCIA</h3>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Full-Stack Developer</div>
+            <div class="item-subtitle">House of CB – Marca británica de moda femenina de lujo</div>
+        </div>
+        <div class="item-date">Feb 2026 – Presente</div>
+    </div>
+    <ul class="exp-list">
+        <li>Desarrollo backend en e-commerce internacional de alto tráfico (PHP, MySQL, Docker, AWS) en equipo global.</li>
+        <li>Lideré migración PHP 7.2 → 8.5 de House of CB y Mistress Rocks (marca secundaria), incluyendo modernización full-stack legacy y refactorización de lógica de negocio.</li>
+        <li>Diseñé e integré soluciones con IA y agentes autónomos para automatizar flujos internos.</li>
+    </ul>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Founder & Full-Stack Developer</div>
+            <div class="item-subtitle">AFM · Estudio Independiente de Software e IA</div>
+        </div>
+        <div class="item-date">May 2025 – Presente</div>
+    </div>
+    <ul class="exp-list">
+        <li>Entrega end-to-end de una plataforma de gestión financiera en producción para empresas — desarrollo full-stack e integración de IA.</li>
+    </ul>
+
+    <h3>EDUCACIÓN</h3>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Tecnicatura Universitaria en Programación</div>
+            <div class="item-subtitle">Universidad Tecnológica Nacional</div>
+        </div>
+        <div class="item-date">2024 – 2025</div>
+    </div>
+
+    <div class="item">
+        <div>
+            <div class="item-title">Desarrollo Web Full-Stack</div>
+            <div class="item-subtitle">Coderhouse</div>
+        </div>
+        <div class="item-date">2022 – 2023</div>
+    </div>
+
+    <div class="item" style="margin-bottom: 25px;">
+        <div>
+            <div class="item-title">Nivel Secundario</div>
+            <div class="item-subtitle">Instituto Cardenal Copello</div>
+        </div>
+        <div class="item-date">2016 – 2020</div>
+    </div>
+
+    <h3>SKILLS</h3>
+    <div class="skills-section">
+        <div><strong>Backend:</strong> ASP.NET Core, C# / .NET, PHP, Laravel, Node.js</div>
+        <div><strong>Base de datos:</strong> SQL (Oracle PL/SQL, SQL Server, MySQL)</div>
+        <div><strong>Frontend:</strong> HTML, Tailwind CSS, React.js / Next.js, TypeScript / JavaScript</div>
+        <div><strong>IA y Automatización:</strong> LLMs, Agentes IA, Prompt Engineering, Automatización de Procesos</div>
+        <div><strong>Herramientas:</strong> Docker, Kubernetes, AWS, Git / GitHub, Supabase</div>
+        <div><strong>Idiomas:</strong> Español Nativo, Inglés B2 - Intermedio Avanzado</div>
+        <div><strong>Metodologías:</strong> Scrum</div>
+    </div>
+
+</body>
+</html>

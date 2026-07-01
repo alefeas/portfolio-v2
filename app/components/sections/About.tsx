@@ -29,7 +29,7 @@ export default function About() {
               src="/profile_result.avif"
               alt="Profile"
               fill
-              quality={100}
+              quality={95}
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 400px"
             />
@@ -41,7 +41,7 @@ export default function About() {
               src="/profile_result.avif"
               alt="Profile"
               fill
-              quality={100}
+              quality={95}
               className="object-cover"
               sizes="400px"
             />
