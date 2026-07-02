@@ -21,6 +21,7 @@ export interface ProjectRaw {
   images: string[];
   isPrivate?: boolean;
   demoUnavailable?: boolean;
+  githubLabelKey?: TranslationKey;
 }
 
 export type ProjectDetail = {
@@ -43,4 +44,5 @@ export type ProjectDetail = {
   heroImage?: string;
   images?: string[];
   demoUnavailable?: boolean;
+  githubLabelKey?: TranslationKey;
 };
