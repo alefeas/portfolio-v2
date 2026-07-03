@@ -18,7 +18,7 @@ export default function SectionHeader({
       <div className="mb-8">
         <div className="flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300">
           {icon}
-          <h1 className="text-sm font-semibold tracking-wide max-sm:text-xs">{badgeText}</h1>
+          <span className="text-sm font-semibold tracking-wide max-sm:text-xs">{badgeText}</span>
         </div>
       </div>
 

@@ -18,7 +18,12 @@ export default function Hero() {
 
   const getHeroTooltipLabel = (key: string) => {
     if (key === 'Resume') return t('resumeTooltip') as string;
-    return key.charAt(0).toUpperCase() + key.slice(1);
+    const labels: Record<string, string> = {
+      Github: 'GitHub',
+      LinkedIn: 'LinkedIn',
+      Email: 'Email',
+    };
+    return labels[key] ?? key;
   };
 
   return (
@@ -96,7 +101,7 @@ export default function Hero() {
                     {item.icon === 'resume' && <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>}
                     {item.icon === 'email' && <path d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"/>}
                   </svg>}
-                  label={item.key}
+                  label={getHeroTooltipLabel(item.key)}
                   href={item.href}
                   target={item.target}
                   onMouseEnter={() => setHoveredButton(item.key)}

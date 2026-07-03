@@ -40,7 +40,7 @@ export default function Projects() {
         {paginated.map((project) => (
           <Link
             key={project.id}
-            href={`/projects/${project.id}`}
+            href={`/projects/${project.slug}`}
             className="group cursor-pointer space-y-6 block"
           >
             {/* Project Image */}
@@ -74,9 +74,9 @@ export default function Projects() {
                     : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
                 }`}>{project.status}</span>
               </div>
-              <h4 className="text-lg md:text-xl font-semibold leading-[1.25] text-white">
+              <h3 className="text-lg md:text-xl font-semibold leading-[1.25] text-white">
                 {project.title}
-              </h4>
+              </h3>
               <p className="text-xs md:text-sm text-slate-400 line-clamp-2">
                 {project.description}
               </p>

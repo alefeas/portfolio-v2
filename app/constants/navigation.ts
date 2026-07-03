@@ -1,14 +1,15 @@
 import { NavLink } from '@/app/types';
+import { SOCIAL_LINKS } from '@/app/lib/site';
 
 export const heroNavLinks: NavLink[] = [
   { 
     key: 'Github', 
-    href: 'https://github.com/alefeas', 
+    href: SOCIAL_LINKS.github, 
     icon: 'github' 
   },
   { 
     key: 'LinkedIn', 
-    href: 'https://www.linkedin.com/in/afeas/', 
+    href: SOCIAL_LINKS.linkedin, 
     icon: 'linkedin' 
   },
   { 
@@ -19,7 +20,7 @@ export const heroNavLinks: NavLink[] = [
   },
   { 
     key: 'Email', 
-    href: 'mailto:alefeas99@gmail.com', 
+    href: SOCIAL_LINKS.email, 
     icon: 'email' 
   }
 ];

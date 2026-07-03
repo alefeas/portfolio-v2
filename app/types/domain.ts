@@ -4,6 +4,7 @@ import type { TranslationKey } from '@/app/lib/translations';
 
 export interface ProjectRaw {
   id: number;
+  slug: string;
   titleKey: TranslationKey;
   descriptionKey: TranslationKey;
   detailedDescriptionKey: TranslationKey;
@@ -26,6 +27,7 @@ export interface ProjectRaw {
 
 export type ProjectDetail = {
   id: number;
+  slug: string;
   title: string;
   description: string;
   detailedDescription: string;

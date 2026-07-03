@@ -17,12 +17,15 @@ const sectionNavClassName =
 
 function ProjectDetailContent() {
   const params = useParams();
-  const projectId = parseInt(params.id as string);
+  const projectSlug = params.slug as string;
   const [showDemoModal, setShowDemoModal] = useState(false);
   const { t } = useTranslation();
   
   const projects = useMemo(() => getProjects(t), [t]);
-  const project = useMemo(() => projects.find(p => p.id === projectId), [projects, projectId]);
+  const project = useMemo(
+    () => projects.find((p) => p.slug === projectSlug),
+    [projects, projectSlug]
+  );
 
   const allImages = useMemo(() => {
     if (!project) return [];
@@ -83,8 +86,8 @@ function ProjectDetailContent() {
           {/* Right: Section Navigator */}
           <aside className="hidden lg:block w-48 flex-shrink-0 order-2">
             <div className="sticky top-32 space-y-2 mt-8 max-h-[calc(100vh-200px)] overflow-y-scroll pr-2">
-              <h3 className="text-sm font-semibold text-white mb-4">{t('sections') || 'Sections'}</h3>
-              <nav className="space-y-1">
+              <p id="project-sections-label" className="text-sm font-semibold text-white mb-4">{t('sections') || 'Sections'}</p>
+              <nav aria-labelledby="project-sections-label" className="space-y-1">
                 <button type="button" onClick={() => scrollToSection('overview')} className={sectionNavClassName}>
                   {t('overview') || 'Overview'}
                 </button>

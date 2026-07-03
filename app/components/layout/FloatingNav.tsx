@@ -32,13 +32,15 @@ export default function FloatingNav() {
   }, []);
 
   return (
-    <div className="hidden md:fixed md:top-6 md:left-1/2 z-40 md:transform md:-translate-x-1/2 md:flex md:items-center">
+    <nav aria-label="Section navigation" className="hidden md:fixed md:top-6 md:left-1/2 z-40 md:transform md:-translate-x-1/2 md:flex md:items-center">
       <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 rounded-full shadow-2xl">
         {floatingNavItems.map((item, index) => (
           <li key={item.id} className="relative">
             <Tooltip label={item.label} isVisible={hoveredIndex === index}>
               <button
+                type="button"
                 onClick={() => scrollToSection(item.id)}
+                aria-label={`Go to ${item.label}`}
                 className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -56,6 +58,6 @@ export default function FloatingNav() {
           </li>
         ))}
       </ul>
-    </div>
+    </nav>
   );
 }
