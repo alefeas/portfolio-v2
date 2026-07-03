@@ -101,7 +101,6 @@ export const projectsRaw: ProjectRaw[] = [
       '/projects/dashboard/screenshot-3_result.avif',
       '/projects/dashboard/screenshot-4_result.avif',
       '/projects/dashboard/screenshot-5_result.avif',
-      '/projects/dashboard/screenshot-6_result.avif',
     ],
     isPrivate: true,
   },
