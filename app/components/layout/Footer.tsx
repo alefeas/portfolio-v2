@@ -5,6 +5,7 @@ import { useTranslation } from '@/app/hooks/useTranslation';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { SOCIAL_LINKS } from '@/app/lib/site';
+import { setScrollTarget } from '@/app/lib/sectionNavigation';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -86,7 +87,7 @@ export default function Footer() {
     if (pathname === '/') {
       document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     } else {
-      sessionStorage.setItem('scrollTo', id);
+      setScrollTarget(id);
       router.push('/');
     }
   }, [pathname, router]);

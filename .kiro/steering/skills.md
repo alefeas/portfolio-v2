@@ -517,6 +517,21 @@ const scrollToSection = useCallback((id: string) => {
 
 El `ScrollManager` ya lee `sessionStorage` al llegar a `/`, así que no requiere cambios adicionales.
 
+### Links externos desde otra app (AFM, LinkedIn, CV, etc.)
+
+**No usar** `/#projects` ni `?section=projects` — el portfolio no navega por hash y el `ScrollManager` fuerza top en recarga.
+
+Usar la ruta dedicada `/go/[section]`, que replica el mismo flujo interno (`sessionStorage` + `router.replace('/')`):
+
+```
+https://afeas.vercel.app/go/projects
+https://afeas.vercel.app/go/contact
+```
+
+Secciones válidas: `hero`, `projects`, `tech-stack`, `about`, `contact` (ver `floatingNavItems`).
+
+Implementación: `app/go/[section]/page.tsx` + helper `app/lib/sectionNavigation.ts` (`buildSectionUrl` para generar el link desde otras apps).
+
 ### Scroll programático dentro de la misma página
 
 Cuando un cambio de estado requiere scroll (ej: cambio de página en paginación), usar `useEffect` para que ocurra **después del render**, no en el `onClick`:

@@ -39,7 +39,7 @@ function ProjectDetailContent() {
       <div className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center">
           <h1 className="text-4xl font-semibold text-white mb-4">{t('projectNotFound')}</h1>
-          <Link href="/#projects" className="text-green-400 hover:text-green-300">
+          <Link href="/go/projects" className="text-green-400 hover:text-green-300">
             {t('backToProjects')}
           </Link>
         </div>

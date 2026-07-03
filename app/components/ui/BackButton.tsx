@@ -3,13 +3,14 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { BackButtonProps } from '@/app/types';
+import { setScrollTarget } from '@/app/lib/sectionNavigation';
 
 export default function BackButton({ scrollToId, title = "Back" }: BackButtonProps & { scrollToId?: string }) {
   const router = useRouter();
 
   const handleClick = () => {
     if (scrollToId) {
-      sessionStorage.setItem('scrollTo', scrollToId);
+      setScrollTarget(scrollToId);
       router.push('/');
       return;
     }
