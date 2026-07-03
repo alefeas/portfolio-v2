@@ -56,13 +56,13 @@ To change the font weight for all headings globally:
 ## Components Using Typography System
 
 ### Headings (Semibold - 600)
-- `SectionHeader.tsx` - Uses `.heading-2`
+- `SectionHeader.tsx` - Badge en `<span>`, título de sección en `.heading-2` (`<h2>`)
 - `About.tsx` - Uses `.heading-4` and `.heading-5`
 - `TechStack.tsx` - Uses `.heading-4`
 - `Contact.tsx` - Uses `.heading-3`, `.heading-5`, `.heading-6`
-- `Projects.tsx` - Uses `.heading-3`
+- `Projects.tsx` - Títulos de cards en `<h3>` (clases Tailwind, no `.heading-3`)
 - `Footer.tsx` - Uses `font-semibold`
-- `[id]/page.tsx` - Uses `font-semibold`
+- `[slug]/page.tsx` - Uses `font-semibold`
 
 ### Interactive Components (Regular - 400)
 - `Button.tsx` - Uses `font-normal`
@@ -90,6 +90,6 @@ Use for paragraphs, descriptions, and general content. Configured globally in `g
 Some components still use inline `font-semibold` classes. These can be migrated to semantic classes for better maintainability:
 
 - `Footer.tsx` - h3 and h4 tags
-- `[id]/page.tsx` - h1 and h2 tags
+- `[slug]/page.tsx` - h1 and h2 tags
 
 To migrate, replace `font-semibold` with the appropriate heading class.

@@ -7,16 +7,22 @@ import { TranslationKey } from '@/app/lib/translations';
 import { contactLinks } from '@/app/constants/contact';
 import { SectionHeader, Card, StatusDot, Input, Toast } from '@/app/components/ui';
 import Link from 'next/link';
+import { isValidEmail } from '@/app/lib/validation';
 
 export default function Contact() {
   const { t, ts } = useTranslation();
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [emailError, setEmailError] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+
+    if (name === 'email' && emailError) {
+      setEmailError('');
+    }
     
     if (name === 'message') {
       const remaining = 500 - value.length;
@@ -27,13 +33,20 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setSubmitStatus('idle');
+
+    if (!isValidEmail(formData.email)) {
+      setEmailError(ts('invalidEmail'));
+      return;
+    }
+
+    setEmailError('');
+    setIsSubmitting(true);
 
     try {
       const response = await fetch('https://formspree.io/f/mqajzrzo', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify(formData)
       });
 
@@ -41,7 +54,13 @@ export default function Contact() {
         setSubmitStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setSubmitStatus('error');
+        const data = await response.json().catch(() => null) as { errors?: { field?: string }[] } | null;
+        const hasEmailError = data?.errors?.some((err) => err.field === 'email');
+        if (hasEmailError) {
+          setEmailError(ts('invalidEmail'));
+        } else {
+          setSubmitStatus('error');
+        }
       }
     } catch {
       setSubmitStatus('error');
@@ -159,16 +178,23 @@ export default function Contact() {
                 placeholder={ts('yourName')}
                 label={ts('nameLabel')}
               />
-              <Input
-                type="email"
-                name="email"
-                maxLength={100}
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder={ts('yourEmail')}
-                label={ts('emailLabel')}
-              />
+              <div>
+                <Input
+                  type="email"
+                  name="email"
+                  maxLength={100}
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  placeholder={ts('yourEmail')}
+                  label={ts('emailLabel')}
+                  pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
+                  title={ts('invalidEmail')}
+                />
+                {emailError && (
+                  <p className="text-sm text-red-400 mt-2 ml-1">{emailError}</p>
+                )}
+              </div>
             </div>
             
             <Input

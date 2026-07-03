@@ -19,8 +19,11 @@ Este documento detalla las prácticas, patrones y convenciones utilizadas en est
 11. [Patrones de Código](#patrones-de-código)
 12. [Convenciones de Nombres](#convenciones-de-nombres)
 13. [Flujo de Datos](#flujo-de-datos)
-14. [Performance](#performance)
-15. [Guía para Descripciones de Proyectos](#guía-para-descripciones-de-proyectos)
+14. [SEO](#seo)
+15. [Accesibilidad](#accesibilidad)
+16. [Formulario de Contacto](#formulario-de-contacto)
+17. [Performance](#performance)
+18. [Guía para Descripciones de Proyectos](#guía-para-descripciones-de-proyectos)
 
 ---
 
@@ -35,15 +38,17 @@ app/
 ├── constants/           # Datos estáticos (navigation, projects, contact, etc.)
 ├── contexts/            # React Contexts (LanguageContext)
 ├── hooks/               # Custom hooks (useTranslation)
-├── lib/                 # Utilidades (translations, animations)
+├── lib/                 # Utilidades (translations, animations, site, validation)
 ├── types/               # Definiciones de tipos TypeScript
 ├── projects/
-│   ├── [id]/
-│   │   ├── layout.tsx   # Metadata dinámica por proyecto
+│   ├── [slug]/
+│   │   ├── layout.tsx   # Metadata dinámica + generateStaticParams
 │   │   └── page.tsx     # Detalle de proyecto
 │   └── layout.tsx
-├── layout.tsx           # Root layout con providers
-├── page.tsx             # Página principal
+├── layout.tsx           # Root layout con providers, metadata SEO, JSON-LD
+├── page.tsx             # Página principal (metadata propia)
+├── robots.ts            # robots.txt generado
+├── sitemap.ts           # sitemap.xml generado
 └── globals.css          # Estilos globales
 .kiro/
 └── steering/
@@ -278,6 +283,8 @@ import { Button } from '@/app/components/ui';
   description={t('selectedWorkDesc')}
   highlightText={t('digitalSolutions')}
 />
+// Badge usa <span>, no <h1> — evita múltiples h1 en la home
+// title usa <h2> — jerarquía correcta bajo el h1 del Hero
 ```
 
 #### Carousel
@@ -323,14 +330,31 @@ import { ButtonProps } from '@/app/types/ui';
 ### `projects.ts` — Única fuente de verdad
 
 ```typescript
-// Datos RAW con keys de traducción
-export const projectsRaw: ProjectRaw[] = [{ id: 1, titleKey: 'paytoTitle', ... }];
+// Datos RAW con keys de traducción + slug SEO
+export const projectsRaw: ProjectRaw[] = [{ id: 1, slug: 'house-of-cb', titleKey: 'paytoTitle', ... }];
 
-// Función que transforma con traducciones (usada en Projects.tsx y [id]/page.tsx)
+// Transforma con traducciones (Projects.tsx y [slug]/page.tsx)
 export const getProjects = (t) => projectsRaw.map(p => ({ ...p, title: t(p.titleKey) as string, ... }));
+
+// Lookup por slug (metadata en [slug]/layout.tsx)
+export const getProjectBySlug = (slug) => projectsRaw.find(p => p.slug === slug);
 ```
 
 **No duplicar** esta información en otros archivos. Un solo origen.
+
+#### Slugs y URLs de proyectos
+
+- Cada proyecto tiene `slug: string` en `ProjectRaw` (ej: `payto`, `house-of-cb`)
+- Rutas públicas: `/projects/{slug}` — **nunca** `/projects/{id}`
+- Redirects 301 en `next.config.ts`: `/projects/1` → `/projects/house-of-cb` (links viejos)
+- Links en UI: `href={`/projects/${project.slug}`}`
+
+#### Imágenes de proyectos (SEO)
+
+- Formato: `.avif` en `public/projects/{carpeta}/`
+- Nombres descriptivos: `{slug}-hero.avif`, `{slug}-screenshot-1.avif`, etc.
+- Rutas en `projects.ts` deben coincidir con el nombre real del archivo
+- Ejemplo: `/projects/payto/payto-hero.avif`
 
 #### Flags opcionales en proyectos
 
@@ -616,7 +640,7 @@ export default function NavbarWrapper() {
 ```typescript
 // En project detail — evitar recalcular en cada render
 const projects = useMemo(() => getProjects(t), [t]);
-const project = useMemo(() => projects.find(p => p.id === projectId), [projects, projectId]);
+const project = useMemo(() => projects.find(p => p.slug === projectSlug), [projects, projectSlug]);
 const allImages = useMemo(() => {
   if (!project) return [];
   return project.heroImage ? [project.heroImage, ...(project.images || [])] : project.images || [];
@@ -659,6 +683,82 @@ Componentes UI (Button, Card, etc.) — sin lógica de negocio
     ↓
 Estilos Tailwind + Animaciones Framer Motion
 ```
+
+---
+
+## 🔍 SEO
+
+### Configuración central — `app/lib/site.ts`
+
+Constantes compartidas para metadata, sitemap, robots y links sociales:
+
+- `SITE_URL` — resuelve en orden: `NEXT_PUBLIC_SITE_URL` → `VERCEL_URL` → `http://localhost:3000`
+- `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_NAME`, `DEFAULT_OG_IMAGE`
+- `SOCIAL_LINKS` — github, linkedin, email (usar en Hero, Footer, Contact; no hardcodear URLs)
+
+**Producción:** setear `NEXT_PUBLIC_SITE_URL=https://tu-dominio.com` en Vercel.
+
+### Metadata
+
+| Archivo | Responsabilidad |
+|---------|-----------------|
+| `app/layout.tsx` | `metadataBase`, OG, Twitter Card, canonical, JSON-LD (`Person` + `WebSite`) |
+| `app/page.tsx` | `title` + `description` explícitos para home |
+| `app/projects/[slug]/layout.tsx` | `generateMetadata` con título/descripción real del proyecto, OG image del hero, `generateStaticParams` |
+
+Metadata de proyectos usa `translations.en[descriptionKey]` (idioma indexable fijo en EN).
+
+### Archivos generados
+
+- `app/sitemap.ts` — home + todas las rutas `/projects/{slug}`
+- `app/robots.ts` — `Allow: /` + referencia al sitemap
+
+### Jerarquía de headings (SEO + a11y)
+
+- **Home:** un solo `<h1>` (Hero). SectionHeader badge = `<span>`, título de sección = `<h2>`
+- **Project cards:** título = `<h3>` bajo el `<h2>` de la sección Projects
+- **Project detail:** `<h1>` título → `<h2>` secciones. Label "Sections" en sidebar = `<p>` + `aria-labelledby` en `<nav>`, **no** `<h3>`
+
+### Layout semántico
+
+- Contenido principal envuelto en `<main id="main-content">` en `app/layout.tsx`
+- Footer fuera de `<main>`
+
+### next.config.ts
+
+- **Un solo archivo** de config (`next.config.ts`). No crear `next.config.js` duplicado.
+- Incluye `redirects()` (IDs → slugs) y `images.remotePatterns`
+- Tras cambios de config o errores de chunks corruptos: borrar `.next` y `npm run build` de nuevo
+
+---
+
+## ♿ Accesibilidad
+
+### Botones e iconos
+
+- Botones solo con ícono: siempre `aria-label` (FloatingNav, IconButton, links sociales del Footer)
+- FloatingNav: `<nav aria-label="Section navigation">` + `aria-label={`Go to ${item.label}`}` por botón
+
+### Links sociales
+
+- Centralizar URLs en `SOCIAL_LINKS` (`app/lib/site.ts`) — misma URL en Hero, Footer y Contact
+- Iconos del Footer: `aria-label="GitHub"` / `"LinkedIn"` / `"Email"` (no solo `title`)
+
+### Headings
+
+- No saltar niveles (`h1` → `h3` sin `h2` intermedio)
+- Labels de navegación lateral no son headings — usar `<p>` o `<span>`
+
+---
+
+## 📬 Formulario de Contacto
+
+- Backend: **Formspree** (`https://formspree.io/f/...`) — validación server-side más estricta que HTML5
+- Validación front: `isValidEmail()` en `app/lib/validation.ts` — TLD mínimo 2 caracteres
+- No confiar solo en `type="email"` del navegador (acepta `asd@a.c`)
+- Usar `pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"` + validación en `handleSubmit` antes del fetch
+- Errores de email: mensaje bajo el campo (`invalidEmail` en `translations.ts` EN/ES)
+- Header `Accept: application/json` para parsear errores de Formspree si el email falla en server
 
 ---
 
@@ -755,6 +855,12 @@ Antes de cualquier cambio, verificar:
 - [ ] ¿Links de sección en project detail usan botones, no `#hash`? → No ensuciar URL/historial
 - [ ] ¿Back desde project detail usa `router.push('/')` + `scrollToId`? → No `router.back()` cuando hay `scrollToId`
 - [ ] ¿Demo offline usa `demoUnavailable` en `projects.ts`? → No hardcodear `projectId`
+- [ ] ¿Proyecto nuevo? → Agregar `slug`, rutas de imagen SEO, entrada en sitemap vía `projectsRaw`
+- [ ] ¿Links a proyectos usan `project.slug`? → No `/projects/${id}`
+- [ ] ¿URLs sociales? → `SOCIAL_LINKS` en `site.ts`, no hardcodeadas
+- [ ] ¿Metadata de proyecto? → Descripción real en `[slug]/layout.tsx`, no texto genérico
+- [ ] ¿Headings? → Un h1 por página, sin saltos de nivel, badge SectionHeader = span
+- [ ] ¿Formulario con email? → `isValidEmail()` + key `invalidEmail` en EN y ES
 - [ ] ¿Editaste CV HTML? → Correr `npm run resume` para regenerar PDFs
 - [ ] ¿Se exporta desde `index.ts` solo si se usa? → No dead exports
 - [ ] ¿Usa `<Image>` de Next.js? → No `<img>`
@@ -764,5 +870,5 @@ Antes de cualquier cambio, verificar:
 
 ---
 
-**Última actualización**: Julio 2026
-**Versión del Proyecto**: 2.0
+**Última actualización**: Julio 2026 (SEO, slugs, a11y, validación contacto)
+**Versión del Proyecto**: 2.1

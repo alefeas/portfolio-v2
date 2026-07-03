@@ -193,6 +193,7 @@ export const translations = {
     messageSentDesc: 'Thanks for reaching out, I\'ll get back to you soon.',
     messageSentError: 'Error sending message',
     messageSentErrorDesc: 'Please try again or contact me through another channel.',
+    invalidEmail: 'Please enter a valid email address (e.g. name@example.com).',
     
     // Demo Credentials
     demoCredentials: 'Demo Unavailable',
@@ -427,6 +428,7 @@ export const translations = {
     messageSentDesc: 'Gracias por contactarme, te responderé pronto.',
     messageSentError: 'Error al enviar',
     messageSentErrorDesc: 'Intenta de nuevo o contacta por otro medio.',
+    invalidEmail: 'Ingresá un email válido (ej. nombre@ejemplo.com).',
     
     // Demo Credentials
     demoCredentials: 'Demo No Disponible',
