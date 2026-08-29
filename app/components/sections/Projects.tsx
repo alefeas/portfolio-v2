@@ -33,6 +33,7 @@ export default function Projects() {
         title={t('selectedWork')}
         description={t('selectedWorkDesc')}
         highlightText={t('innovative')}
+        descriptionAfter={` ${t('digitalSolutions')}`}
       />
 
       {/* Projects Grid */}

@@ -74,6 +74,7 @@ El proyecto es **completamente bilingüe** (Español e Inglés). El sistema de i
 1. **Contexto Global**: `LanguageContext.tsx` proporciona el idioma actual a toda la app
 2. **Traducciones Centralizadas**: `app/lib/translations.ts` contiene TODAS las traducciones
 3. **Hook Personalizado**: `useTranslation()` accede a las traducciones
+4. **Persistencia**: Cookie `portfolio-locale` leída por SSR + `localStorage` en cliente — sin flash al recargar
 
 ### Cómo Usar Traducciones
 
@@ -106,6 +107,25 @@ export default function MyComponent() {
 3. **Keys descriptivas** — `paytoTitle`, `houseOfCbDesc`, no `title1`, `desc2`
 4. **Agrupar por sección** — usar comentarios para organizar
 5. **Usar TranslationKey type** — para type-safety
+
+### Persistencia del idioma (sin flash al recargar)
+
+El idioma se guarda en dos lugares para garantizar que SSR y cliente siempre coincidan:
+
+- **Cookie** (`portfolio-locale`) — SSR la lee en `app/layout.tsx` y renderiza el idioma correcto desde el inicio
+- **localStorage** (`portfolio-locale`) — backup en cliente, sincronizado por `useLayoutEffect`
+
+`app/layout.tsx` es `async` y lee la cookie via `cookies()` de `next/headers`, pasando `initialLanguage` al `LanguageProvider`.
+
+`setLanguage()` en `LanguageContext.tsx` escribe ambos simultáneamente:
+
+```typescript
+const setLanguage = (lang: Language) => {
+  setLanguageState(lang);
+  localStorage.setItem('portfolio-locale', lang);
+  document.cookie = `portfolio-locale=${lang}; path=/; max-age=${365 * 24 * 60 * 60}`;
+};
+```
 
 ```typescript
 // ✅ CORRECTO
@@ -259,7 +279,7 @@ Todos los componentes se exportan desde `app/components/ui/index.ts`. Si un comp
 #### Button
 ```typescript
 import { Button } from '@/app/components/ui';
-<Button href="/projects" variant="cta">Explore More</Button>
+<Button href="/projects" variant="cta">View Projects</Button>
 // Variantes: 'primary' | 'secondary' | 'ghost' | 'cta'
 ```
 
@@ -831,28 +851,68 @@ Luego `npm install` y verificar con `npm audit`.
 
 ## 📚 Guía para Descripciones de Proyectos
 
+### Objetivo
+
+Contar **todo lo relevante** del proyecto — arquitectura, módulos, integraciones, infraestructura, prácticas — de forma **completa y profesional**. No filtrar capacidades importantes por miedo a ser “demasiado técnico”. El lector debe entender qué se construyó, cómo está armado y qué tan profundo es el trabajo.
+
+### Formato de contenido — qué SÍ va en los textos
+
+- **Stack y arquitectura**: monorepo, capas, BFF, apps separadas, bases de datos, caches, colas, etc.
+- **Módulos funcionales**: reportes, markup, auth, notificaciones, composición de paquetes, etc.
+- **Integraciones y tecnologías**: Redis, Socket.io, Playwright, Google Drive/Sheets, OAuth, etc.
+- **Arquitectura y principios**: mencionar capas, SOLID, bounded contexts, etc. **sin** listar carpetas ni clases — una frase clara basta (ej. “arquitectura de cuatro capas + SOLID en API y admin”).
+- **Infra de producción**: Docker, Cloudflare, Nginx, VPS, backups.
+- **Desafíos y learnings** en lenguaje técnico pero legible (sin “aprendí”, “construí desde cero”).
+- **Versiones exactas** en el array `tech[]` de `projects.ts` — no en la prosa de las descripciones salvo cuando aporta contexto arquitectónico (ej. “Express 5 API”, “Next.js 16”).
+
+### Formato de contenido — qué NO va en los textos
+
+Los textos describen **qué se hizo y con qué técnicas**, no son un inventario de código. **No incluir:**
+
+| ❌ Evitar | ✅ En su lugar |
+|-----------|----------------|
+| URLs, dominios, links internos | Van solo en `demo` / `github` de `projects.ts` |
+| Rutas de app (`/dashboard/...`, `/aruba/...`) | “dashboard admin”, “sitio público”, “módulo de reportes” |
+| Endpoints (`POST /api/...`) | “composición live de paquetes”, “webhooks de revalidación” |
+| Nombres de clases, schedulers, CRON jobs | “jobs programados”, “keepalive en background”, “cleanup de retención” |
+| Entidades Prisma / modelos sueltos | “destinos paquete”, “reportes de vuelo”, “reglas de markup” |
+| Paths de archivos (`back/Dockerfile`, etc.) | “imagen Docker de la API”, “monorepo TypeScript” |
+| Variables de entorno | “acceso a carpeta Drive desde la UI” |
+| Nombres de wholesalers/proveedores externos | “integraciones de inventario live”, “inventario browser-based” |
+| Jerga de dominio sin contexto (“markup”, “GROSS/NET”, “FX”, “handoff”) | Explicar en la misma frase. ES: evitar siglas crudas — “modo neto (comisión sobre costo del proveedor) / modo bruto (comisión sobre precio de venta)”. EN: “net mode / gross mode” con la misma aclaración. |
+| Features/features incompletas o a medio hacer | Omitir módulos no terminados (ej. asistente AI) |
+
 ### Lenguaje Profesional
 
 **✅ CORRECTO:**
 - "Production-grade full-stack platform"
-- "Architected entirely with..."
-- "Reinforced my expertise in..."
-- "Validated my ability to deliver..."
+- "Architected as a TypeScript monorepo with three separately deployed applications"
+- "Reinforced expertise in..."
+- "Validated end-to-end delivery from integration packages through production deploy"
 
 **❌ INCORRECTO:**
 - "I built from scratch"
 - "I learned how to..."
 - "This was my first time..."
 - "I gained experience in..."
+- Listar URLs del dashboard como features
+- Copiar nombres de clases del repo en la descripción pública
 
 ### Estructura por Proyecto
 
 1. **Título**: claro y profesional
-2. **Descripción corta**: 1 línea con lo principal
-3. **Descripción detallada**: qué es, para quién, stack, arquitectura
-4. **Features**: 12-14 ítems
-5. **Challenges**: desafíos técnicos reales
-6. **Learnings**: qué reforzó/validó (no "aprendí")
+2. **Descripción corta** (`*Desc`): 1 línea con lo principal
+3. **Descripción detallada** (`*DetailDesc`): qué es, para quién, stack, arquitectura, módulos — **completa pero sin inventario de código**
+4. **Features** (`*Features`): **12–14 ítems** — técnicas y capacidades, no links ni rutas
+5. **Challenges** (`*Challenges`): desafíos técnicos reales
+6. **Learnings** (`*Learnings`): qué reforzó/validó (no “aprendí”)
+7. **Traducciones**: siempre **EN y ES** con el mismo nivel de detalle y las mismas capacidades cubiertas
+
+### Tech array (`projects.ts`)
+
+- Incluir **todas** las tecnologías relevantes del proyecto (infra incluida: Docker, Nginx, **Cloudflare**, AWS, etc.).
+- Usar versiones exactas del lockfile cuando existan.
+- No duplicar en `tech[]` lo que ya está implícito en el framework (ej. no listar React aparte si Next.js ya lo cubre, salvo que el proyecto lo use también fuera de Next).
 
 ---
 
@@ -871,6 +931,7 @@ Antes de cualquier cambio, verificar:
 - [ ] ¿Back desde project detail usa `router.push('/')` + `scrollToId`? → No `router.back()` cuando hay `scrollToId`
 - [ ] ¿Demo offline usa `demoUnavailable` en `projects.ts`? → No hardcodear `projectId`
 - [ ] ¿Proyecto nuevo? → Agregar `slug`, rutas de imagen SEO, entrada en sitemap vía `projectsRaw`
+- [ ] ¿Proyecto nuevo o textos editados? → Revisar guía “Descripciones de Proyectos”: completo, sin URLs/rutas/clases, EN **y** ES al mismo nivel
 - [ ] ¿Links a proyectos usan `project.slug`? → No `/projects/${id}`
 - [ ] ¿URLs sociales? → `SOCIAL_LINKS` en `site.ts`, no hardcodeadas
 - [ ] ¿Metadata de proyecto? → Descripción real en `[slug]/layout.tsx`, no texto genérico

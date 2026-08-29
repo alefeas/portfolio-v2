@@ -105,6 +105,7 @@ export interface SectionHeaderProps {
   title: string | string[];
   description: string | string[];
   highlightText?: string | string[];
+  descriptionAfter?: string | string[];
 }
 
 // StatusBadge Component

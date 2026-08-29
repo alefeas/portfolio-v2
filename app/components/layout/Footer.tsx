@@ -7,8 +7,32 @@ import Link from 'next/link';
 import { SOCIAL_LINKS } from '@/app/lib/site';
 import { setScrollTarget } from '@/app/lib/sectionNavigation';
 
+const ARGENTINA_TIME_ZONE = 'America/Argentina/Buenos_Aires';
+
+function formatLastUpdated(
+  date: Date,
+  language: 'en' | 'es',
+  ts: (key: 'footerLastUpdated' | 'footerLastUpdatedAt' | 'footerTimezone') => string,
+) {
+  const locale = language === 'es' ? 'es-AR' : 'en-US';
+  const datePart = date.toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: ARGENTINA_TIME_ZONE,
+  });
+  const timePart = date.toLocaleTimeString(locale, {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: language === 'en',
+    timeZone: ARGENTINA_TIME_ZONE,
+  });
+
+  return `${ts('footerLastUpdated')} ${datePart} ${ts('footerLastUpdatedAt')} ${timePart} (${ts('footerTimezone')})`;
+}
+
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, ts, language } = useTranslation();
   const currentYear = new Date().getFullYear();
   const [lastUpdated, setLastUpdated] = useState<string>('');
 
@@ -28,25 +52,7 @@ export default function Footer() {
           const data = await response.json();
           if (data.length > 0) {
             const commitDate = new Date(data[0].commit.author.date);
-            const options: Intl.DateTimeFormatOptions = {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: true,
-              timeZone: 'Asia/Bangkok' // UTC+7
-            };
-            
-            const formattedDate = commitDate.toLocaleDateString('en-US', options);
-            const timeString = commitDate.toLocaleTimeString('en-US', {
-              hour: '2-digit',
-              minute: '2-digit',
-              hour12: true,
-              timeZone: 'Asia/Bangkok'
-            });
-            
-            setLastUpdated(`${t('footerLastUpdated')} ${formattedDate} at ${timeString} UTC+7`);
+            setLastUpdated(formatLastUpdated(commitDate, language, ts));
             return;
           }
         }
@@ -54,31 +60,11 @@ export default function Footer() {
         console.error('Failed to fetch last commit:', error);
       }
       
-      // Fallback to current date if API fails
-      const date = new Date();
-      const options: Intl.DateTimeFormatOptions = {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-        timeZone: 'Asia/Bangkok'
-      };
-      
-      const formattedDate = date.toLocaleDateString('en-US', options);
-      const timeString = date.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: true,
-        timeZone: 'Asia/Bangkok'
-      });
-      
-      setLastUpdated(`${t('footerLastUpdated')} ${formattedDate} at ${timeString} UTC+7`);
+      setLastUpdated(formatLastUpdated(new Date(), language, ts));
     };
 
     fetchLastCommit();
-  }, [t]);
+  }, [ts, language]);
 
   const router = useRouter();
   const pathname = usePathname();

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useTranslation } from '@/app/hooks/useTranslation';
+import { AFM_STUDIO } from '@/app/lib/site';
 import { StatusDot, SectionHeader, Card } from '@/app/components/ui';
 
 export default function About() {
@@ -17,6 +18,7 @@ export default function About() {
         title={t('getToKnowMe')}
         description={t('getToKnowDesc')}
         highlightText={t('meaningful')}
+        descriptionAfter={t('digitalExperiences')}
       />
 
       {/* Content */}
@@ -59,7 +61,16 @@ export default function About() {
                   {t('whoIAmDesc')} <span className="text-green-400 font-medium">{t('fullStackDeveloper')}</span> {t('whoIAmDesc2')}
                 </p>
                 <p>
-                  {t('seekingOpportunity')}
+                  {t('seekingOpportunityBefore')}
+                  <a
+                    href={AFM_STUDIO.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-green-400 font-medium hover:text-green-300 underline-offset-2 hover:underline"
+                  >
+                    {AFM_STUDIO.name}
+                  </a>
+                  {t('seekingOpportunityAfter')}
                 </p>
               </div>
             </div>

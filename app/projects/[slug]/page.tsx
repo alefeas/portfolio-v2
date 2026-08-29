@@ -103,8 +103,8 @@ function ProjectDetailContent() {
                   {t('whatILearned') || 'What I Learned'}
                 </button>
                 {(safeProject.github || safeProject.githubFrontend || safeProject.demo) && (
-                  <button type="button" onClick={() => scrollToSection('repositories')} className={sectionNavClassName}>
-                    {t('repositories') || 'Repositories'}
+                  <button type="button" onClick={() => scrollToSection('links')} className={sectionNavClassName}>
+                    {t('projectLinks') || 'Links'}
                   </button>
                 )}
                 <button type="button" onClick={() => scrollToSection('tech')} className={sectionNavClassName}>
@@ -155,10 +155,10 @@ function ProjectDetailContent() {
 
 
 
-        {/* Repositories */}
+        {/* Project links — GitHub repos and/or live demo */}
         {(!safeProject.isPrivate && (safeProject.github || safeProject.githubFrontend)) || safeProject.demo ? (
-          <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="repositories">
-            <h2 className="text-2xl font-semibold mb-4 md:mb-5">{t('repositories')}</h2>
+          <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="links">
+            <h2 className="text-2xl font-semibold mb-4 md:mb-5">{t('projectLinks')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {safeProject.github && (
                 <RepositoryLink
@@ -179,8 +179,8 @@ function ProjectDetailContent() {
               {safeProject.demo && (
                 <RepositoryLink
                   href={safeProject.demo}
-                  title={t('liveDemo') as string}
-                  subtitle={t('viewLiveApplication') as string}
+                  title={t('liveSite') as string}
+                  subtitle={t('viewLiveSite') as string}
                   icon={<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>}
                   onClick={() => {
                     if (safeProject.demoUnavailable) {

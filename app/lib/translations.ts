@@ -8,7 +8,6 @@ export const translations = {
     contact: 'Contact',
     
     // Hero Section
-    available: 'Available for projects',
     hiIm: 'Hi, I\'m',
     buildingFuture: 'Building the future.',
     passionate: 'Passionate',
@@ -16,19 +15,20 @@ export const translations = {
     building: 'Building',
     innovative: 'innovative',
     solutions: 'solutions through legacy modernization, clean and reliable code',
-    exploreMore: 'Explore More',
+    viewProjects: 'View Projects',
     
     // About Section
     aboutMe: 'About Me',
     getToKnowMe: 'Get to Know Me',
-    getToKnowDesc: 'Full-stack developer focused on creating',
-    meaningful: 'meaningful',
-    digitalExperiences: 'digital experiences',
+    getToKnowDesc: 'Full-stack developer focused on building',
+    meaningful: 'production-grade software',
+    digitalExperiences: 'for international teams and high-traffic products.',
     whoIAm: 'Who I Am',
     fullStackDeveloper: 'Full Stack Developer',
     whoIAmDesc: 'I\'m a',
     whoIAmDesc2: 'with real production experience in international teams and high-traffic environments. I turn complex legacy systems into secure, scalable, and reliable solutions.',
-    seekingOpportunity: 'Full-Stack Developer at House of CB, backend-focused on global e-commerce. I also independently build full-stack and AI solutions for clients.',
+    seekingOpportunityBefore: 'Full-Stack Developer at House of CB, backend-focused on global e-commerce. I also build full-stack and AI solutions for clients through ',
+    seekingOpportunityAfter: '.',
     currentlyLearning: 'Currently Focused On',
     expandingKnowledge: 'Focused on',
     cloudTech: 'applied AI and LLMs',
@@ -96,6 +96,29 @@ export const translations = {
     houseOfCbFeatures: ['Backend Architecture Migration & Modernization', 'AI Solutions & Autonomous Agent Integration', 'Internal Process Automation', 'Critical Feature Development for Scale', 'High-Traffic Performance Optimization', 'Security Hardening & Best Practices', 'REST API Development & Integration', 'Database Optimization for Global Traffic', 'Docker & AWS Infrastructure', 'International Team Collaboration'],
     houseOfCbChallenges: 'Modernizing a live production backend without disrupting platform availability required careful planning and phased execution. Key challenges included migrating legacy PHP architecture while maintaining full backward compatibility, designing autonomous AI agents that integrate reliably into existing workflows, ensuring database performance under high-traffic international load, and coordinating critical changes across a distributed team. Balancing rapid feature delivery with security and stability standards on a high-stakes production system was a constant engineering consideration.',
     houseOfCbLearnings: 'This experience deepened my expertise in production backend modernization, legacy system migration strategies, and architecting AI-driven automation for real business workflows. Working on a high-traffic international platform reinforced the critical importance of performance, security, and architectural decisions at scale. Collaborating with a global team validated my ability to deliver production-level engineering in a professional, fast-paced environment.',
+
+    // Melincué Viajes Project
+    melincueViajesTitle: 'Melincué Viajes: Digital Travel Quotation & Sales Platform',
+    melincueViajesDesc: 'Production full-stack travel platform for an Argentine agency — live flight, hotel and package quotation, operational reporting with scheduled jobs, Google Drive automation, and unified admin backoffice.',
+    melincueViajesDetailDesc: 'Melincué Viajes is a production digital travel platform for an Argentine agency — live flight, hotel and package quotation, operational reporting, and a unified admin backoffice. Architected as a TypeScript monorepo with three separately deployed applications — an Express 5 API, a Next.js 16 admin dashboard, and a Next.js 16 public site — plus shared DTOs in a common types package and live inventory integrations as isolated npm packages. The API and admin dashboard follow a strict four-layer architecture (presentation, application, domain, infrastructure) guided by SOLID principles: thin HTTP/UI layers, business logic in application services, domain interfaces for dependency inversion, and bounded contexts per feature. All apps share a single MySQL schema via Prisma and provider sessions in Redis; production runs on a VPS with Docker Compose behind Cloudflare and Nginx Origin CA. The public site covers landing, FAQ and legal pages plus live flight, hotel and package search — IATA airport code autocomplete, filters, expandable itinerary detail, time-limited quote validity, WhatsApp inquiry templates with pre-filled trip details, and standalone transfer quotes outside the package builder. Package search composes live flight, hotel and transfer into a USD total, applying a configurable agency margin (percentage commission added on top of supplier rates) and live currency conversion when quotes mix currencies; hotel search adds multi-room occupancy, server-side filter facets, progressive pagination and deduplicated listings. The admin dashboard manages package destination hubs, home destination cards with AVIF uploads processed server-side via Sharp, transfer pricing, flight margin rules with route- and carrier-specific overrides, hotel margin rules with configurable net-on-cost or gross-on-sell percentage modes (net: commission on what the agency pays; gross: commission on the pre-margin sell price), plus members, customers and area-based RBAC. Cheap-flight and cheap-hotel scouting report modules support dashboard-configurable schedules, async job runners, rolling future date windows with non-stop and connecting (layover) fare snapshots, schedule/duration/baggage filters, multi-property hotel filters, Excel export via ExcelJS, in-app notifications and audit trails — behind JWT auth with refresh token rotation. Completed scheduled reports sync to Google Drive as Sheets via OAuth and googleapis: master workbooks per vertical, dedicated tabs per schedule, and Drive folder access from the UI. Cross-report package sales messages auto-match flight and hotel scouting rows by route, airport, passengers and travel dates for agent outreach. Backend schedulers keep integration sessions alive on a fixed interval — Playwright and Chromium bundled in the API Docker image for browser-based inventory, HTTP health probes for API-based inventory — plus daily report retention cleanup on a 14-day policy and internal cache revalidation webhooks that refresh the public site when pricing, destinations, package hubs or transfers change, with selective Redis session preservation across revalidations. Real-time report progress streams through Socket.io with a Redis adapter for horizontal scaling. Production infrastructure includes daily MySQL backups to Google Drive and optional Google Places API integration for the public home rating badge.',
+    melincueViajesFeatures: [
+      'Live Flight, Hotel & Package Search with WhatsApp Handoff & Pre-Filled Inquiries',
+      'Live Package Composition — Flight + Hotel + Transfer Total in USD',
+      'TypeScript Monorepo with Four-Layer SOLID Architecture — API, Public Site & Admin',
+      'Shared DTOs & Live Inventory Integrations as Isolated npm Packages',
+      'Unified Admin Backoffice — Destinations, Transfers, Pricing & Reports',
+      'AVIF Destination Card Uploads with Server-Side Image Processing (Sharp)',
+      'Fare & Hotel Scouting Reports — Configurable Schedules & Excel Export',
+      'Google Drive + Sheets Sync for Scheduled Reports (OAuth / googleapis)',
+      'Cross-Report Package Sales Messages (Flight + Hotel Match) & WhatsApp Templates',
+      'Margin Engine — Agency Commission %, Flight Route/Carrier Rules & Hotel Net/Gross Modes',
+      'Integration Session Keepalive via node-cron + Playwright/Chromium in Docker',
+      'JWT Refresh Rotation, Area-Based RBAC, Members, Customers & Audit Logs',
+      'Real-Time Report Progress via Socket.io, Redis Adapter & In-App Notifications',
+      'Production VPS — Docker Compose, Cloudflare, Nginx, Cache Revalidation & MySQL Backup',
+    ],
+    melincueViajesChallenges: 'Delivering live travel search across three separately deployed applications meant sharing provider sessions in Redis between the API and public site, keeping browser- and HTTP-based inventory integrations healthy through background keepalive jobs without interfering with buyer-facing requests, and ensuring package composition never triggers browser automation mid-search. Package composition required parallel live lookups, USD-normalized totals with the agency commission margin applied, live currency conversion for mixed-currency hotel quotes, and time-limited quote UX aligned to supplier validity windows. The operational reporting stack — dashboard-configurable schedules, async runners, rolling non-stop/connecting fare windows, multi-property hotel filters, shared margin rules (agency commission on net cost or gross sell price) kept consistent between public-site pricing and report output, 14-day retention cleanup, Google Drive/Sheets sync on completion, and cross-report package sales messages for agent outreach — had to stay aligned with WhatsApp inquiry templates, AVIF upload pipelines and cache revalidation with selective session preservation, all while extending the four-layer SOLID architecture with new bounded contexts across the monorepo on a single production VPS.',
+    melincueViajesLearnings: 'Melincué reinforced how to extend a production-ready admin foundation into a domain-specific travel platform — reusing JWT refresh rotation, RBAC, audit logs and Socket.io while adding destination management, transfer pricing, fare-scouting reports and configurable margin engines as first-class modules under a four-layer SOLID structure. Delivering on-demand live quotation flows validated buyer UX where every price is time-bound and every displayed total already includes the agency commission. Building ops tooling — configurable scouting schedules, Drive/Sheets automation, ExcelJS exports and cross-report sales messages — confirmed what a travel agency team uses daily. Running the full stack in production — three-app monorepo on a VPS, Chromium in Docker, shared Redis sessions, Cloudflare and Nginx Origin CA — validated end-to-end delivery from integration packages through deploy, third-party API lifecycle and operational reporting at scale.',
     
     // Mistress Rocks Project
     mistressRocksTitle: 'Mistress Rocks: Full-Stack Migration & Platform Modernization',
@@ -243,6 +266,7 @@ export const translations = {
     
     // Demo Credentials
     demoCredentials: 'Demo Unavailable',
+    openLiveSite: 'Open Live Site',
     demoNote: 'The backend server is currently offline due to free trial expiration. You can explore the frontend code, design, and architecture on GitHub repositories.',
     demoEmail: '',
     demoPassword: '',
@@ -251,12 +275,12 @@ export const translations = {
     projectNotFound: 'Project Not Found',
     backToProjects: 'Back to Projects',
     sections: 'Sections',
-    repositories: 'Repositories',
+    projectLinks: 'Links',
     backendRepository: 'Backend Repository',
     frontendRepository: 'Frontend Repository',
     monorepoRepository: 'Monorepo Repository',
-    liveDemo: 'Live Demo',
-    viewLiveApplication: 'View the live application',
+    liveSite: 'Live Site',
+    viewLiveSite: 'Visit the production site',
     interestedInWorking: 'Interested in working together?',
     getInTouchBtn: 'Get in touch',
     
@@ -273,6 +297,8 @@ export const translations = {
     footerEmail: 'Email',
     footerAllRightsReserved: 'All rights reserved.',
     footerLastUpdated: 'Last updated by Alejo on',
+    footerLastUpdatedAt: 'at',
+    footerTimezone: 'Argentina time',
     
     // CV/Resume
     downloadCV: 'Download CV',
@@ -289,7 +315,6 @@ export const translations = {
     contact: 'Contacto',
     
     // Hero Section
-    available: 'Disponible para proyectos',
     hiIm: 'Hola, soy',
     buildingFuture: 'Construyendo el futuro.',
     passionate: 'Apasionado',
@@ -297,19 +322,20 @@ export const translations = {
     building: 'Construyendo',
     innovative: 'innovadoras',
     solutions: 'soluciones con modernización legacy, código limpio y confiable',
-    exploreMore: 'Explorar Más',
+    viewProjects: 'Ver Proyectos',
     
     // About Section
     aboutMe: 'Acerca de Mí',
     getToKnowMe: 'Conóceme Mejor',
-    getToKnowDesc: 'Desarrollador full-stack enfocado en crear',
-    meaningful: 'significativas',
-    digitalExperiences: 'experiencias digitales',
+    getToKnowDesc: 'Desarrollador full-stack enfocado en construir',
+    meaningful: 'software en producción',
+    digitalExperiences: 'para equipos internacionales y productos de alto tráfico.',
     whoIAm: 'Quién Soy',
     fullStackDeveloper: 'Desarrollador Full Stack',
     whoIAmDesc: 'Soy un',
     whoIAmDesc2: 'con experiencia real en producción en equipos internacionales y entornos de alto tráfico. Transformo sistemas legacy complejos en soluciones seguras, escalables y confiables.',
-    seekingOpportunity: 'Desarrollador Full-Stack en House of CB, con foco backend en e-commerce global. También desarrollo soluciones full-stack e IA de forma independiente.',
+    seekingOpportunityBefore: 'Desarrollador Full-Stack en House of CB, con foco backend en e-commerce global. También desarrollo soluciones full-stack e IA para clientes a través de ',
+    seekingOpportunityAfter: '.',
     currentlyLearning: 'Enfoque Actual',
     expandingKnowledge: 'Enfocado en',
     cloudTech: 'IA aplicada y LLMs',
@@ -377,6 +403,29 @@ export const translations = {
     houseOfCbFeatures: ['Migración y Modernización de Arquitectura Backend', 'Integración de Soluciones de IA y Agentes Autónomos', 'Automatización de Procesos Internos', 'Desarrollo de Features Críticas a Escala', 'Optimización de Rendimiento para Alto Tráfico', 'Hardening de Seguridad y Buenas Prácticas', 'Desarrollo e Integración de REST API', 'Optimización de Base de Datos para Tráfico Global', 'Infraestructura Docker y AWS', 'Colaboración en Equipo Internacional'],
     houseOfCbChallenges: 'Modernizar un backend en producción sin interrumpir la disponibilidad de la plataforma requirió planificación cuidadosa y ejecución por fases. Los desafíos clave incluyeron migrar arquitectura PHP legacy manteniendo compatibilidad total hacia atrás, diseñar agentes autónomos de IA que se integren de forma confiable en flujos de trabajo existentes, garantizar rendimiento de base de datos bajo carga internacional de alto tráfico y coordinar cambios críticos en un equipo distribuido. Equilibrar la entrega rápida de features con estándares de seguridad y estabilidad en un sistema de producción de alto impacto fue una consideración de ingeniería constante.',
     houseOfCbLearnings: 'Esta experiencia profundizó mi expertise en modernización de backends en producción, estrategias de migración de sistemas legacy y arquitectura de automatización impulsada por IA para flujos de trabajo reales. Trabajar en una plataforma internacional de alto tráfico reforzó la importancia crítica del rendimiento, la seguridad y las decisiones arquitectónicas a escala. Colaborar con un equipo global validó mi capacidad de entregar ingeniería a nivel producción en un entorno profesional y dinámico.',
+
+    // Melincué Viajes Project
+    melincueViajesTitle: 'Melincué Viajes: Plataforma Digital de Cotización y Venta de Viajes',
+    melincueViajesDesc: 'Plataforma full-stack en producción para una agencia de viajes argentina — cotización live de vuelos, hoteles y paquetes, reportes operativos con jobs programados, automatización Google Drive y backoffice admin unificado.',
+    melincueViajesDetailDesc: 'Melincué Viajes es una plataforma digital de viajes en producción para una agencia argentina — cotización live de vuelos, hoteles y paquetes, reportes operativos y backoffice admin unificado. Arquitectada como monorepo TypeScript con tres aplicaciones desplegadas por separado — API Express 5, dashboard admin Next.js 16 y sitio público Next.js 16 — más DTOs compartidos en un paquete de types común e integraciones de inventario live como paquetes npm aislados. La API y el dashboard admin siguen una arquitectura estricta de cuatro capas (presentación, aplicación, dominio, infraestructura) guiada por principios SOLID: capas HTTP/UI livianas, lógica de negocio en servicios de aplicación, interfaces de dominio para inversión de dependencias y contextos acotados por funcionalidad. Todas comparten un único schema MySQL vía Prisma y sesiones de proveedor en Redis; producción corre en VPS con Docker Compose detrás de Cloudflare y Nginx Origin CA. El sitio público incluye landing, FAQ y legales más búsqueda live de vuelos, hoteles y paquetes — autocompletado de aeropuertos por código IATA, filtros, detalle de itinerario expandible, cotizaciones con validez limitada en el tiempo, templates de consulta WhatsApp con datos del viaje prearmados y cotización de traslados por fuera del armado de paquetes. La búsqueda de paquetes compone vuelo, hotel y traslado live en un total USD, aplicando un margen de agencia configurable (porcentaje de comisión sumado sobre tarifas del proveedor) y conversión de moneda en tiempo real cuando las cotizaciones mezclan divisas; la búsqueda de hoteles suma ocupación multi-habitación, filtros por categoría en server-side, paginación progresiva y deduplicación de propiedades. El dashboard admin gestiona hubs de destinos paquete, cards de home con uploads AVIF procesados server-side vía Sharp, pricing de traslados, reglas de margen en vuelos con overrides por ruta y aerolínea, reglas de margen en hoteles con porcentajes configurables en modo neto o bruto (neto: comisión sobre lo que paga la agencia; bruto: comisión sobre el precio de venta antes del margen), más miembros, clientes y RBAC por áreas. Los módulos de reportes de rastreo de vuelos y hoteles baratos soportan programaciones configurables desde el dashboard, runners async, ventanas rolling de fechas futuras con snapshots de tarifas directas y con escala, filtros de horario/duración/equipaje, filtros multi-propiedad hotelera, export Excel vía ExcelJS, notificaciones in-app y audit trails — detrás de auth JWT con rotación de refresh token. Los reportes programados completados sincronizan a Google Drive como Sheets vía OAuth y googleapis: spreadsheets maestros por vertical, pestañas dedicadas por programación y acceso a carpeta Drive desde la UI. Mensajes de venta de paquetes cruzados emparejan automáticamente filas de reportes de vuelo y hotel por ruta, aeropuerto, pasajeros y fechas de viaje para el seguimiento comercial de agentes. Schedulers en el backend mantienen sesiones de integración vivas en intervalo fijo — Playwright y Chromium embebidos en la imagen Docker de la API para inventario basado en navegador, health probes HTTP para inventario basado en API — más cleanup diario de retención de reportes con política de 14 días y webhooks de revalidación de cache internos que refrescan el sitio público cuando cambian precios, destinos, hubs de paquetes o traslados, con preservación selectiva de sesiones Redis entre revalidaciones. El progreso de reportes en tiempo real fluye vía Socket.io con adapter Redis para escalar horizontalmente. La infra de producción incluye backups diarios MySQL a Google Drive e integración opcional Google Places API para el badge de rating del home.',
+    melincueViajesFeatures: [
+      'Búsqueda Live de Vuelos, Hoteles y Paquetes con Derivación WhatsApp y Consultas Prearmadas',
+      'Composición Live de Paquetes — Total Vuelo + Hotel + Traslado en USD',
+      'Monorepo TypeScript con Arquitectura SOLID de Cuatro Capas — API, Sitio Público y Admin',
+      'DTOs Compartidos e Integraciones Live de Inventario como Paquetes npm Aislados',
+      'Backoffice Admin Unificado — Destinos, Traslados, Pricing y Reportes',
+      'Uploads AVIF de Cards de Destino con Procesamiento Server-Side (Sharp)',
+      'Reportes de Rastreo de Tarifas — Programaciones Configurables y Export Excel',
+      'Sync Google Drive + Sheets para Reportes Programados (OAuth / googleapis)',
+      'Mensajes Venta Paquete Cruzados (Emparejamiento Vuelo + Hotel) y Templates WhatsApp',
+      'Motor de Márgenes — Comisión %, Reglas Vuelo por Ruta/Aerolínea y Modos Neto/Bruto en Hoteles',
+      'Keepalive de Sesiones de Integración vía node-cron + Playwright/Chromium en Docker',
+      'Rotación JWT Refresh, RBAC por Áreas, Miembros, Clientes y Audit Logs',
+      'Progreso de Reportes en Tiempo Real vía Socket.io, Adapter Redis y Notificaciones In-App',
+      'Producción VPS — Docker Compose, Cloudflare, Nginx, Revalidación de Cache y Backup MySQL',
+    ],
+    melincueViajesChallenges: 'Entregar búsqueda live de viajes en tres aplicaciones desplegadas por separado implicó compartir sesiones de proveedor en Redis entre API y sitio público, mantener integraciones basadas en navegador y en API sanas vía jobs de keepalive en background sin interferir con requests del comprador, y garantizar que la composición de paquetes nunca dispare automatización de browser durante la búsqueda del comprador. La composición requirió consultas en vivo en paralelo, totales normalizados en USD con la comisión de agencia aplicada, conversión de moneda en tiempo real para cotizaciones hoteleras en divisas mixtas y UX de cotización con validez limitada alineada a ventanas de vigencia del proveedor. El stack de reportes operativos — programaciones configurables desde dashboard, runners async, ventanas rolling de tarifas directas/con escala, filtros multi-propiedad hotelera, reglas de margen compartidas (comisión % sobre neto o bruto) entre precios del sitio público y output de reportes, cleanup de retención a 14 días, sync Google Drive/Sheets al completar y mensajes de venta paquete cruzados para seguimiento comercial de agentes — debía mantenerse consistente con templates WhatsApp, pipelines de upload AVIF y revalidación de cache con preservación selectiva de sesiones, extendiendo la arquitectura SOLID de cuatro capas con nuevos contextos acotados en el monorepo sobre un solo VPS de producción.',
+    melincueViajesLearnings: 'Melincué reforzó cómo extender una base admin lista para producción hacia una plataforma específica del rubro viajes — reutilizando rotación JWT refresh, RBAC, audit logs y Socket.io mientras se sumaban gestión de destinos, pricing de traslados, reportes de rastreo de tarifas y motores de margen configurables como módulos de primera clase bajo una estructura SOLID de cuatro capas. Entregar flujos de cotización live bajo demanda validó la experiencia del comprador, donde cada precio tiene vigencia limitada y cada total mostrado ya incluye la comisión de la agencia. Construir herramientas operativas — programaciones de rastreo configurables, automatización Drive/Sheets, exports ExcelJS y mensajes de venta cruzados — confirmó lo que un equipo de agencia de viajes usa a diario. Correr el stack completo en producción — monorepo de tres apps en VPS, Chromium en Docker, sesiones Redis compartidas, Cloudflare y Nginx Origin CA — validó entrega end-to-end desde paquetes de integración hasta deploy, ciclo de vida de APIs de terceros y reportes operativos a escala.',
     
     // Mistress Rocks Project
     mistressRocksTitle: 'Mistress Rocks: Migración Full-Stack y Modernización de Plataforma',
@@ -524,6 +573,7 @@ export const translations = {
     
     // Demo Credentials
     demoCredentials: 'Demo No Disponible',
+    openLiveSite: 'Abrir Sitio en Vivo',
     demoNote: 'El servidor backend está actualmente offline debido a la expiración de la prueba gratuita. Puedes explorar el código frontend, diseño y arquitectura en los repositorios de GitHub.',
     demoEmail: '',
     demoPassword: '',
@@ -532,12 +582,12 @@ export const translations = {
     projectNotFound: 'Proyecto No Encontrado',
     backToProjects: 'Volver a Proyectos',
     sections: 'Secciones',
-    repositories: 'Repositorios',
+    projectLinks: 'Enlaces',
     backendRepository: 'Repositorio Backend',
     frontendRepository: 'Repositorio Frontend',
     monorepoRepository: 'Repositorio Monorepo',
-    liveDemo: 'Demo en Vivo',
-    viewLiveApplication: 'Ver la aplicación en vivo',
+    liveSite: 'Sitio en Vivo',
+    viewLiveSite: 'Visitar el sitio en producción',
     interestedInWorking: '¿Interesado en trabajar juntos?',
     getInTouchBtn: 'Ponte en contacto',
     
@@ -554,6 +604,8 @@ export const translations = {
     footerEmail: 'Correo',
     footerAllRightsReserved: 'Todos los derechos reservados.',
     footerLastUpdated: 'Última actualización por Alejo el',
+    footerLastUpdatedAt: 'a las',
+    footerTimezone: 'hora Argentina',
     
     // CV/Resume
     downloadCV: 'Descargar CV',

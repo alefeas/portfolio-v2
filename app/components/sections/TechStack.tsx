@@ -21,6 +21,7 @@ export default function TechStack() {
         title={t('technologiesIWorkWith')}
         description={t('techStackDescFull')}
         highlightText={t('scalable')}
+        descriptionAfter={` ${t('and')} ${t('efficient')} ${t('applicationsText')}`}
       />
 
       {/* Tech Grid */}

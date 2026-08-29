@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Modal from './Modal';
 import { DemoCredentialsModalProps } from '@/app/types';
+import { useTranslation } from '@/app/hooks/useTranslation';
 
 export default function DemoCredentialsModal({
   isOpen,
@@ -14,6 +15,7 @@ export default function DemoCredentialsModal({
   password,
   onOpenDemo,
 }: DemoCredentialsModalProps) {
+  const { ts } = useTranslation();
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedPassword, setCopiedPassword] = useState(false);
   const emailTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -48,7 +50,7 @@ export default function DemoCredentialsModal({
       isOpen={isOpen} 
       onClose={onClose} 
       title={title}
-      actionButton={{ label: 'Open Live Demo', onClick: onOpenDemo }}
+      actionButton={{ label: ts('openLiveSite'), onClick: onOpenDemo }}
     >
       {/* Note */}
       <p className="text-sm text-slate-300 mb-6">{note}</p>

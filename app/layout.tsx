@@ -8,6 +8,8 @@ import Footer from "./components/layout/Footer";
 import ScrollManager from "./components/layout/ScrollManager";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
+import { cookies } from "next/headers";
+import { Language } from "./lib/translations";
 import {
   DEFAULT_OG_IMAGE,
   SITE_DESCRIPTION,
@@ -89,13 +91,18 @@ const websiteJsonLd = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Read locale cookie set by client to avoid language flash on reload
+  const cookieStore = await cookies();
+  const savedLocale = cookieStore.get('portfolio-locale')?.value;
+  const initialLanguage: Language = (savedLocale === 'en' || savedLocale === 'es') ? savedLocale : 'en';
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={initialLanguage} suppressHydrationWarning>
       <body
         className="font-sans antialiased"
         style={{
@@ -112,7 +119,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
-        <LanguageProvider>
+        <LanguageProvider initialLanguage={initialLanguage}>
           <ScrollManager />
           <NavbarWrapper />
           <LanguageToggleWrapper />

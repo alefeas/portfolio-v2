@@ -6,11 +6,13 @@ export default function SectionHeader({
   title,
   description,
   highlightText,
+  descriptionAfter,
 }: SectionHeaderProps) {
   const badgeText = typeof badge === 'string' ? badge : Array.isArray(badge) ? badge[0] : badge;
   const titleText = typeof title === 'string' ? title : Array.isArray(title) ? title[0] : title;
   const descText = typeof description === 'string' ? description : Array.isArray(description) ? description[0] : description;
   const highlightStr = typeof highlightText === 'string' ? highlightText : Array.isArray(highlightText) ? highlightText[0] : highlightText;
+  const afterText = typeof descriptionAfter === 'string' ? descriptionAfter : Array.isArray(descriptionAfter) ? descriptionAfter[0] : descriptionAfter;
 
   return (
     <>
@@ -30,6 +32,7 @@ export default function SectionHeader({
           {highlightStr && (
             <span className="text-primary-400 font-medium"> {highlightStr}</span>
           )}
+          {afterText && <span>{afterText}</span>}
         </p>
       </div>
     </>

@@ -24,3 +24,11 @@ export const SOCIAL_LINKS = {
   linkedin: 'https://www.linkedin.com/in/afeas/',
   email: 'mailto:alefeas99@gmail.com',
 } as const;
+
+/** Independent software studio — single source for name/URL in copy and links */
+export const AFM_STUDIO = {
+  name: 'AFM',
+  url:
+    process.env.NEXT_PUBLIC_AFM_URL?.replace(/\/$/, '') ??
+    'https://afm-software.vercel.app',
+} as const;
