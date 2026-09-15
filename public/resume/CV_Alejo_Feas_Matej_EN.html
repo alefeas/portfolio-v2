@@ -2,189 +2,158 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Alejo Feas Matej - Full-Stack Developer Resume</title>
     <style>
-        :root {
-            --black: #000000;
-            --dark-grey: #333333;
-        }
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.5;
-            color: var(--dark-grey);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10pt;
+            line-height: 1.35;
+            color: #222222;
             margin: 0;
-            padding: 40px;
+            padding: 28px 32px;
             max-width: 800px;
-            margin: auto;
-            background-color: white;
+            background-color: #ffffff;
         }
-        a {
-            color: inherit;
-            text-decoration: none;
-            font-weight: 400;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-
         h1 {
-            font-size: 28px;
+            font-size: 16pt;
             font-weight: 700;
-            margin: 0;
-            color: var(--black);
+            margin: 0 0 4px 0;
+            color: #000000;
         }
         .contact-info {
-            font-size: 13px;
-            margin-bottom: 25px;
+            font-size: 9pt;
+            margin: 0 0 8px 0;
+            color: #222222;
         }
-        
-        h2 {
-            font-size: 16px;
+        .contact-info a {
+            color: #222222;
+            text-decoration: none;
+        }
+        .headline {
+            font-size: 11pt;
             font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: var(--black);
+            margin: 0 0 6px 0;
+            color: #000000;
         }
-        
         .summary {
-            font-size: 14px;
-            margin-bottom: 30px;
-            text-align: justify;
+            font-size: 10pt;
+            margin: 0 0 10px 0;
         }
-
-        h3 {
-            font-size: 14px;
-            font-weight: 600;
+        h2 {
+            font-size: 10pt;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            margin-top: 25px;
-            color: var(--dark-grey);
+            letter-spacing: 0.03em;
+            margin: 10px 0 5px 0;
+            padding: 0;
+            border: none;
+            color: #000000;
         }
-
-        .item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
+        .job {
+            margin: 0 0 8px 0;
         }
-        .item-title {
+        .job-header {
+            margin: 0;
+            font-size: 10pt;
+        }
+        .job-title {
             font-weight: 700;
-            font-size: 14px;
-            color: var(--black);
+            color: #000000;
         }
-        .item-subtitle {
-            font-size: 14px;
-            color: var(--dark-grey);
+        .job-meta {
+            margin: 0 0 2px 0;
+            font-size: 9.5pt;
+            color: #222222;
         }
-        .item-date {
-            font-size: 14px;
-            color: var(--dark-grey);
-            white-space: nowrap;
-            margin-left: 16px;
+        ul {
+            margin: 0 0 0 16px;
+            padding: 0;
         }
-
-        .exp-list {
-            font-size: 14px;
-            margin: 8px 0 20px 0;
-            padding-left: 18px;
+        li {
+            margin: 0 0 2px 0;
+            font-size: 10pt;
         }
-        .exp-list li {
-            margin-bottom: 5px;
+        .edu {
+            margin: 0 0 4px 0;
+            font-size: 10pt;
         }
-
-        .skills-section {
-            font-size: 14px;
-            line-height: 1.8;
-        }
-        .skills-section strong {
+        .edu-title {
             font-weight: 700;
-            color: var(--black);
+            color: #000000;
         }
-
+        .skills p {
+            margin: 0 0 2px 0;
+            font-size: 9.5pt;
+        }
+        .skills strong {
+            font-weight: 700;
+            color: #000000;
+        }
         @media print {
             body { padding: 0; }
-            @page { margin: 1.5cm; }
+            @page { margin: 1.2cm; }
         }
     </style>
 </head>
 <body>
 
     <h1>Alejo Feas Matej</h1>
-    <div class="contact-info">
-        Villa Devoto, CABA • +54 11 6628-2804 •
-        <a href="mailto:alefeas99@gmail.com">alefeas99@gmail.com</a> •
-        <a href="https://linkedin.com/in/afeas" target="_blank">LinkedIn</a> •
-        <a href="https://afeas.vercel.app" target="_blank">Portfolio</a> •
-        <a href="https://github.com/alefeas" target="_blank">GitHub</a>
+    <p class="contact-info">
+        Villa Devoto, CABA, Argentina |
+        +54 11 6628-2804 |
+        <a href="mailto:alefeas99@gmail.com">alefeas99@gmail.com</a> |
+        LinkedIn: <a href="https://www.linkedin.com/in/afeas/">linkedin.com/in/afeas</a> |
+        Portfolio: <a href="https://afeas.vercel.app">afeas.vercel.app</a> |
+        GitHub: <a href="https://github.com/alefeas">github.com/alefeas</a>
+    </p>
+
+    <p class="headline">Full-Stack Developer | AI Integration | Legacy Modernization</p>
+
+    <p class="summary">
+        Full-Stack Developer with production experience in international teams and independent software delivery for businesses. University Technician in Programming (UTN). Focused on high-traffic e-commerce backends, Next.js platforms, legacy modernization, and applied AI for business-process automation with security and performance at scale.
+    </p>
+
+    <h2>Work Experience</h2>
+
+    <div class="job">
+        <p class="job-header"><span class="job-title">Full-Stack Developer</span></p>
+        <p class="job-meta">House of CB - Luxury fashion and related brands under the same ownership | February 2026 - Present</p>
+        <ul>
+            <li>Backend development on House of CB high-traffic international e-commerce (PHP, MySQL, Docker, AWS) in a global team.</li>
+            <li>Contributing to the Next.js 16 platform rebuild that will replace House of CB legacy admin, operations, and business-domain logic; frontend owns the public storefront migration.</li>
+            <li>Designed and integrated AI solutions and autonomous agents to automate internal workflows on the live House of CB stack; occasional storefront frontend changes when product needs require it.</li>
+            <li>Related brands under the same ownership: full-stack PHP 7.2 to 8.5 migration and Smarty modernization for Mistress Rocks; live guest QR ordering with SSE, legacy PHP POS bridge, and brand site for Madame Pompidor.</li>
+        </ul>
     </div>
 
-    <h2>Full-Stack Developer · AI Integration & Legacy Systems</h2>
-
-    <div class="summary">
-        Full-Stack Developer with production experience in international teams and independent software delivery for businesses. University Technician in Programming (UTN). Specialized in legacy modernization, infrastructure migrations, and AI integration to automate processes and deliver production-ready solutions with a focus on security and performance at scale.
+    <div class="job">
+        <p class="job-header"><span class="job-title">Founder and Full-Stack Developer</span></p>
+        <p class="job-meta">AFM - Independent Software and AI Studio | May 2025 - Present</p>
+        <ul>
+            <li>End-to-end delivery of production full-stack platforms for clients across travel, meal delivery, architecture studios, and other verticals — web apps, AI integration, and process automation.</li>
+            <li>Flagship client: Melincue Viajes — TypeScript monorepo with public site, admin backoffice and API: live flight/hotel/package quotation, ops reporting, and an AI quotation agent on WhatsApp Business Cloud API.</li>
+            <li>Also built a reusable Node.js / Next.js dashboard foundation (auth, RBAC, audit, real-time) to accelerate delivery across client engagements, and shipped the AFM studio site.</li>
+        </ul>
     </div>
 
-    <h3>EXPERIENCE</h3>
+    <h2>Education</h2>
 
-    <div class="item">
-        <div>
-            <div class="item-title">Full-Stack Developer</div>
-            <div class="item-subtitle">House of CB – Luxury British women's fashion brand</div>
-        </div>
-        <div class="item-date">Feb 2026 – Present</div>
-    </div>
-    <ul class="exp-list">
-        <li>Backend development on high-traffic international e-commerce (PHP, MySQL, Docker, AWS) within a global team.</li>
-        <li>Led PHP 7.2 → 8.5 migration for House of CB and Mistress Rocks (secondary brand), including full-stack legacy modernization and business-logic refactoring.</li>
-        <li>Designed and integrated AI solutions and autonomous agents to automate internal workflows.</li>
-    </ul>
+    <p class="edu">
+        <span class="edu-title">University Technician in Programming</span> - National Technological University (UTN) | 2024 - 2025
+    </p>
+    <p class="edu">
+        <span class="edu-title">Full-Stack Web Development</span> - Coderhouse | 2022 - 2023
+    </p>
 
-    <div class="item">
-        <div>
-            <div class="item-title">Founder & Full-Stack Developer</div>
-            <div class="item-subtitle">AFM · Independent Software & AI Studio</div>
-        </div>
-        <div class="item-date">May 2025 – Present</div>
-    </div>
-    <ul class="exp-list">
-        <li>End-to-end delivery of scalable production full-stack platforms for clients — web development, AI integration, and business process automation.</li>
-    </ul>
-
-    <h3>EDUCATION</h3>
-
-    <div class="item">
-        <div>
-            <div class="item-title">University Technician in Programming</div>
-            <div class="item-subtitle">National Technological University (UTN)</div>
-        </div>
-        <div class="item-date">2024 – 2025</div>
-    </div>
-
-    <div class="item">
-        <div>
-            <div class="item-title">Full-Stack Web Development</div>
-            <div class="item-subtitle">Coderhouse</div>
-        </div>
-        <div class="item-date">2022 – 2023</div>
-    </div>
-
-    <div class="item" style="margin-bottom: 25px;">
-        <div>
-            <div class="item-title">Secondary Education</div>
-            <div class="item-subtitle">Instituto Cardenal Copello</div>
-        </div>
-        <div class="item-date">2016 – 2020</div>
-    </div>
-
-    <h3>SKILLS</h3>
-    <div class="skills-section">
-        <div><strong>Backend:</strong> ASP.NET Core, C# / .NET, PHP, Laravel, Node.js</div>
-        <div><strong>Databases:</strong> SQL (Oracle PL/SQL, SQL Server, MySQL)</div>
-        <div><strong>Frontend:</strong> HTML, Tailwind CSS, React.js / Next.js, TypeScript / JavaScript</div>
-        <div><strong>AI & Automation:</strong> LLMs, AI Agents, Generative AI, Prompt Engineering, Process Automation</div>
-        <div><strong>Tools:</strong> Docker, Kubernetes, AWS, Git / GitHub, Supabase</div>
-        <div><strong>Languages:</strong> Spanish (Native), English (B2 – Upper-Intermediate)</div>
-        <div><strong>Methodologies:</strong> Scrum</div>
+    <h2>Skills</h2>
+    <div class="skills">
+        <p><strong>Backend:</strong> Node.js, Express, PHP, Prisma, ASP.NET Core, C#</p>
+        <p><strong>Frontend:</strong> Next.js, React, TypeScript, JavaScript, Tailwind CSS, HTML</p>
+        <p><strong>Databases and Cache:</strong> MySQL, Redis, SQL Server, Oracle PL/SQL</p>
+        <p><strong>AI and Automation:</strong> LLMs, AI Agents, Generative AI, Prompt Engineering, Process Automation</p>
+        <p><strong>DevOps and Tools:</strong> Docker, AWS, Git, GitHub, Kubernetes, Nginx, Cloudflare</p>
+        <p><strong>Languages:</strong> Spanish (Native), English (B2 Upper-Intermediate)</p>
+        <p><strong>Methodologies:</strong> Scrum, Agile</p>
     </div>
 
 </body>

@@ -44,7 +44,7 @@ async function generate() {
       path: pdfPath,
       format: 'A4',
       printBackground: true,
-      margin: { top: '1.5cm', right: '1.5cm', bottom: '1.5cm', left: '1.5cm' },
+      margin: { top: '1.2cm', right: '1.2cm', bottom: '1.2cm', left: '1.2cm' },
     });
 
     await page.close();

@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+// TODO: premium hero motion — re-enable framer-motion when shipping new entrance animations
+// import { motion } from 'framer-motion';
 import { useTranslation } from '@/app/hooks/useTranslation';
 import { heroNavLinks } from '@/app/constants/navigation';
 import { IconButton, Button, Tooltip } from '@/app/components/ui';
@@ -29,7 +30,7 @@ export default function Hero() {
   return (
     <>
       {/* Prismatic Aurora Burst Background */}
-      <motion.div 
+      <div 
         className="absolute top-0 left-0 w-full -z-10 pointer-events-none"
         style={{
           height: '15%',
@@ -41,46 +42,38 @@ export default function Hero() {
       />
       <section 
         id="hero" 
-        className="relative flex min-h-screen flex-col gap-6 md:gap-8 pb-20 md:pb-32 pt-20 md:pt-24 justify-center px-4 md:px-6 max-w-6xl mx-auto overflow-visible"
+        className="relative flex min-h-[60svh] flex-col gap-6 md:gap-8 pb-10 md:pb-14 pt-20 md:pt-24 justify-center px-4 md:px-6 max-w-6xl mx-auto overflow-visible"
       >
 
       {/* Main Title */}
-      <motion.h1 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0, ease: "easeOut" }}
+      {/* motion: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: 0, ease: "easeOut" }} */}
+      <h1 
         className="hero-title font-semibold leading-[1.2] tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
         style={{ textWrap: 'balance' }}
       >
         {t('hiIm')} <span className="bg-gradient-to-r from-green-500 to-green-400 bg-clip-text text-transparent">Alejo</span>. <br /> 
         {t('buildingFuture')}
-      </motion.h1>
+      </h1>
 
       {/* Subtitle */}
-      <motion.h2 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.08, ease: "easeOut" }}
+      {/* motion: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: 0.08, ease: "easeOut" }} */}
+      <h2 
         className="max-w-2xl leading-relaxed text-gray-300 text-sm md:text-base"
       >
         <span className="text-green-500 font-medium">{t('passionate')}</span> {t('about_desc')} <br /> {t('building')} <span className="text-green-400 font-medium">{t('innovative')}</span> {t('solutions')}.
-      </motion.h2>
+      </h2>
 
       {/* Enhanced Keyboard Navigation */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: 0.16, ease: "easeOut" }}
+      {/* motion: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: 0.16, ease: "easeOut" }} */}
+      <div 
         className="hero-actions flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6"
       >
         <div className="hero-nav-board">
-          {navLinksWithDynamicCV.map((item, index) => (
-            <motion.div 
+          {navLinksWithDynamicCV.map((item) => (
+            /* motion.div per icon: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: 0.16 + index * 0.03, ease: "easeOut" }} */
+            <div 
               key={item.key} 
               className="relative"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: 0.16 + index * 0.03, ease: "easeOut" }}
             >
               <Tooltip label={getHeroTooltipLabel(item.key)} isVisible={hoveredButton === item.key}>
                 <IconButton
@@ -97,32 +90,19 @@ export default function Hero() {
                   onMouseLeave={() => setHoveredButton(null)}
                 />
               </Tooltip>
-            </motion.div>
+            </div>
           ))}
         </div>
         
-        <motion.div 
-          className="hero-cta-container"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2, delay: 0.16 + navLinksWithDynamicCV.length * 0.03, ease: "easeOut" }}
-        >
+        {/* motion CTA: initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2, delay: 0.16 + navLinksWithDynamicCV.length * 0.03, ease: "easeOut" }} */}
+        {/* arrow loop: animate={{ x: [0, 4, 0], opacity: [1, 0.6, 1] }} transition={{ duration: 1.2, repeat: Infinity, times: [0, 0.5, 1], ease: "easeInOut" }} */}
+        <div className="hero-cta-container">
           <Button href="#projects" variant="cta">
             <span>{t('viewProjects')}</span>
-            <motion.div 
-              animate={{ x: [0, 4, 0], opacity: [1, 0.6, 1] }}
-              transition={{ 
-                duration: 1.2, 
-                repeat: Infinity, 
-                times: [0, 0.5, 1],
-                ease: "easeInOut"
-              }}
-            >
-              →
-            </motion.div>
+            <div>→</div>
           </Button>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </section>
     </>
   );

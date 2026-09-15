@@ -362,6 +362,13 @@ export const getProjectBySlug = (slug) => projectsRaw.find(p => p.slug === slug)
 
 **No duplicar** esta información en otros archivos. Un solo origen.
 
+#### Orden en la grilla de proyectos
+
+- El **orden del array** `projectsRaw` es el orden de visualización en la home (`Projects.tsx`, `PAGE_SIZE = 6` por página).
+- Reordenar = mover el bloque del proyecto en el array; **no borrar** entradas salvo que el proyecto deje de publicarse.
+- `id` numérico solo alimenta redirects legacy `/projects/{id}` → `/projects/{slug}` en `next.config.ts`; no define la posición en la grilla.
+- `statusKey`: `live` (badge verde) o `inDevelopment` (badge amarillo). `isLive` se deriva en `getProjects`.
+
 #### Slugs y URLs de proyectos
 
 - Cada proyecto tiene `slug: string` en `ProjectRaw` (ej: `payto`, `house-of-cb`)
@@ -931,6 +938,7 @@ Antes de cualquier cambio, verificar:
 - [ ] ¿Back desde project detail usa `router.push('/')` + `scrollToId`? → No `router.back()` cuando hay `scrollToId`
 - [ ] ¿Demo offline usa `demoUnavailable` en `projects.ts`? → No hardcodear `projectId`
 - [ ] ¿Proyecto nuevo? → Agregar `slug`, rutas de imagen SEO, entrada en sitemap vía `projectsRaw`
+- [ ] ¿Reordenar destacados? → Mover bloques en `projectsRaw` (grilla paginada de 6); ver sección “Orden en la grilla”
 - [ ] ¿Proyecto nuevo o textos editados? → Revisar guía “Descripciones de Proyectos”: completo, sin URLs/rutas/clases, EN **y** ES al mismo nivel
 - [ ] ¿Links a proyectos usan `project.slug`? → No `/projects/${id}`
 - [ ] ¿URLs sociales? → `SOCIAL_LINKS` en `site.ts`, no hardcodeadas
@@ -946,5 +954,5 @@ Antes de cualquier cambio, verificar:
 
 ---
 
-**Última actualización**: Julio 2026 (SEO, slugs, a11y, validación contacto)
-**Versión del Proyecto**: 2.1
+**Última actualización**: Septiembre 2026 (Madame Pompidor, orden grilla)
+**Versión del Proyecto**: 2.2

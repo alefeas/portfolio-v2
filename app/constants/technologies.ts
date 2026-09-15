@@ -10,39 +10,38 @@ export const technologies: TechCategory[] = [
       { name: "JavaScript", logo: "/icons/javascript.svg" },
       { name: "Tailwind CSS", logo: "/icons/tailwindcss.svg" },
       { name: "HTML5", logo: "/icons/html5.svg" },
-      // { name: "CSS3", logo: "/icons/css3.svg" }
     ]
   },
   {
     category: "Backend",
     techs: [
-      // { name: "C#", logo: "/icons/csharp.svg" },
       { name: "Node.js", logo: "/icons/nodejs.svg" },
-      { name: "ASP.NET", logo: "/icons/dotnet.svg" },
-      { name: "PHP", logo: "/icons/php.svg"},
-      { name: "Laravel", logo: "/icons/laravel.svg" },
-      { name: "C", logo: "/icons/c.svg" },
-      { name: "C++", logo: "/icons/cplusplus.svg" }
+      { name: "Express", logo: "/icons/express.svg" },
+      { name: "PHP", logo: "/icons/php.svg" },
+      { name: "Prisma", logo: "/icons/prisma.svg" },
+      { name: "ASP.NET Core", logo: "/icons/dotnet.svg" },
+      { name: "C#", logo: "/icons/csharp.svg" },
     ]
   },
   {
     category: "Databases",
     techs: [
-      { name: "Oracle", logo: "/icons/oracle.svg" },
-      { name: "PL/SQL", logo: "/icons/sqldeveloper.svg" },
+      { name: "MySQL", logo: "/icons/mysql.svg" },
+      { name: "Redis", logo: "/icons/redis.svg" },
       { name: "SQL Server", logo: "/icons/microsoftsqlserver.svg" },
-      { name: "MySQL", logo: "/icons/mysql.svg" }
+      { name: "Oracle PL/SQL", logo: "/icons/oracle.svg" },
     ]
   },
   {
     category: "Tools",
     techs: [
       { name: "Docker", logo: "/icons/docker.svg" },
-      { name: "Kubernetes", logo: "/icons/kubernetes.svg" },
       { name: "AWS", logo: "/icons/aws.svg" },
+      { name: "Kubernetes", logo: "/icons/kubernetes.svg" },
+      { name: "Nginx", logo: "/icons/nginx.svg" },
+      { name: "Cloudflare", logo: "/icons/cloudflare.svg" },
       { name: "Git", logo: "/icons/git.svg" },
       { name: "GitHub", logo: "/icons/github.svg" },
-      { name: "Supabase", logo: "/icons/supabase.svg" }
     ]
   }
 ];
