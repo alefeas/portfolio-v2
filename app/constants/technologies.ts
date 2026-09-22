@@ -37,7 +37,6 @@ export const technologies: TechCategory[] = [
     techs: [
       { name: "Docker", logo: "/icons/docker.svg" },
       { name: "AWS", logo: "/icons/aws.svg" },
-      { name: "Kubernetes", logo: "/icons/kubernetes.svg" },
       { name: "Nginx", logo: "/icons/nginx.svg" },
       { name: "Cloudflare", logo: "/icons/cloudflare.svg" },
       { name: "Git", logo: "/icons/git.svg" },
