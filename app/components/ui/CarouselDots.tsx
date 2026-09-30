@@ -13,8 +13,8 @@ export default function CarouselDots({ total, current, onDotClick }: CarouselDot
           onClick={() => onDotClick(index)}
           className={`h-2.5 rounded-full transition-all ${
             index === current 
-              ? 'bg-green-500 w-8' 
-              : 'bg-slate-700/50 w-2.5 hover:bg-green-500/70'
+              ? 'bg-primary w-8' 
+              : 'bg-border w-2.5 hover:bg-primary/70'
           }`}
           aria-label={`Go to image ${index + 1}`}
         />

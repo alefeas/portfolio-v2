@@ -22,5 +22,11 @@ export const heroNavLinks: NavLink[] = [
     key: 'Email', 
     href: SOCIAL_LINKS.email, 
     icon: 'email' 
-  }
+  },
+  {
+    key: 'WhatsApp',
+    href: SOCIAL_LINKS.whatsapp,
+    icon: 'whatsapp',
+    target: '_blank',
+  },
 ];

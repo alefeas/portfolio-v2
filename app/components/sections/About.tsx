@@ -23,7 +23,6 @@ export default function About() {
 
       {/* Content */}
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 items-start">
-        {/* Image */}
         <div className="relative w-full max-w-2xl lg:w-sm lg:flex-shrink-0">
           {/* Mobile: Square image */}
           <div className="lg:hidden aspect-square rounded-2xl overflow-hidden relative">
@@ -50,15 +49,14 @@ export default function About() {
           </div>
         </div>
 
-        {/* Content */}
         <div className="w-full max-w-2xl lg:w-130">
           <div className="space-y-8">
             {/* Bio */}
             <div>
-              <h3 className="heading-4 text-white mb-3">{t('whoIAm')}</h3>
-              <div className="space-y-3 text-slate-300 leading-relaxed text-sm">
+              <h3 className="heading-4 text-foreground mb-3">{t('whoIAm')}</h3>
+              <div className="space-y-3 text-muted-foreground leading-relaxed text-sm">
                 <p>
-                  {t('whoIAmDesc')} <span className="text-green-400 font-medium">{t('fullStackDeveloper')}</span> {t('whoIAmDesc2')}
+                  {t('whoIAmDesc')} <span className="text-emphasis">{t('fullStackDeveloper')}</span> {t('whoIAmDesc2')}
                 </p>
                 <p>
                   {t('seekingOpportunityBefore')}
@@ -66,7 +64,7 @@ export default function About() {
                     href={AFM_STUDIO.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-green-400 font-medium hover:text-green-300 underline-offset-2 hover:underline"
+                    className="text-emphasis hover:opacity-80 underline-offset-2 hover:underline"
                   >
                     {AFM_STUDIO.name}
                   </a>
@@ -77,20 +75,20 @@ export default function About() {
 
             {/* Current Focus */}
             <Card className="p-6">
-              <h4 className="heading-5 text-white mb-2 flex items-center gap-2">
+              <h4 className="heading-5 text-foreground mb-2 flex items-center gap-2">
                 <StatusDot />
                 {t('currentlyLearning')}
               </h4>
-              <p className="text-slate-300 text-sm leading-relaxed">
-                {t('expandingKnowledge')} <span className="text-green-400 font-medium">{t('cloudTech')}</span>, 
-                <span className="text-green-400 font-medium"> {t('microservices')}</span>, {t('and')} 
-                <span className="text-green-400 font-medium"> {t('databaseOpt')}</span> {t('stayingCurrent')}.
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                {t('expandingKnowledge')} <span className="text-emphasis">{t('cloudTech')}</span>, 
+                <span className="text-emphasis"> {t('microservices')}</span>, {t('and')} 
+                <span className="text-emphasis"> {t('databaseOpt')}</span> {t('stayingCurrent')}.
               </p>
             </Card>
 
             {/* Skills highlight */}
             <div>
-              <h4 className="heading-5 text-white mb-2">{t('whatIBest')}</h4>
+              <h4 className="heading-5 text-foreground mb-2">{t('whatIBest')}</h4>
               <div className="space-y-3">
                 {[
                   t('fullStackWeb'),
@@ -99,8 +97,8 @@ export default function About() {
                   t('uiUx')
                 ].map((skill, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full flex-shrink-0"></div>
-                    <span className="text-slate-300 text-sm">{skill}</span>
+                    <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                    <span className="text-muted-foreground text-sm">{skill}</span>
                   </div>
                 ))}
               </div>

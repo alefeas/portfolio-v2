@@ -19,10 +19,16 @@ export const SITE_DESCRIPTION =
 
 export const DEFAULT_OG_IMAGE = '/profile_result.avif';
 
+const WHATSAPP_PHONE = '5491166282804';
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  'Hola Alejo, vi tu portfolio y me gustaría conversar.'
+);
+
 export const SOCIAL_LINKS = {
   github: 'https://github.com/alefeas',
   linkedin: 'https://www.linkedin.com/in/afeas/',
   email: 'mailto:alefeas99@gmail.com',
+  whatsapp: `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${WHATSAPP_MESSAGE}`,
 } as const;
 
 /** Independent software studio — single source for name/URL in copy and links */

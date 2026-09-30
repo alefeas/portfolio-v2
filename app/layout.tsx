@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/fustat";
 import "./globals.css";
 import NavbarWrapper from "./components/layout/NavbarWrapper";
@@ -6,6 +6,8 @@ import LanguageToggleWrapper from "./components/layout/LanguageToggleWrapper";
 import MobileNavWrapper from "./components/layout/MobileNavWrapper";
 import Footer from "./components/layout/Footer";
 import ScrollManager from "./components/layout/ScrollManager";
+import AmbientBackground from "./components/layout/AmbientBackground";
+import SectionNavOverlay from "./components/layout/SectionNavOverlay";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
 import { cookies } from "next/headers";
@@ -19,6 +21,12 @@ import {
   SOCIAL_LINKS,
 } from "./lib/site";
 
+const FAVICON = "/favicon.png?v=2";
+
+export const viewport: Viewport = {
+  themeColor: "#001D51",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
@@ -27,7 +35,9 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   icons: {
-    icon: "/favicon.ico",
+    icon: [{ url: FAVICON, type: "image/png" }],
+    apple: [{ url: FAVICON, type: "image/png" }],
+    shortcut: FAVICON,
   },
   alternates: {
     canonical: SITE_URL,
@@ -103,14 +113,7 @@ export default async function RootLayout({
 
   return (
     <html lang={initialLanguage} suppressHydrationWarning>
-      <body
-        className="font-sans antialiased"
-        style={{
-          backgroundColor: 'rgb(9 9 11 / var(--tw-bg-opacity, 1))',
-          position: 'relative',
-          zIndex: -1000
-        }}
-      >
+      <body className="font-sans antialiased bg-background text-foreground">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -120,6 +123,8 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <LanguageProvider initialLanguage={initialLanguage}>
+          <AmbientBackground />
+          <SectionNavOverlay />
           <ScrollManager />
           <NavbarWrapper />
           <LanguageToggleWrapper />

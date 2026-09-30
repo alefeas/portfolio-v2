@@ -6,12 +6,12 @@ import { ToastProps } from '@/app/types';
 export default function Toast({ type, title, description }: ToastProps) {
   const isSuccess = type === 'success';
   const bgClass = isSuccess 
-    ? 'bg-gradient-to-r from-emerald-950/60 to-green-950/60 border-green-500/40' 
-    : 'bg-gradient-to-r from-red-950/60 to-rose-950/60 border-red-500/40';
-  const textClass = isSuccess ? 'text-green-300' : 'text-red-300';
-  const titleClass = isSuccess ? 'text-green-300' : 'text-red-300';
-  const subtitleClass = isSuccess ? 'text-green-400/80' : 'text-red-400/80';
-  const iconColor = isSuccess ? 'text-green-400' : 'text-red-400';
+    ? 'bg-primary/10 border-primary/40' 
+    : 'bg-destructive/10 border-destructive/40';
+  const textClass = isSuccess ? 'text-primary' : 'text-destructive';
+  const titleClass = isSuccess ? 'text-primary' : 'text-destructive';
+  const subtitleClass = isSuccess ? 'text-primary/80' : 'text-destructive/80';
+  const iconColor = isSuccess ? 'text-primary' : 'text-destructive';
 
   return (
     <motion.div

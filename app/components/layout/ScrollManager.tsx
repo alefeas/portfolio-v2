@@ -2,10 +2,23 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { SCROLL_TO_KEY } from '@/app/lib/sectionNavigation';
+import {
+  SCROLL_TO_KEY,
+  SECTION_NAV_HOLD_KEY,
+  SECTION_NAV_SETTLED_EVENT,
+} from '@/app/lib/sectionNavigation';
 
 const MAX_ATTEMPTS = 24;
 const RETRY_MS = 50;
+
+function notifySettled() {
+  try {
+    sessionStorage.removeItem(SECTION_NAV_HOLD_KEY);
+  } catch {
+    /* ignore */
+  }
+  window.dispatchEvent(new Event(SECTION_NAV_SETTLED_EVENT));
+}
 
 export default function ScrollManager() {
   const pathname = usePathname();
@@ -21,26 +34,36 @@ export default function ScrollManager() {
 
     if (!target) {
       window.scrollTo(0, 0);
+      notifySettled();
       return;
     }
 
     let attempts = 0;
+    let timer: ReturnType<typeof setTimeout> | undefined;
 
     const tryScroll = () => {
       const el = document.getElementById(target);
       if (el) {
         el.scrollIntoView({ behavior: 'instant' });
         sessionStorage.removeItem(SCROLL_TO_KEY);
+        notifySettled();
         return;
       }
 
       attempts += 1;
       if (attempts < MAX_ATTEMPTS) {
-        setTimeout(tryScroll, RETRY_MS);
+        timer = setTimeout(tryScroll, RETRY_MS);
+      } else {
+        sessionStorage.removeItem(SCROLL_TO_KEY);
+        notifySettled();
       }
     };
 
-    setTimeout(tryScroll, RETRY_MS);
+    tryScroll();
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
   }, [pathname]);
 
   return null;

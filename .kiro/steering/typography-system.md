@@ -26,13 +26,13 @@ All heading classes are defined in `app/globals.css` and automatically apply `fo
 
 ```tsx
 // Section title
-<h2 className="heading-2 text-white mb-3">My Section</h2>
+<h2 className="heading-2 text-foreground mb-3">My Section</h2>
 
 // Card title
-<h3 className="heading-4 text-white mb-2">Card Title</h3>
+<h3 className="heading-4 text-foreground mb-2">Card Title</h3>
 
 // Small component title
-<h4 className="heading-5 text-white">Component Title</h4>
+<h4 className="heading-5 text-foreground">Component Title</h4>
 ```
 
 ## Making Global Changes

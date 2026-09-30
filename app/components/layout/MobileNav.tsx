@@ -32,17 +32,17 @@ export default function MobileNav() {
   };
 
   return (
-    <div className="md:hidden fixed top-6 left-6 z-40">
+    <div className="chrome-enter site-chrome md:hidden fixed top-6 left-6 z-40">
       {/* Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 transition-colors duration-300 relative z-50 group"
+        className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-background/90 backdrop-blur-md border border-border shadow-sm transition-colors duration-300 relative z-50 group hover:border-primary/40"
         aria-label="Toggle menu"
       >
         <motion.svg
           animate={isOpen ? { rotate: 90 } : { rotate: 0 }}
           transition={{ duration: 0.3 }}
-          className="w-5 h-5 text-white/60 group-hover:text-white transition-colors duration-300"
+          className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors duration-300"
           fill="currentColor"
           viewBox="0 0 256 256"
         >
@@ -58,7 +58,7 @@ export default function MobileNav() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-2 left-0 w-48 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 rounded-xl shadow-2xl overflow-hidden relative z-40"
+            className="absolute top-2 left-0 w-48 bg-background border border-border rounded-xl shadow-sm overflow-hidden relative z-40"
           >
             <nav className="flex flex-col">
               {floatingNavItems.map((item, index) => (
@@ -66,15 +66,15 @@ export default function MobileNav() {
                   key={item.id}
                   href={`#${item.id}`}
                   onClick={handleNavClick}
-                  className="flex items-center gap-3 px-4 py-3 text-white/60 hover:text-white hover:bg-green-500/10 transition-all duration-200 border-b border-slate-700/30 last:border-b-0 relative"
+                  className="flex items-center gap-3 px-4 py-3 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-200 border-b border-border last:border-b-0 relative"
                 >
-                  <div className="text-green-400 flex-shrink-0">
+                  <div className="text-primary flex-shrink-0">
                     {getNavIcon(item.icon)}
                   </div>
                   <span className="text-sm font-medium">{item.label}</span>
                   {selectedIndex === index && (
                     <motion.div 
-                      className="absolute right-3 size-[3.5px] rounded-full bg-green-500 shadow-lg shadow-green-500/50"
+                      className="absolute right-3 size-[3.5px] rounded-full bg-primary"
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     />

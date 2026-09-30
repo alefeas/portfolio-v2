@@ -32,7 +32,7 @@ Este documento detalla las prácticas, patrones y convenciones utilizadas en est
 ```
 app/
 ├── components/
-│   ├── layout/          # Componentes de layout (Navbar, Footer, ScrollManager, etc.)
+│   ├── layout/          # Layout (Navbar, Footer, ScrollManager, AmbientBackground, SectionNavOverlay, etc.)
 │   ├── sections/        # Secciones principales (Hero, Projects, Contact, etc.)
 │   └── ui/              # Componentes reutilizables (Button, Card, Input, etc.)
 ├── constants/           # Datos estáticos (navigation, projects, contact, etc.)
@@ -141,56 +141,62 @@ const content = 'Project Title'; // Hardcoded
 
 Esta es la sección más importante para mantener consistencia visual. **Todos los componentes deben usar estos mismos tokens de estilo.**
 
-### Token de Estilo Principal — Glass/Card
+### Token de Estilo Principal — Paneles calmados
 
-Todos los contenedores, botones, modales y cards usan este patrón base:
-
-```
-bg-gradient-to-br from-slate-900/40 to-slate-800/30
-backdrop-blur-xl
-border border-slate-700/30
-```
-
-Para elementos interactivos (botones nav, carousel, paginación) la versión más opaca:
+Contenido (cards, inputs, features) usa fondo blanco y borde suave. **No** pintar todo con `bg-surface` — ese tono es para hovers / muted / chrome flotante.
 
 ```
-bg-gradient-to-br from-slate-900/60 to-slate-800/40
-backdrop-blur-sm
-border border-slate-700/30
+bg-background
+border border-border
+text-foreground
 ```
 
-En hover:
-```
-hover:border-slate-600/50
-hover:from-slate-900/80 hover:to-slate-800/60
-```
-
-### Token de Color — Verde Primario
+Chips / tags suaves:
 
 ```
-text-green-400          # texto activo/destacado
-text-green-500          # íconos, acentos
-bg-green-500/10         # fondo elemento activo
-border-green-500/50     # borde elemento activo
-bg-green-500/20         # badge Live
-border-green-500/30     # borde badge Live
+bg-muted
+border border-border
+text-muted-foreground
+```
+
+Chrome flotante (nav, language toggle):
+
+```
+bg-background/90 backdrop-blur-md
+border border-border
+shadow-sm   /* solo chrome fijo + Tooltip — nunca en cards/inputs/paneles estáticos */
+```
+
+**Sombras:** prohibidas en contenido estático (Card, Input, FeatureItem, TechTag, project cards, etc.). Permitidas solo en chrome fijo (`FloatingNav`, `LanguageToggle`, `MobileNav`, `BackButton`) y `Tooltip`.
+
+### Token de Color — Primario Navy
+
+```
+text-primary              # texto activo/destacado (#001D51)
+text-emphasis             # palabras resaltadas en copy (Alejo, Apasionado…) — azul #1B4F9C + weight 600
+text-accent               # acentos mid-navy (#3D5A80)
+bg-primary                # CTAs, footer, bloques de marca
+text-primary-foreground   # texto sobre primary (#F8FAFC)
+bg-primary/10             # fondo elemento activo
+border-primary/50         # borde elemento activo
+bg-muted + text-muted-foreground  # badges neutros (categoría, En Vivo)
 ```
 
 ### Token de Color — Estado Deshabilitado / Inactivo
 
 ```
-text-white/60           # texto inactivo
-opacity-30              # elemento disabled
+text-muted-foreground     # texto secundario, navy suave (#4A6282)
+opacity-30                # elemento disabled
 disabled:cursor-not-allowed
 ```
 
 ### Token de Borde Sutil
 
 ```
-border border-slate-700/30    # borde estándar
-rounded-full                  # botones circulares (nav, carousel, paginación)
-rounded-lg / rounded-xl       # cards, inputs, contenedores
-rounded-2xl / rounded-3xl     # cards grandes, carousels
+border border-border      # borde estándar (#A8B4C4)
+rounded-full              # botones circulares (nav, carousel, paginación)
+rounded-lg / rounded-xl   # cards, inputs, contenedores
+rounded-2xl / rounded-3xl # cards grandes, carousels
 ```
 
 ### Token de Transición
@@ -199,6 +205,29 @@ rounded-2xl / rounded-3xl     # cards grandes, carousels
 transition-all duration-300   # estándar para la mayoría
 transition-colors duration-150 # para botones de submit
 ```
+
+### Fondo ambient — AmbientBackground
+
+Único fondo de página. Vive en `app/components/layout/AmbientBackground.tsx`, montado en el root layout (`fixed inset-0 -z-10`).
+
+- Base blanca + tres orbes muy suaves (opacidad vía `--ambient-orb-*` en `:root`)
+- Un solo glow bajo el cursor (`--ambient-cursor`), sin estela de múltiples ghosts
+- Grano estático mínimo
+- Sin canvas, sin WebGL, sin `filter: blur()` en el motion
+- `prefers-reduced-motion` / touch: orbes quietos, sin glow de cursor
+
+No recrear el bloque “Prismatic Aurora” en el Hero. No usar `bg-surface` / grises fuertes en cards solo porque el ambient use navy.
+
+### Deep link externo — `/go/[section]` + SectionNavOverlay
+
+Apps externas (AFM, LinkedIn, CV) deben usar:
+
+```
+https://afeas.vercel.app/go/projects
+https://afeas.vercel.app/go/contact
+```
+
+No `/#projects` ni `?section=`. `SectionNavOverlay` cubre la pantalla (blanco + spinner navy) desde el primer paint de `/go/...` hasta que `ScrollManager` dispara `section-nav-settled` (sin fade ni delays artificiales: se oculta apenas el scroll termina). La página `/go/[section]` setea `sectionNavHold` antes del `replace('/')` — no volver a depender de `return null` sin overlay.
 
 ### Ejemplos Concretos por Componente
 
@@ -228,40 +257,38 @@ import { CarouselNavButton } from '@/app/components/ui';
 
 ```typescript
 // Contenedor nav floating o back button
-className="... bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 shadow-2xl ..."
+className="... bg-background/90 backdrop-blur-md border border-border shadow-sm ..."
 ```
 
 #### Cards de contenido
 
 ```typescript
 // Card estándar
-className="bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 ..."
+className="bg-surface rounded-2xl border border-border ..."
 
 // Card con hover
-className="... hover:border-slate-600/50 transition-all duration-300"
+className="... hover:border-accent transition-all duration-300"
 ```
 
 #### Badges de estado
 
 ```typescript
-// Live
-className="bg-green-500/20 text-green-400 border-green-500/30"
+// Live / categoría — mismos tokens neutros de la paleta
+className="bg-muted text-muted-foreground border border-border"
 
-// In Development
-className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
-
-// Categoría / neutro
-className="bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white/60 border border-slate-700/30"
+// In Development — secondary de la paleta (sin amarillo hardcodeado)
+className="bg-secondary text-secondary-foreground border border-border"
 ```
 
 ### Regla: No mezclar estilos
 
 ```typescript
 // ✅ CORRECTO — usar los tokens definidos
-className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/40 backdrop-blur-sm border border-slate-700/30 text-white/60 hover:text-white"
+className="w-9 h-9 rounded-full bg-surface border border-border text-muted-foreground hover:text-foreground hover:border-accent"
 
-// ❌ INCORRECTO — inventar estilos hardcodeados
+// ❌ INCORRECTO — inventar estilos hardcodeados o volver al glass verde oscuro
 className="w-9 h-9 rounded-lg bg-gray-800 border border-gray-600 text-gray-300"
+className="bg-green-500 from-slate-900/40"
 ```
 
 ---
@@ -367,7 +394,7 @@ export const getProjectBySlug = (slug) => projectsRaw.find(p => p.slug === slug)
 - El **orden del array** `projectsRaw` es el orden de visualización en la home (`Projects.tsx`, `PAGE_SIZE = 6` por página).
 - Reordenar = mover el bloque del proyecto en el array; **no borrar** entradas salvo que el proyecto deje de publicarse.
 - `id` numérico solo alimenta redirects legacy `/projects/{id}` → `/projects/{slug}` en `next.config.ts`; no define la posición en la grilla.
-- `statusKey`: `live` (badge verde) o `inDevelopment` (badge amarillo). `isLive` se deriva en `getProjects`.
+- `statusKey`: `live` o `inDevelopment` (ambos con badges de la paleta: muted / secondary). `isLive` se deriva en `getProjects`.
 
 #### Slugs y URLs de proyectos
 
@@ -413,25 +440,21 @@ npm run resume         # genera ambos PDF
 
 Animaciones con **Framer Motion**. Predefinidas en `app/lib/animations.ts`.
 
-### Convenciones del Hero (referencia de velocidad)
+### Entrada del chrome
 
-```typescript
-// Entrada rápida — sin filter blur (costoso en GPU)
-initial={{ opacity: 0, y: 20 }}
-animate={{ opacity: 1, y: 0 }}
-transition={{ duration: 0.2, delay: 0.08, ease: "easeOut" }}
+Easing: `premiumEase = [0.16, 1, 0.3, 1]` en `app/lib/animations.ts`.
 
-// Stagger entre elementos: delay += 0.08 por elemento
-// Stagger entre botones: delay += 0.03 por botón
-```
+- Solo FloatingNav, LanguageToggle, MobileNav y BackButton: misma entrada CSS `.chrome-enter` (`translateY(-14px)`, 0.7s, `cubic-bezier(0.16, 1, 0.3, 1)`). En `/go` el chrome no se monta y `body[data-chrome-hold]` pausa la animación hasta que el loader termina, para que se vea completa igual que al recargar.
+- `useReducedMotion()` apaga el movimiento
+- **Sin** reveals al scrollear ni animaciones de entrada en Hero / secciones / footer
+- Hero H1 usa `font-medium` (menos bold, más natural)
 
 ### Reglas de Animaciones
 
-- **No usar `filter: blur()`** en animaciones de entrada — es muy costoso en GPU y retrasa el paint
-- **Duración**: 0.2s para entradas rápidas (Hero), 0.3-0.6s para secciones
-- **y inicial**: 20px máximo para entradas sutiles
-- **Easing**: `easeOut` para entradas, `easeInOut` para loops
-- **Loops en Hero**: `duration: 1.2, repeat: Infinity` para animaciones sutiles (ej: flecha CTA)
+- **No usar `filter: blur()`** en animaciones de entrada
+- **No** `whileInView` / Reveal en contenido de página
+- Hover/interacción OK (tech cards, etc.)
+- **Easing**: `premiumEase` para chrome; `easeOut` / `easeInOut` para el resto
 
 ---
 
@@ -445,7 +468,7 @@ transition={{ duration: 0.2, delay: 0.08, ease: "easeOut" }}
 
 ```typescript
 // ✅ CORRECTO
-<div className="px-4 md:px-6 py-3 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-lg">
+<div className="px-4 md:px-6 py-3 bg-surface border border-border rounded-lg">
 
 // ❌ INCORRECTO
 <div style={{ padding: '16px', backgroundColor: '#1e293b' }}>
@@ -469,23 +492,22 @@ Ver `typography-system.md` para el sistema completo de headings.
 Componente global en el root layout. Maneja dos comportamientos:
 
 1. **F5 / recarga** → siempre va al top (`window.history.scrollRestoration = 'manual'` + `window.scrollTo(0, 0)`)
-2. **Back button desde project detail** → navega a `/` con `router.push('/')` (no `router.back()`) y scroll instantáneo a `#projects` vía `sessionStorage`
+2. **Navegación a sección** (BackButton, `/go/[section]`, etc.) → lee `sessionStorage` y hace `scrollIntoView({ behavior: 'instant' })` apenas el DOM tiene el target (primer intento inmediato; retry solo si el nodo aún no existe)
 
 ### Patrón Back Button con scroll a sección
 
 ```typescript
-// En BackButton — guardar target y navegar explícito a home (evita historial sucio por #hash)
+// En BackButton — mismo flujo que deep links externos
 const handleClick = () => {
-  if (scrollToId) {
-    sessionStorage.setItem('scrollTo', scrollToId);
-    router.push('/');
+  if (scrollToId && isSectionId(scrollToId)) {
+    router.push(`/go/${scrollToId}`);
     return;
   }
   router.back();
 };
 ```
 
-**Por qué no `router.back()` en project detail:** los links internos de sección no deben usar `#hash` (ensucian URL e historial). El back debe ser predecible: siempre volver a Projects en home.
+**Por qué `/go/[section]` y no `router.back()` / `push('/')` directo:** cubre el salto de scroll con `SectionNavOverlay`, reutiliza el deep-link path, y evita historial sucio por `#hash`. En project detail el back siempre vuelve a Projects en home.
 
 ### Navegación por secciones en Project Detail
 
@@ -548,7 +570,7 @@ El `ScrollManager` ya lee `sessionStorage` al llegar a `/`, así que no requiere
 
 **No usar** `/#projects` ni `?section=projects` — el portfolio no navega por hash y el `ScrollManager` fuerza top en recarga.
 
-Usar la ruta dedicada `/go/[section]`, que replica el mismo flujo interno (`sessionStorage` + `router.replace('/')`):
+Usar la ruta dedicada `/go/[section]`, que replica el mismo flujo interno (`sessionStorage` + `router.replace('/')`) y muestra `SectionNavOverlay` hasta que el scroll termina:
 
 ```
 https://afeas.vercel.app/go/projects
@@ -557,7 +579,7 @@ https://afeas.vercel.app/go/contact
 
 Secciones válidas: `hero`, `projects`, `tech-stack`, `about`, `contact` (ver `floatingNavItems`).
 
-Implementación: `app/go/[section]/page.tsx` + helper `app/lib/sectionNavigation.ts` (`buildSectionUrl` para generar el link desde otras apps).
+Implementación: `app/go/[section]/page.tsx` + `SectionNavOverlay` + helper `app/lib/sectionNavigation.ts` (`buildSectionUrl` para generar el link desde otras apps). AFM consume la URL en `config/team.ts` (`projectsUrl`).
 
 ### Scroll programático dentro de la misma página
 
@@ -608,7 +630,7 @@ useEffect(() => {
 <button
   onClick={() => setPage(p => p - 1)}
   disabled={page === 1}
-  className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/40 backdrop-blur-sm border border-slate-700/30 flex items-center justify-center text-white transition-all duration-300 hover:border-slate-600/50 hover:from-slate-900/80 hover:to-slate-800/60 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+  className="w-9 h-9 rounded-full bg-surface border border-border flex items-center justify-center text-foreground transition-all duration-300 hover:border-accent hover:bg-card disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
 >
   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -616,10 +638,10 @@ useEffect(() => {
 </button>
 
 {/* Número de página — activo */}
-className="w-9 h-9 rounded-full border-green-500/50 bg-green-500/10 text-green-400 ..."
+className="w-9 h-9 rounded-full border-primary/50 bg-primary/10 text-primary ..."
 
 {/* Número de página — inactivo */}
-className="w-9 h-9 rounded-full bg-gradient-to-br from-slate-900/60 to-slate-800/40 border-slate-700/30 text-white/60 hover:border-slate-600/50 hover:from-slate-900/80 hover:to-slate-800/60 hover:text-white ..."
+className="w-9 h-9 rounded-full bg-surface border-border text-muted-foreground hover:border-accent hover:bg-card hover:text-foreground ..."
 
 {/* Renderizar paginación solo si hay más de una página */}
 {totalPages > 1 && ( ... )}
@@ -736,7 +758,7 @@ Constantes compartidas para metadata, sitemap, robots y links sociales:
 
 - `SITE_URL` — resuelve en orden: `NEXT_PUBLIC_SITE_URL` → `VERCEL_URL` → `http://localhost:3000`
 - `SITE_TITLE`, `SITE_DESCRIPTION`, `SITE_NAME`, `DEFAULT_OG_IMAGE`
-- `SOCIAL_LINKS` — github, linkedin, email (usar en Hero, Footer, Contact; no hardcodear URLs)
+- `SOCIAL_LINKS` — github, linkedin, email, whatsapp (usar en Hero, Footer, Contact; no hardcodear URLs)
 
 **Producción:** setear `NEXT_PUBLIC_SITE_URL=https://tu-dominio.com` en Vercel.
 
@@ -744,7 +766,7 @@ Constantes compartidas para metadata, sitemap, robots y links sociales:
 
 | Archivo | Responsabilidad |
 |---------|-----------------|
-| `app/layout.tsx` | `metadataBase`, OG, Twitter Card, canonical, JSON-LD (`Person` + `WebSite`) |
+| `app/layout.tsx` | `metadataBase`, OG, Twitter Card, canonical, JSON-LD (`Person` + `WebSite`), favicon `public/favicon.png?v=2` (`image/png`) |
 | `app/page.tsx` | `title` + `description` explícitos para home |
 | `app/projects/[slug]/layout.tsx` | `generateMetadata` con título/descripción real del proyecto, OG image del hero, `generateStaticParams` |
 
@@ -784,7 +806,7 @@ Metadata de proyectos usa `translations.en[descriptionKey]` (idioma indexable fi
 ### Links sociales
 
 - Centralizar URLs en `SOCIAL_LINKS` (`app/lib/site.ts`) — misma URL en Hero, Footer y Contact
-- Iconos del Footer: `aria-label="GitHub"` / `"LinkedIn"` / `"Email"` (no solo `title`)
+- Iconos del Footer: `aria-label="GitHub"` / `"LinkedIn"` / `"Email"` / `"WhatsApp"` (no solo `title`)
 
 ### Headings
 
@@ -801,6 +823,7 @@ Metadata de proyectos usa `translations.en[descriptionKey]` (idioma indexable fi
 - Usar `pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"` + validación en `handleSubmit` antes del fetch
 - Errores de email: mensaje bajo el campo (`invalidEmail` en `translations.ts` EN/ES)
 - Header `Accept: application/json` para parsear errores de Formspree si el email falla en server
+- Links de contacto en la sección Contact: grilla `grid-cols-2` (2×2), no columna única en desktop
 
 ---
 
@@ -935,7 +958,7 @@ Antes de cualquier cambio, verificar:
 - [ ] ¿Los botones siguen el patrón `CarouselNavButton`? → `rounded-full`, gradients, `backdrop-blur-sm`
 - [ ] ¿El scroll programático está en `useEffect`? → No en `onClick` (excepto nav interna de project detail con `scrollToSection`)
 - [ ] ¿Links de sección en project detail usan botones, no `#hash`? → No ensuciar URL/historial
-- [ ] ¿Back desde project detail usa `router.push('/')` + `scrollToId`? → No `router.back()` cuando hay `scrollToId`
+- [ ] ¿Back desde project detail usa `router.push(\`/go/${scrollToId}\`)` (ej. `/go/projects`)? → No `router.push('/')` ni `router.back()` cuando hay `scrollToId`
 - [ ] ¿Demo offline usa `demoUnavailable` en `projects.ts`? → No hardcodear `projectId`
 - [ ] ¿Proyecto nuevo? → Agregar `slug`, rutas de imagen SEO, entrada en sitemap vía `projectsRaw`
 - [ ] ¿Reordenar destacados? → Mover bloques en `projectsRaw` (grilla paginada de 6); ver sección “Orden en la grilla”
@@ -954,5 +977,5 @@ Antes de cualquier cambio, verificar:
 
 ---
 
-**Última actualización**: Septiembre 2026 (Madame Pompidor, orden grilla)
-**Versión del Proyecto**: 2.2
+**Última actualización**: Sep 2026 (paleta Essence, Fustat, favicon PNG, chrome-enter, BackButton → `/go/[section]`, Contact 2×2, sin scroll reveals)
+**Versión del Proyecto**: 2.4

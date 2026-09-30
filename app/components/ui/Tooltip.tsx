@@ -26,7 +26,7 @@ export default function Tooltip({ label, children, isVisible }: TooltipProps) {
 
   const tooltipContent = isVisible && (
     <motion.div
-      className="fixed z-50 bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-white px-4 py-2 rounded-full text-sm font-medium shadow-2xl border border-slate-700/30 whitespace-nowrap backdrop-blur-xl"
+      className="fixed z-50 bg-background text-foreground px-4 py-2 rounded-full text-sm font-medium shadow-sm border border-border whitespace-nowrap"
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,

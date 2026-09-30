@@ -14,10 +14,10 @@ export default function Button({
   const baseStyles = 'flex items-center justify-center gap-2 rounded-full font-normal transition-all duration-300';
 
   const variants = {
-    primary: 'bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg',
-    secondary: 'bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 text-white px-4 py-2 hover:border-slate-600/50',
-    ghost: 'text-white/60 hover:text-white',
-    cta: 'bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-400 text-white px-8 py-3.5 rounded-full h-14',
+    primary: 'bg-primary text-primary-foreground hover:bg-accent px-6 py-3 rounded-lg',
+    secondary: 'bg-background border border-border text-foreground px-4 py-2 rounded-2xl hover:bg-primary/10 hover:text-primary hover:border-primary/30',
+    ghost: 'text-muted-foreground hover:text-primary',
+    cta: 'bg-primary text-primary-foreground hover:bg-accent px-6 py-2.5 rounded-full h-11 text-sm',
   };
 
   const isInternalLink = href && href.startsWith('#');

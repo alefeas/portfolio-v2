@@ -33,8 +33,8 @@ export default function TechStack() {
           >
             {/* Category Title */}
             <div className="text-center">
-              <h3 className="heading-4 text-white mb-2">{t(category.category.toLowerCase() as TranslationKey)}</h3>
-              <div className="w-8 h-px bg-green-500/60 mx-auto"></div>
+              <h3 className="heading-4 text-foreground mb-2">{t(category.category.toLowerCase() as TranslationKey)}</h3>
+              <div className="w-8 h-px bg-primary/60 mx-auto"></div>
             </div>
             
             {/* Tech Grid */}
@@ -45,26 +45,14 @@ export default function TechStack() {
                   className="group relative"
                 >
                   {/* Subtle outer glow */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-br from-green-500/0 to-green-400/0 group-hover:from-green-500/20 group-hover:to-green-400/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100"
-                       style={{ transition: "opacity 0.2s ease-out" }} />
-                  
                   <motion.div
-                    className="relative flex flex-col items-center justify-center p-6 bg-gradient-to-br from-slate-900/40 to-slate-800/30 rounded-2xl border border-slate-700/30 cursor-pointer overflow-hidden backdrop-blur-sm shadow-lg h-28 group-hover:border-green-500/60 group-hover:shadow-green-500/10"
+                    className="relative flex flex-col items-center justify-center p-6 bg-background rounded-2xl border border-border cursor-pointer overflow-hidden h-28 group-hover:border-primary/40 group-hover:bg-primary/10 transition-colors duration-300"
                     whileHover={{ 
-                      y: -3, 
-                      scale: 1.02,
-                      transition: { duration: 0.1, ease: "easeOut" }
+                      y: -2,
+                      transition: { duration: 0.15, ease: "easeOut" }
                     }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {/* Inner glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-green-400/3 opacity-0 group-hover:opacity-100 rounded-2xl" 
-                         style={{ transition: "opacity 0.1s ease-out" }} />
-                    
-                    {/* Shimmer effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/8 to-transparent -translate-x-full group-hover:translate-x-full rounded-2xl"
-                         style={{ transition: "transform 0.8s ease-out" }} />
-                    
                     {/* Logo */}
                     <div className="w-12 h-12 mb-2 flex items-center justify-center relative z-10">
                       <Image 
@@ -75,20 +63,19 @@ export default function TechStack() {
                         className="object-contain"
                         style={{ 
                           transition: "all 0.2s ease-out",
-                          filter: "brightness(0) invert(1)",
+                          filter: "brightness(0)",
                         }}
                       />
                     </div>
                     
                     {/* Tech Name */}
-                    <span className="text-xs font-semibold text-slate-400 group-hover:text-white text-center relative z-10 tracking-wide whitespace-nowrap"
-                          style={{ transition: "color 0.1s ease-out" }}>
+                    <span className="text-xs font-semibold text-muted-foreground group-hover:text-primary text-center relative z-10 tracking-wide whitespace-nowrap"
+                          style={{ transition: "color 0.15s ease-out" }}>
                       {tech.name}
                     </span>
                     
-                    {/* Bottom accent line with enhanced glow */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-green-500 to-green-400 group-hover:w-12 group-hover:shadow-[0_0_8px_rgba(34,197,94,0.6)] rounded-full"
-                         style={{ transition: "all 0.2s ease-out" }} />
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-10 rounded-full"
+                         style={{ transition: "width 0.2s ease-out" }} />
                   </motion.div>
                 </div>
               ))}

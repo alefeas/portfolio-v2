@@ -1,29 +1,35 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useLanguage } from '@/app/contexts/LanguageContext';
+import { getChromeScene } from '@/app/lib/animations';
 
 export default function LanguageToggle() {
   const { language, setLanguage } = useLanguage();
+  const pathname = usePathname();
 
   return (
-    <div className="fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 shadow-2xl h-[50px]">
+    <div
+      key={getChromeScene(pathname)}
+      className="chrome-enter site-chrome fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-background/90 backdrop-blur-md border border-border shadow-sm h-[50px]"
+    >
       <button
         onClick={() => setLanguage('en')}
-        className={`px-3 py-1.5 rounded-full text-sm font-normal transition-all duration-300 ${
+        className={`px-3 py-1.5 rounded-full text-sm font-normal transition-colors duration-300 ${
           language === 'en'
-            ? 'bg-green-500/80 text-white'
-            : 'text-white/60 hover:text-white'
+            ? 'bg-primary text-primary-foreground'
+            : 'text-muted-foreground hover:text-primary'
         }`}
       >
         EN
       </button>
-      <div className="w-px h-4 bg-white/10"></div>
+      <div className="w-px h-4 bg-primary/20"></div>
       <button
         onClick={() => setLanguage('es')}
-        className={`px-3 py-1.5 rounded-full text-sm font-normal transition-all duration-300 ${
+        className={`px-3 py-1.5 rounded-full text-sm font-normal transition-colors duration-300 ${
           language === 'es'
-            ? 'bg-green-500/80 text-white'
-            : 'text-white/60 hover:text-white'
+            ? 'bg-primary text-primary-foreground'
+            : 'text-muted-foreground hover:text-primary'
         }`}
       >
         ES

@@ -13,7 +13,7 @@ const scrollToSection = (sectionId: string) => {
 };
 
 const sectionNavClassName =
-  'block w-full text-left text-sm text-white/60 hover:text-white transition-colors cursor-pointer';
+  'block w-full text-left text-sm text-muted-foreground hover:text-primary transition-colors cursor-pointer';
 
 function ProjectDetailContent() {
   const params = useParams();
@@ -38,8 +38,8 @@ function ProjectDetailContent() {
     return (
       <div className="min-h-screen flex items-center justify-center px-6">
         <div className="text-center">
-          <h1 className="text-4xl font-semibold text-white mb-4">{t('projectNotFound')}</h1>
-          <Link href="/go/projects" className="text-green-400 hover:text-green-300">
+          <h1 className="text-4xl font-semibold text-foreground mb-4">{t('projectNotFound')}</h1>
+          <Link href="/go/projects" className="text-primary hover:opacity-80">
             {t('backToProjects')}
           </Link>
         </div>
@@ -50,7 +50,7 @@ function ProjectDetailContent() {
   const safeProject = project!;
 
   return (
-    <div className="min-h-screen text-white">
+    <div className="min-h-screen text-foreground">
       {/* Back Button */}
       <BackButton scrollToId="projects" title="Back to Projects" />
 
@@ -58,13 +58,13 @@ function ProjectDetailContent() {
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-20 mt-16 md:mt-20">
         {/* Badges */}
         <div className="flex items-center gap-2 md:gap-3 mb-6 flex-wrap">
-          <span className="px-3 py-1 rounded-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 text-xs text-white/60 border border-slate-700/30">
+          <span className="px-3 py-1 rounded-full bg-muted text-xs text-muted-foreground border border-border">
             {safeProject.category}
           </span>
           <span className={`px-3 py-1 rounded-full text-xs border ${
             safeProject.isLive
-              ? 'bg-green-500/10 text-green-400 border-green-500/30' 
-              : 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30'
+              ? 'bg-muted text-muted-foreground border-border'
+              : 'bg-secondary text-secondary-foreground border-border'
           }`}>
             {safeProject.status}
           </span>
@@ -74,7 +74,7 @@ function ProjectDetailContent() {
         <h1 className="mb-4 leading-tight text-3xl sm:text-3xl md:text-4xl font-bold">{safeProject.title}</h1>
         
         {/* Subtitle */}
-        <p className="text-base text-white/60 leading-relaxed mb-8 md:mb-12">
+        <p className="text-base text-muted-foreground leading-relaxed mb-8 md:mb-12">
           {safeProject.description}
         </p>
 
@@ -86,7 +86,7 @@ function ProjectDetailContent() {
           {/* Right: Section Navigator */}
           <aside className="hidden lg:block w-48 flex-shrink-0 order-2">
             <div className="sticky top-32 space-y-2 mt-8 max-h-[calc(100vh-200px)] overflow-y-scroll pr-2">
-              <p id="project-sections-label" className="text-sm font-semibold text-white mb-4">{t('sections') || 'Sections'}</p>
+              <p id="project-sections-label" className="text-sm font-semibold text-foreground mb-4">{t('sections') || 'Sections'}</p>
               <nav aria-labelledby="project-sections-label" className="space-y-1">
                 <button type="button" onClick={() => scrollToSection('overview')} className={sectionNavClassName}>
                   {t('overview') || 'Overview'}
@@ -122,7 +122,7 @@ function ProjectDetailContent() {
         {/* Overview */}
         <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="overview">
           <h2 className="text-2xl font-semibold mb-3">{t('overview') || 'Overview'}</h2>
-          <p className="text-base text-white/80 leading-relaxed">
+          <p className="text-base text-muted-foreground leading-relaxed">
             {safeProject.detailedDescription}
           </p>
         </div>
@@ -140,7 +140,7 @@ function ProjectDetailContent() {
         {/* Challenges */}
         <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="challenges">
           <h2 className="text-2xl font-semibold mb-3">{t('challengesSolutions')}</h2>
-          <p className="text-base text-white/80 leading-relaxed">
+          <p className="text-base text-muted-foreground leading-relaxed">
             {safeProject.challenges}
           </p>
         </div>
@@ -148,7 +148,7 @@ function ProjectDetailContent() {
         {/* What I Learned */}
         <div className="mb-6 md:mb-8 pt-4 md:pt-6" id="learnings">
           <h2 className="text-2xl font-semibold mb-3">{t('whatILearned')}</h2>
-          <p className="text-base text-white/80 leading-relaxed">
+          <p className="text-base text-muted-foreground leading-relaxed">
             {safeProject.learnings}
           </p>
         </div>

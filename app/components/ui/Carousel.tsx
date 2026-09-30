@@ -130,7 +130,7 @@ export default function Carousel({ images, title }: CarouselProps) {
     >
       <div className="relative group">
         <motion.div
-          className="relative w-full rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 shadow-lg"
+          className="relative w-full rounded-3xl overflow-hidden bg-muted border border-border"
           style={{ aspectRatio: '2/1' }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
@@ -167,10 +167,10 @@ export default function Carousel({ images, title }: CarouselProps) {
           
           {/* Progress Bar */}
           {images.length > 1 && (
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-slate-700/30 rounded-b-3xl overflow-hidden">
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-border/50 rounded-b-3xl overflow-hidden">
               <div
                 ref={progressRef}
-                className="h-full bg-green-500/80 transition-none"
+                className="h-full bg-primary/80 transition-none"
                 style={{ width: '0%' }}
               />
             </div>

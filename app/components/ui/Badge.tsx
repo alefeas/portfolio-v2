@@ -2,10 +2,10 @@ import { BadgeProps } from '@/app/types';
 
 export default function Badge({ label, variant = 'default', className = '' }: BadgeProps) {
   const variants = {
-    default: 'bg-white/10 text-white border-white/20',
-    success: 'bg-primary-500/20 text-primary-400 border-primary-500/30',
-    warning: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-    info: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+    default: 'bg-muted text-foreground border-border',
+    success: 'bg-muted text-muted-foreground border-border',
+    warning: 'bg-yellow-500/20 text-yellow-600 border-yellow-500/30',
+    info: 'bg-accent/10 text-accent border-accent/30',
   };
 
   return (

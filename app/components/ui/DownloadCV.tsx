@@ -21,7 +21,7 @@ export default function DownloadCV() {
   return (
     <motion.button
       onClick={handleDownload}
-      className="flex items-center justify-center gap-2 rounded-full font-normal transition-all duration-300 bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg"
+      className="flex items-center justify-center gap-2 rounded-full font-normal transition-all duration-300 bg-primary text-primary-foreground hover:opacity-90 px-6 py-3 rounded-lg"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
     >

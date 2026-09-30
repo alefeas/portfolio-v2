@@ -53,15 +53,15 @@ export default function DemoCredentialsModal({
       actionButton={{ label: ts('openLiveSite'), onClick: onOpenDemo }}
     >
       {/* Note */}
-      <p className="text-sm text-slate-300 mb-6">{note}</p>
+      <p className="text-sm text-muted-foreground mb-6">{note}</p>
 
       {/* Credentials - Only show if email and password are provided */}
       {email && password && (
       <div className="space-y-4 mb-6">
         <div>
-          <p className="text-xs text-slate-400 mb-1">Email:</p>
-          <div className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 group">
-            <p className="text-sm font-mono text-slate-200 select-all cursor-text">{email}</p>
+          <p className="text-xs text-muted-foreground mb-1">Email:</p>
+          <div className="flex items-center justify-between p-3 rounded-lg bg-background border border-border group">
+            <p className="text-sm font-mono text-foreground select-all cursor-text">{email}</p>
             <div className="flex items-center gap-2 flex-shrink-0">
               <AnimatePresence>
                 {copiedEmail && (
@@ -69,7 +69,7 @@ export default function DemoCredentialsModal({
                     initial={{ opacity: 0, x: 5 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 5 }}
-                    className="text-xs text-green-400 font-normal whitespace-nowrap"
+                    className="text-xs text-primary font-normal whitespace-nowrap"
                   >
                     Copied!
                   </motion.span>
@@ -77,11 +77,11 @@ export default function DemoCredentialsModal({
               </AnimatePresence>
               <button
                 onClick={handleCopyEmail}
-                className="text-slate-400 hover:text-green-400 transition-colors cursor-pointer flex-shrink-0"
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer flex-shrink-0"
                 title="Copy to clipboard"
               >
                 {copiedEmail ? (
-                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                   </svg>
                 ) : (
@@ -95,9 +95,9 @@ export default function DemoCredentialsModal({
         </div>
 
         <div>
-          <p className="text-xs text-slate-400 mb-1">Password:</p>
-          <div className="flex items-center justify-between p-3 rounded-lg bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 group">
-            <p className="text-sm font-mono text-slate-200 select-all cursor-text">{password}</p>
+          <p className="text-xs text-muted-foreground mb-1">Password:</p>
+          <div className="flex items-center justify-between p-3 rounded-lg bg-background border border-border group">
+            <p className="text-sm font-mono text-foreground select-all cursor-text">{password}</p>
             <div className="flex items-center gap-2 flex-shrink-0">
               <AnimatePresence>
                 {copiedPassword && (
@@ -105,7 +105,7 @@ export default function DemoCredentialsModal({
                     initial={{ opacity: 0, x: 5 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 5 }}
-                    className="text-xs text-green-400 font-normal whitespace-nowrap"
+                    className="text-xs text-primary font-normal whitespace-nowrap"
                   >
                     Copied!
                   </motion.span>
@@ -113,11 +113,11 @@ export default function DemoCredentialsModal({
               </AnimatePresence>
               <button
                 onClick={handleCopyPassword}
-                className="text-slate-400 hover:text-green-400 transition-colors cursor-pointer flex-shrink-0"
+                className="text-muted-foreground hover:text-primary transition-colors cursor-pointer flex-shrink-0"
                 title="Copy to clipboard"
               >
                 {copiedPassword ? (
-                  <svg className="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" />
                   </svg>
                 ) : (

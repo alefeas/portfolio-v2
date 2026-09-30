@@ -46,7 +46,7 @@ export default function Projects() {
           >
             {/* Project Image */}
             <div className="w-full bg-cover bg-center rounded-lg overflow-hidden">
-              <div className="w-full aspect-[2] rounded-lg relative overflow-hidden bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30">
+              <div className="w-full aspect-[2] rounded-lg relative overflow-hidden bg-muted border border-border">
                 {project.heroImage ? (
                   <Image 
                     src={project.heroImage}
@@ -56,7 +56,7 @@ export default function Projects() {
                     className="object-cover object-top transition-all duration-300 group-hover:scale-105"
                   />
                 ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-slate-900/40 to-slate-800/30 flex items-center justify-center text-slate-500">
+                  <div className="w-full h-full bg-muted flex items-center justify-center text-muted-foreground">
                     <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
@@ -68,23 +68,23 @@ export default function Projects() {
             {/* Project Info */}
             <div className="flex flex-col gap-3 md:gap-4">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-slate-500 text-xs md:text-sm">{project.category}</span>
+                <span className="text-muted-foreground text-xs md:text-sm">{project.category}</span>
                 <span className={`text-xs px-2 py-1 rounded-full border ${
                   project.isLive
-                    ? 'bg-green-500/20 text-green-400 border-green-500/30' 
-                    : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'
+                    ? 'bg-muted text-muted-foreground border-border'
+                    : 'bg-secondary text-secondary-foreground border-border'
                 }`}>{project.status}</span>
               </div>
-              <h3 className="text-lg md:text-xl font-semibold leading-[1.25] text-white">
+              <h3 className="text-lg md:text-xl font-semibold leading-[1.25] text-foreground">
                 {project.title}
               </h3>
-              <p className="text-xs md:text-sm text-slate-400 line-clamp-2">
+              <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">
                 {project.description}
               </p>
-              <span className="w-fit text-xs md:text-sm text-green-400 flex items-center gap-1">
+              <span className="w-fit text-xs md:text-sm text-primary flex items-center gap-1">
                 <span className="relative">
                   {t('readMore')}
-                  <span className="absolute bottom-[-4px] left-0 w-0 h-px transition-all duration-300 group-hover:w-full" style={{borderBottom: '1px dotted white', height: '1px', background: 'none'}}></span>
+                  <span className="absolute bottom-[-4px] left-0 w-0 h-px transition-all duration-300 group-hover:w-full" style={{borderBottom: '1px dotted currentColor', height: '1px', background: 'none'}}></span>
                 </span>
                 <svg className="w-4 h-4 transition-all duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M16.175 13H5q-.425 0-.712-.288T4 12t.288-.712T5 11h11.175l-4.9-4.9q-.3-.3-.288-.7t.313-.7q.3-.275.7-.288t.7.288l6.6 6.6q.15.15.213.325t.062.375t-.062.375t-.213.325l-6.6 6.6q-.275.275-.687.275T11.3 19.3q-.3-.3-.3-.712t.3-.713z"/>
@@ -104,10 +104,10 @@ export default function Projects() {
             <button
               key={n}
               onClick={() => setPage(n)}
-              className={`w-9 h-9 rounded-full text-sm backdrop-blur-sm border transition-all duration-300 cursor-pointer ${
+              className={`w-9 h-9 rounded-full text-sm border transition-all duration-300 cursor-pointer ${
                 n === page
-                  ? 'border-green-500/50 bg-green-500/10 text-green-400'
-                  : 'bg-gradient-to-br from-slate-900/60 to-slate-800/40 border-slate-700/30 text-white/60 hover:border-slate-600/50 hover:from-slate-900/80 hover:to-slate-800/60 hover:text-white'
+                  ? 'border-primary/50 bg-primary/10 text-primary'
+                  : 'bg-background border-border text-muted-foreground hover:border-primary/40 hover:bg-primary/10 hover:text-primary'
               }`}
             >
               {n}

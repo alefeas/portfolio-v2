@@ -8,6 +8,12 @@ export const contactLinks = [
     href: SOCIAL_LINKS.email,
   },
   {
+    icon: 'whatsapp',
+    labelKey: 'whatsappLabel',
+    value: '+54 9 11 6628-2804',
+    href: SOCIAL_LINKS.whatsapp,
+  },
+  {
     icon: 'linkedin',
     labelKey: 'linkedinLabel',
     value: "/in/afeas",

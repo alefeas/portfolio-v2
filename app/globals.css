@@ -1,9 +1,56 @@
 @import "tailwindcss";
 
-/* Fustat Variable - Main Font */
+/* Essence-aligned palette — Fustat typography unchanged */
 :root {
-  --background: transparent;
-  --foreground: #e2e8f0;
+  --background: #FFFFFF;
+  --foreground: #0A0F1A;
+  --card: #FFFFFF;
+  --card-foreground: #0A0F1A;
+  --primary: #001D51;
+  --primary-foreground: #F8FAFC;
+  --secondary: #EEF1F6;
+  --secondary-foreground: #243A56;
+  --muted: #EEF2F8;
+  --muted-foreground: #4A6282;
+  --accent: #3D5A80;
+  --accent-foreground: #F8FAFC;
+  /* Inline word highlights in body copy — clearer blue vs near-black foreground */
+  --emphasis: #1B4F9C;
+  --destructive: #d1392a;
+  --destructive-foreground: #F8FAFC;
+  --border: #D5E0EE;
+  --input: #D5E0EE;
+  --ring: #3D5A80;
+  --radius: 0.625rem;
+  /* Ambient orbs / cursor glow — keep rgba here so AmbientBackground stays token-driven */
+  --ambient-orb-a: rgba(0, 29, 81, 0.05);
+  --ambient-orb-b: rgba(61, 90, 128, 0.06);
+  --ambient-orb-c: rgba(61, 90, 128, 0.08);
+  --ambient-cursor: rgba(61, 90, 128, 0.07);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-emphasis: var(--emphasis);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: #EEF1F6;
+  --color-muted-strong: #243A56;
+  --color-slate-cool: #A8B4C4;
+  --color-badge-bg: #EEF1F6;
 }
 
 /* Typography - All text uses Fustat Variable */
@@ -38,6 +85,13 @@ body, p, span, div, li, a {
 }
 
 .font-black {
+  font-weight: 600;
+}
+
+/* Inline highlights (Alejo, Apasionado, etc.) — stronger blue + real weight bump.
+   Note: .font-medium is aliased to 500 here, so it cannot differentiate body copy. */
+.text-emphasis {
+  color: var(--emphasis);
   font-weight: 600;
 }
 
@@ -98,7 +152,9 @@ body, p, span, div, li, a {
 
 html {
   scroll-behavior: smooth;
+  position: relative;
 }
+
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 10px;
@@ -109,26 +165,26 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22c55e;
+  background: var(--border);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #16a34a;
+  background: var(--accent);
 }
 
 /* Firefox Scrollbar */
 * {
-  scrollbar-color: #22c55e #000000 !important;
+  scrollbar-color: var(--border) var(--color-surface) !important;
   scrollbar-width: thin !important;
 }
 
 body {
-  background-color: transparent;
+  background-color: var(--background);
   color: var(--foreground);
   font-family: 'Fustat Variable', system-ui, sans-serif;
   font-weight: 500;
@@ -136,14 +192,10 @@ body {
   overflow-x: hidden;
 }
 
-html {
-  position: relative;
-}
-
 /* Hero Navigation - Combining best of both styles */
 .hero-nav-board {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
@@ -154,7 +206,7 @@ html {
 }
 
 .hero-nav-key {
-  @apply flex items-center justify-center w-14 h-14 bg-gradient-to-br from-slate-900/40 to-slate-800/30 border border-slate-700/30 rounded-full text-slate-400 no-underline relative overflow-visible;
+  @apply flex items-center justify-center w-11 h-11 bg-background border border-border rounded-full text-muted-foreground no-underline relative overflow-visible;
   transition: all 0.15s ease;
 }
 
@@ -163,11 +215,11 @@ html {
 }
 
 .hero-nav-key:hover {
-  @apply text-white border-slate-600/50;
+  @apply text-primary border-primary/40 bg-primary/5;
   transform: translateY(-2px);
 }
 
-/* Hero CTA - Refined version */
+/* Hero CTA - Navy primary */
 .hero-cta-container {
   display: flex;
   align-items: center;
@@ -176,17 +228,18 @@ html {
 }
 
 .hero-cta {
-  @apply flex items-center justify-center gap-2 py-3.5 px-7 rounded-full text-white font-semibold text-sm no-underline relative overflow-hidden;
-  background: linear-gradient(135deg, #16a34a, #22c55e);
-  border: 1px solid #16a34a;
+  @apply flex items-center justify-center gap-2 py-2.5 px-6 rounded-full text-primary-foreground font-semibold text-sm no-underline relative overflow-hidden;
+  background: var(--primary);
+  border: 1px solid var(--primary);
   transition: all 0.15s ease;
+  height: 2.75rem;
 }
 
 .hero-cta::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.15), transparent);
   transform: translateX(-100%);
   transition: transform 0.6s ease;
 }
@@ -196,8 +249,8 @@ html {
 }
 
 .hero-cta:hover {
-  background: linear-gradient(135deg, #15803d, #16a34a);
-  border-color: #15803d;
+  background: var(--accent);
+  border-color: var(--accent);
   transform: translateY(-2px);
 }
 
@@ -217,13 +270,14 @@ html {
   }
   
   .hero-nav-key {
-    width: 3rem;
-    height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   
   .hero-cta {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.875rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8125rem;
+    height: 2.5rem;
   }
 }
 
@@ -273,5 +327,98 @@ html {
   
   .hero-cta-container {
     justify-content: center;
+  }
+}
+
+/* ── Ambient background ── */
+@keyframes ambient-drift-a {
+  from { transform: translate3d(-4%, -3%, 0) scale(1); }
+  to   { transform: translate3d(5%, 4%, 0) scale(1.04); }
+}
+
+@keyframes ambient-drift-b {
+  from { transform: translate3d(3%, 2%, 0) scale(1.02); }
+  to   { transform: translate3d(-6%, -2%, 0) scale(1); }
+}
+
+@keyframes ambient-drift-c {
+  from { transform: translate3d(0, 4%, 0) scale(1); }
+  to   { transform: translate3d(-3%, -5%, 0) scale(1.05); }
+}
+
+.ambient-orb-a {
+  animation: ambient-drift-a 48s ease-in-out infinite alternate;
+}
+
+.ambient-orb-b {
+  animation: ambient-drift-b 56s ease-in-out infinite alternate;
+}
+
+.ambient-orb-c {
+  animation: ambient-drift-c 52s ease-in-out infinite alternate;
+}
+
+.ambient-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Hide floating chrome on 404 — pure CSS, no body mutation / hydration mismatch */
+body:has([data-not-found]) .site-chrome {
+  display: none !important;
+}
+
+/* Header entrance — same curve on reload and client navigation */
+@keyframes chrome-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chrome-enter {
+  animation: chrome-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* /go loader covers the page; keep chrome at the start pose until the loader is gone, then play the full entrance */
+body[data-chrome-hold] .chrome-enter {
+  animation: none;
+  opacity: 0;
+  transform: translateY(-14px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chrome-enter {
+    animation: none;
+  }
+}
+
+@keyframes section-nav-spin {
+  to { transform: rotate(360deg); }
+}
+
+.section-nav-spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 9999px;
+  animation: section-nav-spin 0.8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-orb-a,
+  .ambient-orb-b,
+  .ambient-orb-c,
+  .section-nav-spinner {
+    animation: none !important;
   }
 }

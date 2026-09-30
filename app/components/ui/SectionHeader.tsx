@@ -18,7 +18,7 @@ export default function SectionHeader({
     <>
       {/* Section Badge */}
       <div className="mb-8">
-        <div className="flex w-fit items-center gap-2 rounded-full bg-emerald-950/55 px-4 py-2 text-emerald-300">
+        <div className="flex w-fit items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary">
           {icon}
           <span className="text-sm font-semibold tracking-wide max-sm:text-xs">{badgeText}</span>
         </div>
@@ -26,13 +26,13 @@ export default function SectionHeader({
 
       {/* Section Header */}
       <div className="mb-16">
-        <h2 className="heading-2 text-white mb-3">{titleText}</h2>
-        <p className="text-slate-400 text-base max-w-2xl">
+        <h2 className="heading-2 text-foreground mb-3">{titleText}</h2>
+        <p className="text-muted-foreground text-base max-w-2xl">
           {descText}
           {highlightStr && (
-            <span className="text-primary-400 font-medium"> {highlightStr}</span>
+            <span className="text-emphasis"> {highlightStr.trim()}</span>
           )}
-          {afterText && <span>{afterText}</span>}
+          {afterText ? <span> {afterText.trim()}</span> : null}
         </p>
       </div>
     </>

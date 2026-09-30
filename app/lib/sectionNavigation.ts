@@ -1,6 +1,8 @@
 import { floatingNavItems } from '@/app/constants/floatingNav';
 
 export const SCROLL_TO_KEY = 'scrollTo';
+export const SECTION_NAV_HOLD_KEY = 'sectionNavHold';
+export const SECTION_NAV_SETTLED_EVENT = 'section-nav-settled';
 
 export const SECTION_IDS = floatingNavItems.map((item) => item.id);
 

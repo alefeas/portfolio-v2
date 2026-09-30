@@ -32,8 +32,12 @@ export default function FloatingNav() {
   }, []);
 
   return (
-    <nav aria-label="Section navigation" className="hidden md:fixed md:top-6 md:left-1/2 z-40 md:transform md:-translate-x-1/2 md:flex md:items-center">
-      <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-gradient-to-br from-slate-900/40 to-slate-800/30 backdrop-blur-xl border border-slate-700/30 rounded-full shadow-2xl">
+    <nav
+      aria-label="Section navigation"
+      className="site-chrome hidden md:fixed md:top-6 md:left-1/2 z-40 md:-translate-x-1/2 md:block"
+    >
+      <div className="chrome-enter">
+      <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-background/90 backdrop-blur-md border border-border rounded-full shadow-sm">
         {floatingNavItems.map((item, index) => (
           <li key={item.id} className="relative">
             <Tooltip label={item.label} isVisible={hoveredIndex === index}>
@@ -41,14 +45,14 @@ export default function FloatingNav() {
                 type="button"
                 onClick={() => scrollToSection(item.id)}
                 aria-label={`Go to ${item.label}`}
-                className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-white/60 hover:text-white"
+                className="flex items-center justify-center relative cursor-pointer rounded-full h-10 w-12 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors duration-300"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 {getNavIcon(item.icon)}
                 {selectedIndex === index && (
                   <motion.div 
-                    className="absolute bottom-[3px] size-[3.5px] rounded-full bg-green-500 shadow-lg shadow-green-500/50"
+                    className="absolute bottom-[3px] size-[3.5px] rounded-full bg-primary"
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
@@ -58,6 +62,7 @@ export default function FloatingNav() {
           </li>
         ))}
       </ul>
+      </div>
     </nav>
   );
 }
