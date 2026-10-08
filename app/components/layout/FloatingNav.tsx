@@ -37,7 +37,7 @@ export default function FloatingNav() {
       className="site-chrome hidden md:fixed md:top-6 md:left-1/2 z-40 md:-translate-x-1/2 md:block"
     >
       <div className="chrome-enter">
-      <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-background/90 backdrop-blur-md border border-border rounded-full shadow-sm">
+      <ul className="mx-auto w-max p-1 flex items-center gap-4 bg-background border border-border rounded-full shadow-sm">
         {floatingNavItems.map((item, index) => (
           <li key={item.id} className="relative">
             <Tooltip label={item.label} isVisible={hoveredIndex === index}>

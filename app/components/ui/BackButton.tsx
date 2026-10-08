@@ -18,7 +18,7 @@ export default function BackButton({ scrollToId, title = "Back" }: BackButtonPro
   return (
     <button
       onClick={handleClick}
-      className="chrome-enter fixed top-6 left-6 z-50 h-[50px] px-4 py-2 flex items-center gap-2 rounded-full bg-background/90 backdrop-blur-md border border-border shadow-sm text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors duration-300 cursor-pointer"
+      className="chrome-enter fixed top-6 left-6 z-50 h-[50px] px-4 py-2 flex items-center gap-2 rounded-full bg-background border border-border shadow-sm text-muted-foreground hover:text-primary hover:border-primary/40 transition-colors duration-300 cursor-pointer"
       title={title}
     >
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

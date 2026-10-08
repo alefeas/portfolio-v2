@@ -11,7 +11,7 @@ export default function LanguageToggle() {
   return (
     <div
       key={getChromeScene(pathname)}
-      className="chrome-enter site-chrome fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-background/90 backdrop-blur-md border border-border shadow-sm h-[50px]"
+      className="chrome-enter site-chrome fixed top-6 right-6 z-40 flex items-center gap-2 p-1.5 rounded-full bg-background border border-border shadow-sm h-[50px]"
     >
       <button
         onClick={() => setLanguage('en')}

@@ -36,7 +36,7 @@ export default function MobileNav() {
       {/* Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-background/90 backdrop-blur-md border border-border shadow-sm transition-colors duration-300 relative z-50 group hover:border-primary/40"
+        className="flex items-center justify-center w-[50px] h-[50px] rounded-full bg-background border border-border shadow-sm transition-colors duration-300 relative z-50 group hover:border-primary/40"
         aria-label="Toggle menu"
       >
         <motion.svg
