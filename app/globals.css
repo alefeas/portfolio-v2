@@ -22,11 +22,6 @@
   --input: #D5E0EE;
   --ring: #3D5A80;
   --radius: 0.625rem;
-  /* Ambient orbs / cursor glow — keep rgba here so AmbientBackground stays token-driven */
-  --ambient-orb-a: rgba(0, 29, 81, 0.05);
-  --ambient-orb-b: rgba(61, 90, 128, 0.06);
-  --ambient-orb-c: rgba(61, 90, 128, 0.08);
-  --ambient-cursor: rgba(61, 90, 128, 0.07);
 }
 
 @theme inline {
@@ -330,43 +325,6 @@ body {
   }
 }
 
-/* ── Ambient background ── */
-@keyframes ambient-drift-a {
-  from { transform: translate3d(-4%, -3%, 0) scale(1); }
-  to   { transform: translate3d(5%, 4%, 0) scale(1.04); }
-}
-
-@keyframes ambient-drift-b {
-  from { transform: translate3d(3%, 2%, 0) scale(1.02); }
-  to   { transform: translate3d(-6%, -2%, 0) scale(1); }
-}
-
-@keyframes ambient-drift-c {
-  from { transform: translate3d(0, 4%, 0) scale(1); }
-  to   { transform: translate3d(-3%, -5%, 0) scale(1.05); }
-}
-
-.ambient-orb-a {
-  animation: ambient-drift-a 48s ease-in-out infinite alternate;
-}
-
-.ambient-orb-b {
-  animation: ambient-drift-b 56s ease-in-out infinite alternate;
-}
-
-.ambient-orb-c {
-  animation: ambient-drift-c 52s ease-in-out infinite alternate;
-}
-
-.ambient-noise {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
 /* Hide floating chrome on 404 — pure CSS, no body mutation / hydration mismatch */
 body:has([data-not-found]) .site-chrome {
   display: none !important;
@@ -415,9 +373,6 @@ body[data-chrome-hold] .chrome-enter {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ambient-orb-a,
-  .ambient-orb-b,
-  .ambient-orb-c,
   .section-nav-spinner {
     animation: none !important;
   }
